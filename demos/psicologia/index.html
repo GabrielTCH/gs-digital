@@ -145,9 +145,15 @@
       transform: translateY(-2px);
     }
 
-    /* Hero */
+    /* Hero with Clinic Background */
+    .hero-psy-section {
+      background: linear-gradient(90deg, rgba(248, 246, 240, 0.94) 0%, rgba(248, 246, 240, 0.88) 55%, rgba(248, 246, 240, 0.65) 100%),
+                  url('/assets/images/bg_psicologia.jpg') center/cover no-repeat;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
     .psy-hero {
-      padding: 90px 50px;
+      padding: 100px 50px;
       max-width: 1250px;
       margin: 0 auto;
       display: grid;
@@ -159,13 +165,15 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(56, 102, 65, 0.1);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(56, 102, 65, 0.25);
       color: var(--sage);
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
       font-size: 0.82rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
     .hero-title-psy {
       font-family: var(--font-display);
@@ -176,9 +184,10 @@
     }
     .hero-sub-psy {
       font-size: 1.1rem;
-      color: var(--text-muted);
+      color: #4b5563;
       margin-bottom: 36px;
-      line-height: 1.7;
+      line-height: 1.8;
+      font-weight: 450;
     }
 
     .hero-avatar-box {
@@ -438,32 +447,34 @@
     </a>
   </header>
 
-  <!-- Hero Section -->
-  <section class="psy-hero">
-    <div>
-      <div class="hero-badge-psy">
-        <span>🌱</span> Psicoterapia Presencial nos Jardins & Online pelo Mundo
+  <!-- Hero Section with Clinic Background -->
+  <section class="hero-psy-section">
+    <div class="psy-hero">
+      <div>
+        <div class="hero-badge-psy">
+          <span>🌱</span> Psicoterapia Presencial nos Jardins & Online pelo Mundo
+        </div>
+        <h1 class="hero-title-psy">
+          Um espaço seguro e acolhedor para a sua saúde mental.
+        </h1>
+        <p class="hero-sub-psy">
+          Atendimento especializado baseado na Terapia Cognitivo-Comportamental (TCC) para lidar com a ansiedade, síndrome de burnout, conflitos emocionais e reconectar-se com a sua essência.
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#agendamento" class="btn-psy-cta" style="padding: 14px 28px; font-size: 0.95rem;">
+            Agendar Primeira Sessão
+          </a>
+          <a href="https://wa.me/5511999999999" target="_blank" style="background: rgba(56, 102, 65, 0.1); color: var(--sage-dark); font-weight: 700; padding: 14px 24px; border-radius: 999px; text-decoration: none; font-size: 0.9rem;">
+            Tirar Dúvidas via WhatsApp 💬
+          </a>
+        </div>
       </div>
-      <h1 class="hero-title-psy">
-        Um espaço seguro e acolhedor para a sua saúde mental.
-      </h1>
-      <p class="hero-sub-psy">
-        Atendimento especializado baseado na Terapia Cognitivo-Comportamental (TCC) para lidar com a ansiedade, síndrome de burnout, conflitos emocionais e reconectar-se com a sua essência.
-      </p>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <a href="#agendamento" class="btn-psy-cta" style="padding: 14px 28px; font-size: 0.95rem;">
-          Agendar Primeira Sessão
-        </a>
-        <a href="https://wa.me/5511999999999" target="_blank" style="background: rgba(56, 102, 65, 0.1); color: var(--sage-dark); font-weight: 700; padding: 14px 24px; border-radius: 999px; text-decoration: none; font-size: 0.9rem;">
-          Tirar Dúvidas via WhatsApp 💬
-        </a>
-      </div>
-    </div>
 
-    <div class="hero-avatar-box">
-      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Dra. Helena Vaz Psicóloga" class="hero-avatar-img">
-      <div class="avatar-badge-quote">
-        "O autoconhecimento não é um destino final, mas o caminho mais corajoso para viver com liberdade e paz interior."
+      <div class="hero-avatar-box">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Dra. Helena Vaz Psicóloga" class="hero-avatar-img">
+        <div class="avatar-badge-quote">
+          "O autoconhecimento não é um destino final, mas o caminho mais corajoso para viver com liberdade e paz interior."
+        </div>
       </div>
     </div>
   </section>

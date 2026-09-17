@@ -142,7 +142,13 @@
       color: #fff;
     }
 
-    /* Hero */
+    /* Hero with Architectural Background */
+    .arch-hero-section {
+      background: linear-gradient(90deg, rgba(249, 248, 245, 0.96) 0%, rgba(249, 248, 245, 0.90) 50%, rgba(249, 248, 245, 0.72) 100%),
+                  url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
     .arch-hero {
       padding: 100px 60px 80px;
       max-width: 1400px;
@@ -169,16 +175,18 @@
     }
     .hero-text {
       font-size: 1.1rem;
-      color: var(--stone);
+      color: #57534e;
       line-height: 1.8;
       margin-bottom: 40px;
       max-width: 540px;
+      font-weight: 450;
     }
     .hero-img-box {
       position: relative;
       border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
     .hero-img-box img {
       width: 100%;
@@ -212,11 +220,14 @@
       color: var(--stone);
     }
 
-    /* Calculator Section */
+    /* Calculator Section with Concrete Brutalist Backdrop */
     .calc-section {
-      background: var(--surface-dark);
+      background: linear-gradient(135deg, rgba(25, 25, 23, 0.94) 0%, rgba(25, 25, 23, 0.90) 100%),
+                  url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
       color: #fff;
       padding: 100px 60px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
     }
     .calc-inner {
       max-width: 1200px;
@@ -250,10 +261,12 @@
     }
 
     .calc-card {
-      background: #232320;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(35, 35, 32, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(184, 144, 88, 0.35);
       border-radius: 8px;
       padding: 40px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
     }
     .calc-field {
       margin-bottom: 24px;
@@ -454,31 +467,33 @@
     </a>
   </header>
 
-  <!-- Hero Section -->
-  <section class="arch-hero">
-    <div>
-      <div class="hero-pretitle">Arquitetura Sensorial & Concreto Aparente</div>
-      <h1 class="hero-title">
-        Espaços que respiram luz, calma e autenticidade.
-      </h1>
-      <p class="hero-text">
-        Criamos residências contemporâneas e espaços corporativos onde a integração biofílica, o minimalismo acolhedor e a pureza dos materiais transformam o habitar diário.
-      </p>
-      <div style="display: flex; gap: 20px; align-items: center;">
-        <a href="#projetos" class="btn-arch-cta" style="padding: 16px 32px; font-size: 0.85rem;">
-          Explorar Portfólio
-        </a>
-        <a href="#calculadora" style="color: var(--charcoal); text-decoration: none; font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-          Simular Investimento →
-        </a>
+  <!-- Hero Section with Architectural Background -->
+  <section class="arch-hero-section">
+    <div class="arch-hero">
+      <div>
+        <div class="hero-pretitle">Arquitetura Sensorial & Concreto Aparente</div>
+        <h1 class="hero-title">
+          Espaços que respiram luz, calma e autenticidade.
+        </h1>
+        <p class="hero-text">
+          Criamos residências contemporâneas e espaços corporativos onde a integração biofílica, o minimalismo acolhedor e a pureza dos materiais transformam o habitar diário.
+        </p>
+        <div style="display: flex; gap: 20px; align-items: center;">
+          <a href="#projetos" class="btn-arch-cta" style="padding: 16px 32px; font-size: 0.85rem;">
+            Explorar Portfólio
+          </a>
+          <a href="#calculadora" style="color: var(--charcoal); text-decoration: none; font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+            Simular Investimento →
+          </a>
+        </div>
       </div>
-    </div>
 
-    <div class="hero-img-box">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" alt="Residência Monólito - Studio Arkhé">
-      <div class="hero-floating-card">
-        <div class="hero-floating-title">Casa Monólito</div>
-        <div class="hero-floating-sub">Fazenda Boa Vista, SP — 680 m²</div>
+      <div class="hero-img-box">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" alt="Residência Monólito - Studio Arkhé">
+        <div class="hero-floating-card">
+          <div class="hero-floating-title">Casa Monólito</div>
+          <div class="hero-floating-sub">Fazenda Boa Vista, SP — 680 m²</div>
+        </div>
       </div>
     </div>
   </section>

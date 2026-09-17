@@ -125,9 +125,16 @@
       transform: translateY(-2px);
     }
 
-    /* Hero */
+    /* Hero with Athletic Facility Background */
+    .hero-nutri-section {
+      background: linear-gradient(90deg, rgba(11, 14, 20, 0.95) 0%, rgba(11, 14, 20, 0.86) 50%, rgba(11, 14, 20, 0.65) 100%),
+                  url('/assets/images/bg_nutricao.jpg') center/cover no-repeat;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      box-shadow: inset 0 -40px 60px rgba(11, 14, 20, 0.8);
+    }
     .nutri-hero {
-      padding: 80px 50px 70px;
+      padding: 100px 50px 90px;
       max-width: 1250px;
       margin: 0 auto;
       display: grid;
@@ -139,15 +146,16 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(204, 255, 0, 0.1);
-      border: 1px solid rgba(204, 255, 0, 0.3);
+      background: rgba(204, 255, 0, 0.12);
+      border: 1px solid var(--lime);
       color: var(--lime);
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
       font-size: 0.8rem;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(204, 255, 0, 0.2);
     }
     .hero-title-nutri {
       font-family: var(--font-display);
@@ -156,25 +164,28 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 20px;
+      text-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
     }
     .hero-title-nutri span {
       color: var(--lime);
-      text-shadow: 0 0 25px var(--lime-glow);
+      text-shadow: 0 0 30px var(--lime-glow);
     }
     .hero-desc-nutri {
       font-size: 1.05rem;
-      color: var(--text-muted);
+      color: #cbd5e1;
       margin-bottom: 30px;
       line-height: 1.7;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
     }
 
     /* Calculator Section */
     .calc-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      background: rgba(18, 24, 36, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--lime);
       border-radius: 16px;
       padding: 40px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(204, 255, 0, 0.18);
     }
     .calc-box h3 {
       font-family: var(--font-display);
@@ -373,74 +384,76 @@
     </a>
   </header>
 
-  <!-- Hero Section -->
-  <section class="nutri-hero">
-    <div>
-      <div class="hero-badge-nutri">
-        <span>⚡</span> CRN-3 48.912 • Fisiologia do Exercício & Hipertrofia
-      </div>
-      <h1 class="hero-title-nutri">
-        Desbloqueie Seu <span>Potencial Físico</span> Máximo.
-      </h1>
-      <p class="hero-desc-nutri">
-        Protocolos nutricionais estratégicos desenhados para queima de gordura acelerada e ganho real de massa muscular sem dietas insustentáveis e sem abrir mão da sua rotina social.
-      </p>
-
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <a href="#planos" class="btn-lime" style="padding: 15px 30px; font-size: 0.95rem;">
-          Conhecer os Planos de Consultoria
-        </a>
-        <a href="https://wa.me/5511999999999" target="_blank" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: #fff; padding: 15px 24px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 700;">
-          Falar no WhatsApp 💬
-        </a>
-      </div>
-    </div>
-
-    <!-- Interactive TMB Calculator -->
-    <div class="calc-box" id="calculadora">
-      <h3>Calculadora de Metabolismo (TMB)</h3>
-      <p>Simule seu gasto calórico basal e a meta hídrica diária ideal para o seu peso.</p>
-
-      <div class="calc-row">
-        <div>
-          <label class="c-label">Peso (kg)</label>
-          <input type="number" class="c-input" id="cWeight" value="78" oninput="calcMetabolism()">
+  <!-- Hero Section with Athletic Gym Background -->
+  <section class="hero-nutri-section">
+    <div class="nutri-hero">
+      <div>
+        <div class="hero-badge-nutri">
+          <span>⚡</span> CRN-3 48.912 • Fisiologia do Exercício & Hipertrofia
         </div>
-        <div>
-          <label class="c-label">Altura (cm)</label>
-          <input type="number" class="c-input" id="cHeight" value="178" oninput="calcMetabolism()">
+        <h1 class="hero-title-nutri">
+          Desbloqueie Seu <span>Potencial Físico</span> Máximo.
+        </h1>
+        <p class="hero-desc-nutri">
+          Protocolos nutricionais estratégicos desenhados para queima de gordura acelerada e ganho real de massa muscular sem dietas insustentáveis e sem abrir mão da sua rotina social.
+        </p>
+
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#planos" class="btn-lime" style="padding: 15px 30px; font-size: 0.95rem;">
+            Conhecer os Planos de Consultoria
+          </a>
+          <a href="https://wa.me/5511999999999" target="_blank" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: #fff; padding: 15px 24px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 700;">
+            Falar no WhatsApp 💬
+          </a>
         </div>
       </div>
 
-      <div class="calc-row">
-        <div>
-          <label class="c-label">Idade (anos)</label>
-          <input type="number" class="c-input" id="cAge" value="28" oninput="calcMetabolism()">
-        </div>
-        <div>
-          <label class="c-label">Nível de Atividade</label>
-          <select class="c-input" id="cActivity" onchange="calcMetabolism()">
-            <option value="1.2">Sedentário (pouco exercício)</option>
-            <option value="1.55" selected>Moderado (treino 3 a 5x/sem)</option>
-            <option value="1.725">Intenso (treino diário pesado)</option>
-          </select>
-        </div>
-      </div>
+      <!-- Interactive TMB Calculator -->
+      <div class="calc-box" id="calculadora">
+        <h3>Calculadora de Metabolismo (TMB)</h3>
+        <p>Simule seu gasto calórico basal e a meta hídrica diária ideal para o seu peso.</p>
 
-      <div class="calc-metrics-result">
-        <div>
-          <div class="metric-val" id="resTmb">2.750</div>
-          <div class="metric-lbl">Kcal / Dia Estimadas</div>
+        <div class="calc-row">
+          <div>
+            <label class="c-label">Peso (kg)</label>
+            <input type="number" class="c-input" id="cWeight" value="78" oninput="calcMetabolism()">
+          </div>
+          <div>
+            <label class="c-label">Altura (cm)</label>
+            <input type="number" class="c-input" id="cHeight" value="178" oninput="calcMetabolism()">
+          </div>
         </div>
-        <div>
-          <div class="metric-val" id="resWater">3.1 L</div>
-          <div class="metric-lbl">Meta de Água / Dia</div>
-        </div>
-      </div>
 
-      <button class="btn-lime" style="width: 100%; margin-top: 18px; text-align: center;" onclick="alert('⚡ Em um site real da GS Digital, o lead recebe o cálculo de macronutrientes (Proteínas, Carbos e Gorduras) em PDF no WhatsApp!')">
-        Quero meu Plano Personalizado
-      </button>
+        <div class="calc-row">
+          <div>
+            <label class="c-label">Idade (anos)</label>
+            <input type="number" class="c-input" id="cAge" value="28" oninput="calcMetabolism()">
+          </div>
+          <div>
+            <label class="c-label">Nível de Atividade</label>
+            <select class="c-input" id="cActivity" onchange="calcMetabolism()">
+              <option value="1.2">Sedentário (pouco exercício)</option>
+              <option value="1.55" selected>Moderado (treino 3 a 5x/sem)</option>
+              <option value="1.725">Intenso (treino diário pesado)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-metrics-result">
+          <div>
+            <div class="metric-val" id="resTmb">2.750</div>
+            <div class="metric-lbl">Kcal / Dia Estimadas</div>
+          </div>
+          <div>
+            <div class="metric-val" id="resWater">3.1 L</div>
+            <div class="metric-lbl">Meta de Água / Dia</div>
+          </div>
+        </div>
+
+        <button class="btn-lime" style="width: 100%; margin-top: 18px; text-align: center;" onclick="alert('⚡ Em um site real da GS Digital, o lead recebe o cálculo de macronutrientes (Proteínas, Carbos e Gorduras) em PDF no WhatsApp!')">
+          Quero meu Plano Personalizado
+        </button>
+      </div>
     </div>
   </section>
 

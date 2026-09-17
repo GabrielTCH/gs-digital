@@ -122,15 +122,17 @@
       transform: translateY(-2px);
     }
 
-    /* Hero */
+    /* Hero with Luxury Oceanfront Skyscraper View */
     .real-hero {
       position: relative;
-      min-height: 85vh;
+      min-height: 88vh;
       display: flex;
       align-items: center;
-      padding: 80px 50px;
-      background: linear-gradient(180deg, rgba(4, 9, 20, 0.75) 0%, rgba(4, 9, 20, 0.95) 100%),
-                  url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+      padding: 90px 50px;
+      background: linear-gradient(90deg, rgba(4, 9, 20, 0.94) 0%, rgba(4, 9, 20, 0.84) 50%, rgba(4, 9, 20, 0.65) 100%),
+                  url('https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      border-bottom: 1px solid var(--border);
+      box-shadow: inset 0 -40px 60px rgba(4, 9, 20, 0.9);
     }
     .hero-container {
       max-width: 1250px;
@@ -318,20 +320,24 @@
       color: #fff;
     }
 
-    /* Financing Simulator */
+    /* Financing Simulator with Sunset Coastal Background */
     .sim-section {
-      background: #02060f;
+      background: linear-gradient(135deg, rgba(2, 6, 15, 0.94) 0%, rgba(2, 6, 15, 0.88) 100%),
+                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 90px 50px;
+      padding: 100px 50px;
+      position: relative;
     }
     .sim-card {
       max-width: 900px;
       margin: 0 auto;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      background: rgba(10, 19, 36, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--gold);
       border-radius: 16px;
       padding: 44px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.2);
     }
     .sim-grid {
       display: grid;
