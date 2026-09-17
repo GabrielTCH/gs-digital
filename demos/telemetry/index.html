@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HyperTrack Pro | Plataforma de Telemetria e Engenharia de Competição</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #04070d;
+      --bg-surface: #090e18;
+      --bg-card: rgba(13, 22, 38, 0.8);
+      
+      --cyan-neon: #00f0ff;
+      --cyan-glow: 0 0 20px rgba(0, 240, 255, 0.4);
+      --green-race: #10b981;
+      --red-brake: #ef4444;
+      --gold-leader: #facc15;
+      --purple-best: #d946ef;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-cyan: rgba(0, 240, 255, 0.3);
+      --font-mono: 'Share Tech Mono', monospace;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+
+    /* Top GS Digital Demo Header */
+    .demo-bar {
+      background: rgba(8, 14, 25, 0.95);
+      border-bottom: 1px solid var(--border-cyan);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--cyan-neon);
+      color: var(--cyan-neon);
+      padding: 4px 14px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .back-btn {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: var(--cyan-neon); color: #000; }
+
+    /* Telemetry Header Bar */
+    .tele-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .track-meta h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .track-meta h1 span { color: var(--cyan-neon); }
+    .track-meta p { font-size: 0.85rem; color: var(--text-muted); margin-top: 3px; }
+
+    .telemetry-status-pills {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill-live { border-color: var(--green-race); color: var(--green-race); }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-race); box-shadow: 0 0 10px var(--green-race); animation: blink 1.2s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* Navigation Tabs */
+    .tele-nav {
+      background: #070c15;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 28px;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+    }
+    .tele-tab {
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 14px 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tele-tab:hover { color: #fff; }
+    .tele-tab.active {
+      color: var(--cyan-neon);
+      border-bottom-color: var(--cyan-neon);
+      background: rgba(0, 240, 255, 0.05);
+    }
+
+    /* Container */
+    .tele-content { flex: 1; padding: 24px 28px; }
+    .tab-view { display: none; }
+    .tab-view.active { display: block; animation: fadeIn 0.25s ease; }
+
+    /* Dashboard Layout */
+    .dashboard-top-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .gauge-widget {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .gauge-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .gauge-val {
+      font-family: var(--font-mono);
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 8px 0;
+      line-height: 1;
+    }
+    .gauge-sub { font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between; }
+
+    /* Waveform Channels (MoTeC Style) */
+    .waveforms-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 22px;
+    }
+    .waveform-channel {
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .channel-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+    }
+    .channel-canvas-wrap {
+      width: 100%;
+      height: 90px;
+      background: #020407;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .channel-canvas { width: 100%; height: 100%; display: block; }
+
+    /* Scrubber / Lap Slider */
+    .scrubber-bar {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(0,0,0,0.5);
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+    }
+    .time-slider {
+      flex: 1;
+      height: 8px;
+      accent-color: var(--cyan-neon);
+      cursor: pointer;
+    }
+
+    /* Track Map + Diagnostics Grid */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+
+    /* Track Map Canvas */
+    .track-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .track-canvas-box {
+      width: 100%;
+      height: 380px;
+      background: #020407;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    #track-canvas { width: 100%; height: 100%; }
+
+    /* Tire & Sensor Matrix */
+    .sensor-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .tires-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .tire-box {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .tire-name { font-size: 0.8rem; font-weight: 700; color: var(--cyan-neon); margin-bottom: 6px; font-family: var(--font-mono); }
+    .tire-temp-zones { display: flex; justify-content: space-around; font-family: var(--font-mono); font-size: 0.85rem; color: #facc15; margin-bottom: 6px; }
+    .tire-press { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* Leaderboard Table */
+    .tele-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+    .tele-table th { padding: 12px 14px; color: var(--text-muted); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-mono); }
+    .tele-table td { padding: 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-family: var(--font-mono); }
+    .p1-row { background: rgba(250, 204, 21, 0.05); }
+
+    @media (max-width: 1024px) {
+      .dashboard-top-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-2col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top GS Digital Demo Header -->
+  <div class="demo-bar">
+    <a href="../../index.html#portfolio" class="back-btn">← Voltar para GS Digital</a>
+    <div class="demo-badge">✦ PROJETO REAL: HyperTrack Pro - Telemetria de Competição</div>
+    <a href="../../index.html#simulador" class="back-btn" style="background: var(--cyan-neon); color: #000;">Contratar Sistema de Telemetria ⚡</a>
+  </div>
+
+  <!-- Telemetry Header -->
+  <header class="tele-header">
+    <div class="track-meta">
+      <h1>HYPER<span>TRACK</span> PRO // LIVE TELEMETRY SUITE</h1>
+      <p>Circuito Internacional de Interlagos • Kart Shifter 125cc #17 • Piloto: Gabriel T. • Sessão: Q3</p>
+    </div>
+
+    <div class="telemetry-status-pills">
+      <div class="pill pill-live">
+        <span class="live-dot"></span>
+        <span>TELEMETRIA 5G EDGE ONLINE</span>
+      </div>
+      <div class="pill">
+        <span>FREQ: 100 Hz</span>
+      </div>
+      <div class="pill">
+        <span>LATÊNCIA: 4.2ms</span>
+      </div>
+      <button class="back-btn" style="padding: 6px 14px;" onclick="exportTelemetry()">Exportar Log MoTeC CSV 📥</button>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tele-nav">
+    <button class="tele-tab active" onclick="switchTeleTab('live', this)">📈 Telemetria Multicanal (MoTeC)</button>
+    <button class="tele-tab" onclick="switchTeleTab('track', this)">🗺️ Mapa GPS da Pista & Traçado</button>
+    <button class="tele-tab" onclick="switchTeleTab('ecu', this)">🛡️ Diagnóstico ECU & Manutenção Preventiva</button>
+    <button class="tele-tab" onclick="switchTeleTab('timing', this)">⏱️ Timing Tower & Leaderboard</button>
+  </nav>
+
+  <!-- Content -->
+  <main class="tele-content">
+
+    <!-- ================= 1. LIVE WAVEFORM CHANNELS ================= -->
+    <div class="tab-view active" id="tab-live">
+      <div class="dashboard-top-grid">
+        <div class="gauge-widget">
+          <div class="gauge-label">Velocidade Atual</div>
+          <div class="gauge-val" id="gauge-speed" style="color: var(--cyan-neon);">184 <span style="font-size: 1rem; color: var(--text-muted);">KM/H</span></div>
+          <div class="gauge-sub">
+            <span>Máx Volta: <strong>218 km/h</strong></span>
+            <span>Média: <strong>142 km/h</strong></span>
+          </div>
+        </div>
+
+        <div class="gauge-widget">
+          <div class="gauge-label">Rotação do Motor (RPM)</div>
+          <div class="gauge-val" id="gauge-rpm" style="color: #f59e0b;">12.450 <span style="font-size: 1rem; color: var(--text-muted);">RPM</span></div>
+          <div class="gauge-sub">
+            <span>Limitador: <strong>14.200</strong></span>
+            <span>Marcha: <strong id="gauge-gear" style="color: var(--cyan-neon);">5ª</strong></span>
+          </div>
+        </div>
+
+        <div class="gauge-widget">
+          <div class="gauge-label">Acelerador (TPS) vs Freio</div>
+          <div class="gauge-val" id="gauge-pedals" style="color: var(--green-race);">100% <span style="font-size: 1rem; color: var(--red-brake);">/ 0 bar</span></div>
+          <div class="gauge-sub">
+            <span>Throttle: 100%</span>
+            <span>Pressão Freio: 0 bar</span>
+          </div>
+        </div>
+
+        <div class="gauge-widget">
+          <div class="gauge-label">Tempo da Volta Atual</div>
+          <div class="gauge-val" id="gauge-laptime" style="color: var(--purple-best); font-size: 2.2rem;">00:38.410</div>
+          <div class="gauge-sub">
+            <span>Melhor Volta (V4): <strong style="color: var(--gold-leader);">53.840s</strong></span>
+            <span>Delta: <strong style="color: var(--green-race);">-0.24s</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Synchronized Waveforms -->
+      <div class="waveforms-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem;">Canais de Telemetria Sincronizados (Volta Completa #4)</h2>
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">Ponto do Cursor: <strong id="cursor-pos-label" style="color: var(--cyan-neon);">Curva 4 (Descida do Lago)</strong></span>
+        </div>
+
+        <!-- Channel 1: Speed -->
+        <div class="waveform-channel">
+          <div class="channel-header">
+            <span style="color: var(--cyan-neon);">● VELOCIDADE [km/h] (0 - 240)</span>
+            <span id="chan-speed-val">184 km/h</span>
+          </div>
+          <div class="channel-canvas-wrap">
+            <canvas id="canvas-speed" class="channel-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Channel 2: Throttle & Brake -->
+        <div class="waveform-channel">
+          <div class="channel-header">
+            <span>
+              <strong style="color: var(--green-race);">● ACELERADOR [%]</strong> vs 
+              <strong style="color: var(--red-brake);">● FREIO [bar]</strong>
+            </span>
+            <span id="chan-pedals-val">TPS: 100% | Freio: 0 bar</span>
+          </div>
+          <div class="channel-canvas-wrap">
+            <canvas id="canvas-pedals" class="channel-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Channel 3: RPM & Gear -->
+        <div class="waveform-channel">
+          <div class="channel-header">
+            <span style="color: #f59e0b;">● ROTAÇÃO MOTOR [RPM] (0 - 14.500)</span>
+            <span id="chan-rpm-val">12.450 RPM</span>
+          </div>
+          <div class="channel-canvas-wrap">
+            <canvas id="canvas-rpm" class="channel-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Scrubber -->
+        <div class="scrubber-bar">
+          <button class="back-btn" id="btn-play-tele" onclick="togglePlay()" style="padding: 6px 16px;">▶ Reproduzir 60fps</button>
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">Distância:</span>
+          <input type="range" class="time-slider" id="scrubber-slider" min="0" max="100" value="62" oninput="onScrub(this.value)">
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--cyan-neon);" id="scrub-dist">2.670m / 4.309m</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 2. TRACK MAP ================= -->
+    <div class="tab-view" id="tab-track">
+      <div class="grid-2col">
+        <div class="track-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem;">Traçado GPS com Linha Ideal de Corrida</h2>
+            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--cyan-neon);">● Posição do Veículo ao Vivo</span>
+          </div>
+          <div class="track-canvas-box">
+            <canvas id="track-canvas"></canvas>
+          </div>
+        </div>
+
+        <div class="sensor-card">
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; margin-bottom: 16px;">Análise por Setores</h2>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 14px; border-left: 3px solid var(--purple-best);">
+              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono);">
+                <span>SETOR 1 (S do Senna & Reta Oposta)</span>
+                <strong style="color: var(--purple-best);">18.210s (ROXO - RECORD)</strong>
+              </div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Velocidade máxima atingida: 218.4 km/h na saída do S.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 14px; border-left: 3px solid var(--green-race);">
+              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono);">
+                <span>SETOR 2 (Laranja, Ferradura, Pinheirinho)</span>
+                <strong style="color: var(--green-race);">21.890s (VERDE)</strong>
+              </div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Frenagem precisa no Bico de Pato. Ganho de 0.12s em tração.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 14px; border-left: 3px solid var(--cyan-neon);">
+              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono);">
+                <span>SETOR 3 (Junção e Subida dos Boxes)</span>
+                <strong style="color: var(--cyan-neon);">13.740s (IDEAL)</strong>
+              </div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Acelerador 100% cravado por 11.2 segundos contínuos.</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; padding: 16px; background: rgba(0, 240, 255, 0.06); border-radius: 10px; border: 1px solid var(--border-cyan);">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--cyan-neon); font-weight: 700;">VOLTA TEÓRICA PERFEITA (S1 + S2 + S3)</div>
+            <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; color: #fff; margin-top: 4px;">53.840s</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 3. ECU & PREVENTIVE MAINTENANCE ================= -->
+    <div class="tab-view" id="tab-ecu">
+      <div class="grid-2col">
+        <div class="sensor-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem;">Matriz Térmica dos 4 Pneus & Pressão</h2>
+            <span style="font-size: 0.75rem; color: #10b981; font-family: var(--font-mono);">SENSORES INFRAVERMELHO 4x3</span>
+          </div>
+
+          <div class="tires-grid">
+            <div class="tire-box">
+              <div class="tire-name">DIANTEIRO ESQUERDO (FL)</div>
+              <div class="tire-temp-zones">
+                <span>I: 84°C</span>
+                <span>M: 86°C</span>
+                <span>O: 89°C</span>
+              </div>
+              <div class="tire-press">Pressão: <strong style="color: #fff;">2.15 BAR</strong> (Ótimo)</div>
+            </div>
+
+            <div class="tire-box">
+              <div class="tire-name">DIANTEIRO DIREITO (FR)</div>
+              <div class="tire-temp-zones">
+                <span>I: 88°C</span>
+                <span>M: 87°C</span>
+                <span>O: 85°C</span>
+              </div>
+              <div class="tire-press">Pressão: <strong style="color: #fff;">2.18 BAR</strong> (Ótimo)</div>
+            </div>
+
+            <div class="tire-box">
+              <div class="tire-name">TRASEIRO ESQUERDO (RL)</div>
+              <div class="tire-temp-zones">
+                <span>I: 91°C</span>
+                <span>M: 92°C</span>
+                <span>O: 94°C</span>
+              </div>
+              <div class="tire-press">Pressão: <strong style="color: #fff;">2.22 BAR</strong> (Ótimo)</div>
+            </div>
+
+            <div class="tire-box">
+              <div class="tire-name">TRASEIRO DIREITO (RR)</div>
+              <div class="tire-temp-zones">
+                <span>I: 92°C</span>
+                <span>M: 93°C</span>
+                <span>O: 95°C</span>
+              </div>
+              <div class="tire-press">Pressão: <strong style="color: #fff;">2.24 BAR</strong> (Ótimo)</div>
+            </div>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+            Temperaturas na janela operacional ideal (80°C a 98°C) para o composto macio.
+          </p>
+        </div>
+
+        <div class="sensor-card">
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; margin-bottom: 16px;">
+            🛡️ Manutenção Preventiva & Saúde do Chassi
+          </h2>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; font-family: var(--font-mono);">
+              <span>Vida Útil do Pistão / Cilindro:</span>
+              <span style="color: #10b981;">14.2h / 20.0h (71%)</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; font-family: var(--font-mono);">
+              <span>Desgaste Pastilhas de Freio:</span>
+              <span style="color: #10b981;">82% Restante</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; font-family: var(--font-mono);">
+              <span>Temperatura da Água do Radiador:</span>
+              <span style="color: var(--cyan-neon);">76°C (ESTÁVEL)</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; font-family: var(--font-mono);">
+              <span>Tensão da Bateria Telemetria:</span>
+              <span style="color: #10b981;">14.2V (CARGA TOTAL)</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; font-family: var(--font-mono);">
+              <span>Alerta Próxima Troca de Corrente:</span>
+              <span style="color: #facc15;">Revisar ao fim da sessão</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 4. LEADERBOARD ================= -->
+    <div class="tab-view" id="tab-timing">
+      <div class="track-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem;">Classificação Oficial ao Vivo • Q3 Interlagos</h2>
+          <span style="font-family: var(--font-mono); color: var(--cyan-neon);">TEMPO RESTANTE: 03:45</span>
+        </div>
+
+        <table class="tele-table">
+          <thead>
+            <tr>
+              <th>POS</th>
+              <th>PILOTO</th>
+              <th>Nº</th>
+              <th>MELHOR VOLTA</th>
+              <th>DIFERENÇA (GAP)</th>
+              <th>S1</th>
+              <th>S2</th>
+              <th>S3</th>
+              <th>VOLTAS</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="p1-row">
+              <td style="color: var(--gold-leader); font-weight: 700;">P1</td>
+              <td><strong>Gabriel Toledo</strong></td>
+              <td>#17</td>
+              <td style="color: var(--purple-best); font-weight: 700;">53.840s</td>
+              <td>LÍDER</td>
+              <td>18.210</td>
+              <td>21.890</td>
+              <td>13.740</td>
+              <td>12</td>
+              <td style="color: var(--green-race);">PISTA</td>
+            </tr>
+            <tr>
+              <td>P2</td>
+              <td>Felipe Massa</td>
+              <td>#19</td>
+              <td style="color: var(--green-race);">53.985s</td>
+              <td>+0.145s</td>
+              <td>18.305</td>
+              <td>21.910</td>
+              <td>13.770</td>
+              <td>14</td>
+              <td style="color: var(--green-race);">PISTA</td>
+            </tr>
+            <tr>
+              <td>P3</td>
+              <td>Lucas Di Grassi</td>
+              <td>#11</td>
+              <td>54.120s</td>
+              <td>+0.280s</td>
+              <td>18.390</td>
+              <td>21.980</td>
+              <td>13.750</td>
+              <td>11</td>
+              <td style="color: var(--text-muted);">BOXES</td>
+            </tr>
+            <tr>
+              <td>P4</td>
+              <td>Caio Collet</td>
+              <td>#23</td>
+              <td>54.340s</td>
+              <td>+0.500s</td>
+              <td>18.450</td>
+              <td>22.040</td>
+              <td>13.850</td>
+              <td>10</td>
+              <td style="color: var(--green-race);">PISTA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchTeleTab(tabId, btn) {
+      document.querySelectorAll('.tele-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+      if (tabId === 'track') renderTrackCanvas();
+    }
+
+    // Telemetry Waveform Renderers
+    let currentPct = 62;
+    let isPlaying = false;
+    let playInterval = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      drawWaveforms();
+      renderTrackCanvas();
+    });
+
+    function drawWaveforms() {
+      drawChannel('canvas-speed', (x) => {
+        // Speed curve (peaks at straights, drops in corners)
+        return 120 + Math.sin(x * 0.05) * 60 + Math.cos(x * 0.02) * 30;
+      }, '#00f0ff');
+
+      drawChannel('canvas-pedals', (x) => {
+        // Throttle vs Brake
+        return Math.sin(x * 0.06) > 0 ? 80 : 10;
+      }, '#10b981');
+
+      drawChannel('canvas-rpm', (x) => {
+        // RPM curve
+        return 8000 + Math.abs(Math.sin(x * 0.08)) * 5500;
+      }, '#f59e0b');
+    }
+
+    function drawChannel(canvasId, fn, color) {
+      const c = document.getElementById(canvasId);
+      if (!c) return;
+      const ctx = c.getContext('2d');
+      const w = (c.width = c.clientWidth);
+      const h = (c.height = c.clientHeight);
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Grid lines
+      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+      ctx.lineWidth = 1;
+      for (let y = 20; y < h; y += 25) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Curve
+      ctx.beginPath();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      for (let x = 0; x < w; x++) {
+        const val = fn(x);
+        const y = h - (val / 240) * h;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // Draw Cursor line
+      const cursorX = (currentPct / 100) * w;
+      ctx.beginPath();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.moveTo(cursorX, 0);
+      ctx.lineTo(cursorX, h);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    function onScrub(val) {
+      currentPct = parseInt(val, 10);
+      drawWaveforms();
+      updateGaugesAt(currentPct);
+      renderTrackCanvas();
+    }
+
+    function updateGaugesAt(pct) {
+      const spd = Math.round(110 + Math.sin(pct * 0.2) * 85);
+      const rpm = Math.round(9000 + Math.sin(pct * 0.3) * 4500);
+      let gear = '4ª';
+      if (spd > 180) gear = '6ª';
+      else if (spd > 140) gear = '5ª';
+      else if (spd > 100) gear = '4ª';
+      else gear = '3ª';
+
+      document.getElementById('gauge-speed').innerHTML = `${spd} <span style="font-size: 1rem; color: var(--text-muted);">KM/H</span>`;
+      document.getElementById('gauge-rpm').innerHTML = `${rpm.toLocaleString('pt-BR')} <span style="font-size: 1rem; color: var(--text-muted);">RPM</span>`;
+      document.getElementById('gauge-gear').textContent = gear;
+      document.getElementById('chan-speed-val').textContent = `${spd} km/h`;
+      document.getElementById('chan-rpm-val').textContent = `${rpm.toLocaleString('pt-BR')} RPM`;
+
+      const dist = Math.round((pct / 100) * 4309);
+      document.getElementById('scrub-dist').textContent = `${dist}m / 4.309m`;
+    }
+
+    function togglePlay() {
+      const btn = document.getElementById('btn-play-tele');
+      if (isPlaying) {
+        clearInterval(playInterval);
+        isPlaying = false;
+        btn.textContent = '▶ Reproduzir 60fps';
+      } else {
+        isPlaying = true;
+        btn.textContent = '⏸ Pausar Telemetria';
+        playInterval = setInterval(() => {
+          currentPct = (currentPct + 1) % 100;
+          document.getElementById('scrubber-slider').value = currentPct;
+          onScrub(currentPct);
+        }, 120);
+      }
+    }
+
+    // Interactive Track Canvas
+    function renderTrackCanvas() {
+      const c = document.getElementById('track-canvas');
+      if (!c) return;
+      const ctx = c.getContext('2d');
+      const w = (c.width = c.clientWidth);
+      const h = (c.height = c.clientHeight);
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw Circuit Points (Interlagos layout outline)
+      const points = [
+        {x: 0.2*w, y: 0.3*h},
+        {x: 0.4*w, y: 0.2*h},
+        {x: 0.7*w, y: 0.2*h},
+        {x: 0.85*w, y: 0.4*h},
+        {x: 0.75*w, y: 0.7*h},
+        {x: 0.5*w, y: 0.85*h},
+        {x: 0.3*w, y: 0.75*h},
+        {x: 0.15*w, y: 0.55*h}
+      ];
+
+      // Draw asphalt track
+      ctx.beginPath();
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 18;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      points.forEach((p, idx) => {
+        if (idx === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      });
+      ctx.closePath();
+      ctx.stroke();
+
+      // Racing Line with speed gradient
+      ctx.beginPath();
+      ctx.strokeStyle = '#00f0ff';
+      ctx.lineWidth = 4;
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = '#00f0ff';
+      points.forEach((p, idx) => {
+        if (idx === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      });
+      ctx.closePath();
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Calculate Car Position on Track based on currentPct
+      const totalSegs = points.length;
+      const progress = (currentPct / 100) * totalSegs;
+      const segIndex = Math.floor(progress) % totalSegs;
+      const nextIndex = (segIndex + 1) % totalSegs;
+      const subPct = progress - Math.floor(progress);
+
+      const p1 = points[segIndex];
+      const p2 = points[nextIndex];
+      const carX = p1.x + (p2.x - p1.x) * subPct;
+      const carY = p1.y + (p2.y - p1.y) * subPct;
+
+      // Draw Kart Dot with GPS beacon
+      ctx.beginPath();
+      ctx.arc(carX, carY, 9, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = '#00f0ff';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.beginPath();
+      ctx.arc(carX, carY, 16, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(0, 240, 255, 0.7)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Label
+      ctx.font = '12px "Share Tech Mono"';
+      ctx.fillStyle = '#00f0ff';
+      ctx.fillText('KART #17', carX + 15, carY - 8);
+    }
+
+    function exportTelemetry() {
+      alert('Arquivo "hypertrack_interlagos_lap04.csv" gerado com sucesso! Formato compatível com MoTeC i2 Pro.');
+    }
+  </script>
+</body>
+</html>

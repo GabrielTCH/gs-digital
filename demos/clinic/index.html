@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Medical Clinic | Portal Hospitalar & Prontuário Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #060b13;
+      --bg-surface: #0a1322;
+      --bg-card: rgba(14, 25, 42, 0.85);
+      --teal-primary: #06b6d4;
+      --teal-glow: 0 0 25px rgba(6, 182, 212, 0.35);
+      --green-status: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-teal: rgba(6, 182, 212, 0.3);
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+
+    /* Top GS Digital Demo Header */
+    .demo-bar {
+      background: rgba(8, 16, 28, 0.95);
+      border-bottom: 1px solid var(--border-teal);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid var(--teal-primary);
+      color: var(--teal-primary);
+      padding: 4px 14px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .back-btn {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: var(--teal-primary); color: #000; }
+
+    /* Layout */
+    .clinic-nav {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .clinic-brand { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; }
+    .clinic-brand span { color: var(--teal-primary); }
+
+    .nav-tabs { display: flex; gap: 8px; }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: #fff; background: rgba(255,255,255,0.04); }
+    .tab-btn.active {
+      color: var(--teal-primary);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid var(--border-teal);
+    }
+
+    .main-container { max-width: 1200px; margin: 32px auto; padding: 0 24px; width: 100%; flex: 1; }
+    .clinic-view { display: none; }
+    .clinic-view.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .grid-booking {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+    }
+
+    /* Appointment Controls */
+    .step-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; margin-bottom: 14px; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .step-title span { color: var(--teal-primary); }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .service-item {
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .service-item:hover { border-color: var(--teal-primary); }
+    .service-item.selected {
+      border-color: var(--teal-primary);
+      background: rgba(6, 182, 212, 0.1);
+      box-shadow: var(--teal-glow);
+    }
+
+    .doctor-picker {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .doctor-card {
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .doctor-card.selected {
+      border-color: var(--teal-primary);
+      background: rgba(6, 182, 212, 0.1);
+    }
+    .doc-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-primary), #0284c7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .slots-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .slot-btn {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .slot-btn:hover { border-color: var(--teal-primary); }
+    .slot-btn.selected {
+      background: var(--teal-primary);
+      color: #000;
+      border-color: var(--teal-primary);
+      box-shadow: 0 0 15px var(--teal-primary);
+    }
+
+    .form-input {
+      width: 100%;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      outline: none;
+    }
+    .form-input:focus { border-color: var(--teal-primary); }
+
+    .btn-confirm {
+      width: 100%;
+      background: linear-gradient(135deg, var(--teal-primary) 0%, #0284c7 100%);
+      color: #040911;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-confirm:hover { box-shadow: var(--teal-glow); transform: translateY(-2px); }
+
+    /* Summary Sidebar */
+    .summary-box {
+      background: linear-gradient(160deg, rgba(16, 30, 50, 0.9), rgba(8, 15, 26, 0.95));
+      border: 1px solid var(--border-teal);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 14px; font-size: 0.9rem; color: var(--text-muted); }
+    .summary-row strong { color: #fff; }
+
+    /* Records Table */
+    .record-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+    .record-table th { padding: 12px 14px; color: var(--text-muted); border-bottom: 1px solid var(--border-subtle); }
+    .record-table td { padding: 14px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+    @media (max-width: 1024px) {
+      .grid-booking { grid-template-columns: 1fr; }
+      .service-grid, .doctor-picker { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top GS Digital Demo Header -->
+  <div class="demo-bar">
+    <a href="../../index.html#portfolio" class="back-btn">← Voltar para GS Digital</a>
+    <div class="demo-badge">✦ PROJETO REAL: Lumina Medical Clinic - Sistema Clínico Hospitalar</div>
+    <a href="../../index.html#simulador" class="back-btn" style="background: var(--teal-primary); color: #000;">Criar Portal Clínico ⚡</a>
+  </div>
+
+  <nav class="clinic-nav">
+    <div class="clinic-brand">
+      <span>✦</span> Lumina <span>Medical Clinic</span>
+    </div>
+
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchClinicTab('booking', this)">📅 Agendamento Online</button>
+      <button class="tab-btn" onclick="switchClinicTab('records', this)">📂 Prontuário & Exames</button>
+      <button class="tab-btn" onclick="switchClinicTab('doctors', this)">👨‍⚕️ Corpo Clínico</button>
+      <button class="tab-btn" onclick="switchClinicTab('telemed', this)">📹 Telemedicina ao Vivo</button>
+    </div>
+  </nav>
+
+  <main class="main-container">
+
+    <!-- ================= 1. BOOKING ================= -->
+    <div class="clinic-view active" id="view-booking">
+      <div class="grid-booking">
+        <div class="panel-card">
+          <h2 class="step-title"><span>01.</span> Selecione o Tratamento</h2>
+          <div class="service-grid">
+            <div class="service-item selected" onclick="chooseProcedure('Clareamento a Laser 3D', 'R$ 850', this)">
+              <div style="font-weight: 700; color: #fff;">Clareamento a Laser 3D</div>
+              <div style="font-size: 0.8rem; color: var(--teal-primary); margin-top: 4px;">R$ 850 • Sessão de 60min</div>
+            </div>
+            <div class="service-item" onclick="chooseProcedure('Ortodontia Invisível Scan 3D', 'Avaliação VIP', this)">
+              <div style="font-weight: 700; color: #fff;">Ortodontia Invisível (Alinhadores)</div>
+              <div style="font-size: 0.8rem; color: var(--teal-primary); margin-top: 4px;">Scan Intraoral 3D • 45min</div>
+            </div>
+            <div class="service-item" onclick="chooseProcedure('Implante Guiado por Tomografia', 'R$ 2.400', this)">
+              <div style="font-weight: 700; color: #fff;">Implante Guiado Digital</div>
+              <div style="font-size: 0.8rem; color: var(--teal-primary); margin-top: 4px;">Cirurgia Virtual • 90min</div>
+            </div>
+            <div class="service-item" onclick="chooseProcedure('Harmonização Orofacial', 'Sob Consulta', this)">
+              <div style="font-weight: 700; color: #fff;">Harmonização Orofacial</div>
+              <div style="font-size: 0.8rem; color: var(--teal-primary); margin-top: 4px;">Protocolo Premium • 60min</div>
+            </div>
+          </div>
+
+          <h2 class="step-title"><span>02.</span> Escolha o Especialista</h2>
+          <div class="doctor-picker">
+            <div class="doctor-card selected" onclick="chooseDoctor('Dra. Mariana Costa', 'Especialista em Estética Dental • CRO-SP 104.821', this)">
+              <div class="doc-avatar">MC</div>
+              <div>
+                <div style="font-weight: 700; color: #fff; font-size: 0.92rem;">Dra. Mariana Costa</div>
+                <div style="font-size: 0.76rem; color: var(--text-muted);">Estética Dental • CRO 104.821</div>
+              </div>
+            </div>
+
+            <div class="doctor-card" onclick="chooseDoctor('Dr. Rodrigo Albuquerque', 'Mestre em Cirurgia & Implantes • CRO-SP 98.450', this)">
+              <div class="doc-avatar" style="background: linear-gradient(135deg, #10b981, #06b6d4);">RA</div>
+              <div>
+                <div style="font-weight: 700; color: #fff; font-size: 0.92rem;">Dr. Rodrigo Albuquerque</div>
+                <div style="font-size: 0.76rem; color: var(--text-muted);">Cirurgia & Implantes • CRO 98.450</div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="step-title"><span>03.</span> Horários Disponíveis para Hoje</h2>
+          <div class="slots-row">
+            <div class="slot-btn selected" onclick="chooseSlot('09:30', this)">09:30</div>
+            <div class="slot-btn" onclick="chooseSlot('11:00', this)">11:00</div>
+            <div class="slot-btn" onclick="chooseSlot('14:30', this)">14:30</div>
+            <div class="slot-btn" onclick="chooseSlot('16:45', this)">16:45</div>
+          </div>
+
+          <h2 class="step-title"><span>04.</span> Dados do Paciente</h2>
+          <input type="text" id="patient-name" class="form-input" placeholder="Nome Completo" value="Gabriel Toledo">
+          <input type="tel" id="patient-phone" class="form-input" placeholder="WhatsApp" value="(11) 98765-4321">
+
+          <button class="btn-confirm" onclick="finishBooking()">Confirmar Reserva no Calendário ✦</button>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+          <div>
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin-bottom: 20px;">Resumo da Consulta</h3>
+            <div class="summary-row">
+              <span>Unidade:</span>
+              <strong>Lumina Jardins Prime</strong>
+            </div>
+            <div class="summary-row">
+              <span>Tratamento:</span>
+              <strong id="sum-proc" style="color: var(--teal-primary);">Clareamento a Laser 3D</strong>
+            </div>
+            <div class="summary-row">
+              <span>Especialista:</span>
+              <strong id="sum-doc">Dra. Mariana Costa</strong>
+            </div>
+            <div class="summary-row">
+              <span>Data e Hora:</span>
+              <strong id="sum-time" style="color: var(--green-status);">Hoje às 09:30</strong>
+            </div>
+            <div class="summary-row" style="border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 14px;">
+              <span>Valor Estimado:</span>
+              <strong id="sum-val" style="font-size: 1.3rem; color: #fff;">R$ 850</strong>
+            </div>
+          </div>
+
+          <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid var(--border-teal); border-radius: 12px; padding: 16px; text-align: center; margin-top: 30px;">
+            <div style="font-size: 0.8rem; color: var(--teal-primary); font-weight: 700;">CONFIRMAÇÃO VIA WHATSAPP</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Você receberá um lembrete com rota do GPS e link de check-in prévio.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 2. RECORDS & EXAMS ================= -->
+    <div class="clinic-view" id="view-records">
+      <div class="panel-card">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; margin-bottom: 18px;">Prontuário Digital do Paciente: Gabriel Toledo</h2>
+        <table class="record-table">
+          <thead>
+            <tr>
+              <th>DATA</th>
+              <th>ESPECIALIDADE</th>
+              <th>MÉDICO RESPONSÁVEL</th>
+              <th>DIAGNÓSTICO / PROCEDIMENTO</th>
+              <th>DOCUMENTOS & LAUDO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12/08/2026</td>
+              <td>Ortodontia Digital</td>
+              <td>Dra. Mariana Costa</td>
+              <td>Escaneamento Intraoral 3D realizado. Alinhador #04 entregue.</td>
+              <td><button class="back-btn" style="padding: 4px 12px;" onclick="alert('Baixando Laudo Tomográfico 3D (PDF)...')">Ver Laudo 📄</button></td>
+            </tr>
+            <tr>
+              <td>28/05/2026</td>
+              <td>Implantodontia</td>
+              <td>Dr. Rodrigo Albuquerque</td>
+              <td>Check-up anual de osseointegração. Estrutura 100% íntegra.</td>
+              <td><button class="back-btn" style="padding: 4px 12px;" onclick="alert('Baixando Radiografia Panorâmica Digital...')">Radiografia 🔍</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= 3. DOCTORS ================= -->
+    <div class="clinic-view" id="view-doctors">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div class="panel-card">
+          <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 16px;">
+            <div class="doc-avatar" style="width: 60px; height: 60px; font-size: 1.3rem;">MC</div>
+            <div>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem;">Dra. Mariana Costa</h3>
+              <p style="color: var(--teal-primary); font-size: 0.85rem;">CRO-SP 104.821 • Especialista em Estética & Lentes de Contato</p>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+            Graduada e Pós-Graduada pela USP com mais de 12 anos de experiência em reabilitação oral e estética do sorriso por escaneamento tridimensional.
+          </p>
+        </div>
+
+        <div class="panel-card">
+          <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 16px;">
+            <div class="doc-avatar" style="width: 60px; height: 60px; font-size: 1.3rem; background: linear-gradient(135deg, #10b981, #06b6d4);">RA</div>
+            <div>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem;">Dr. Rodrigo Albuquerque</h3>
+              <p style="color: var(--teal-primary); font-size: 0.85rem;">CRO-SP 98.450 • Mestre em Cirurgia Bucomaxilofacial & Implantes</p>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+            Pioneiro em cirurgias guiadas por computador e regeneração tecidual avançada. Membro da International Team for Implantology (ITI).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 4. TELEMEDICINE ================= -->
+    <div class="clinic-view" id="view-telemed">
+      <div class="panel-card" style="text-align: center; padding: 40px 20px;">
+        <div style="font-size: 3rem; margin-bottom: 10px;">📹</div>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin-bottom: 8px;">Sala Virtual de Telemedicina</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 500px; margin: 0 auto 24px;">
+          Conecte-se com o médico plantonista em tempo real com áudio e vídeo de alta definição criptografados.
+        </p>
+
+        <div style="background: #02050a; border: 1px solid var(--border-teal); border-radius: 16px; max-width: 600px; height: 320px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; position: relative;">
+          <div style="text-align: center;">
+            <div style="font-size: 1.5rem; color: var(--teal-primary); margin-bottom: 8px;">● Conexão Segura Estabelecida</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Dra. Mariana Costa está na sala aguardando você.</div>
+          </div>
+        </div>
+
+        <button class="btn-confirm" style="max-width: 320px; margin: 0 auto;" onclick="alert('Iniciando transmissão de áudio e vídeo criptografada...')">Entrar na Chamada de Vídeo ✦</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let currentProc = 'Clareamento a Laser 3D';
+    let currentVal = 'R$ 850';
+    let currentDoc = 'Dra. Mariana Costa';
+    let currentSlot = '09:30';
+
+    function switchClinicTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.clinic-view').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('view-' + tabId).classList.add('active');
+    }
+
+    function chooseProcedure(name, val, el) {
+      document.querySelectorAll('.service-item').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      currentProc = name;
+      currentVal = val;
+      document.getElementById('sum-proc').textContent = currentProc;
+      document.getElementById('sum-val').textContent = currentVal;
+    }
+
+    function chooseDoctor(name, bio, el) {
+      document.querySelectorAll('.doctor-card').forEach(d => d.classList.remove('selected'));
+      el.classList.add('selected');
+      currentDoc = name;
+      document.getElementById('sum-doc').textContent = currentDoc;
+    }
+
+    function chooseSlot(slot, el) {
+      document.querySelectorAll('.slot-btn').forEach(s => s.classList.remove('selected'));
+      el.classList.add('selected');
+      currentSlot = slot;
+      document.getElementById('sum-time').textContent = `Hoje às ${currentSlot}`;
+    }
+
+    function finishBooking() {
+      const patient = document.getElementById('patient-name').value || 'Gabriel Toledo';
+      alert(`Consulta confirmada com sucesso!\n\nPaciente: ${patient}\nProcedimento: ${currentProc}\nProfissional: ${currentDoc}\nHorário: Hoje às ${currentSlot}\n\nO comprovante foi enviado para o seu WhatsApp!`);
+    }
+  </script>
+</body>
+</html>

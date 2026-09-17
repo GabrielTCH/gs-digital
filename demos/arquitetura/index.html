@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Arkhé | Arquitetura Sensorial & Design de Interiores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f8f5;
+      --surface: #ffffff;
+      --surface-dark: #191917;
+      --charcoal: #1f2022;
+      --stone: #8c887f;
+      --sand: #e6e2d8;
+      --brass: #b89058;
+      --border: rgba(0, 0, 0, 0.08);
+      --font-display: 'Italiana', serif;
+      --font-heading: 'Syne', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Top GS Digital Banner */
+    .demo-bar {
+      background: #11141a;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+    .demo-bar a {
+      color: #00f0ff;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .demo-bar a:hover {
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+    }
+    .demo-bar-badge {
+      background: rgba(0, 240, 255, 0.1);
+      color: #00f0ff;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+    .demo-bar .btn-cta-demo {
+      background: linear-gradient(135deg, #00f0ff, #00a8ff);
+      color: #05080d;
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    }
+
+    /* Architectural Header */
+    .arch-header {
+      padding: 24px 60px;
+      background: rgba(249, 248, 245, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 41px;
+      z-index: 900;
+    }
+    .arch-brand {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-decoration: none;
+      color: var(--charcoal);
+      text-transform: uppercase;
+    }
+    .arch-brand span {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--brass);
+    }
+    .arch-nav {
+      display: flex;
+      gap: 36px;
+    }
+    .arch-nav a {
+      color: var(--stone);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .arch-nav a:hover, .arch-nav a.active {
+      color: var(--charcoal);
+    }
+    .btn-arch-cta {
+      background: var(--surface-dark);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn-arch-cta:hover {
+      background: var(--brass);
+      color: #fff;
+    }
+
+    /* Hero */
+    .arch-hero {
+      padding: 100px 60px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .hero-pretitle {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brass);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 4.2rem;
+      line-height: 1.1;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .hero-text {
+      font-size: 1.1rem;
+      color: var(--stone);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 540px;
+    }
+    .hero-img-box {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    }
+    .hero-img-box img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .hero-img-box:hover img {
+      transform: scale(1.03);
+    }
+    .hero-floating-card {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 26px;
+      border-radius: 4px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+    .hero-floating-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .hero-floating-sub {
+      font-size: 0.8rem;
+      color: var(--stone);
+    }
+
+    /* Calculator Section */
+    .calc-section {
+      background: var(--surface-dark);
+      color: #fff;
+      padding: 100px 60px;
+    }
+    .calc-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+    .calc-badge {
+      display: inline-block;
+      color: var(--brass);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .calc-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    .calc-desc {
+      color: #a0a09e;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .calc-card {
+      background: #232320;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 40px;
+    }
+    .calc-field {
+      margin-bottom: 24px;
+    }
+    .calc-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #e6e2d8;
+      margin-bottom: 10px;
+    }
+    .calc-slider {
+      width: 100%;
+      height: 6px;
+      background: #333330;
+      border-radius: 999px;
+      appearance: none;
+      outline: none;
+      accent-color: var(--brass);
+      cursor: pointer;
+    }
+    .calc-select {
+      width: 100%;
+      background: #191917;
+      border: 1px solid #333330;
+      color: #fff;
+      padding: 14px;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .calc-select:focus {
+      outline: none;
+      border-color: var(--brass);
+    }
+    .calc-result-box {
+      background: #191917;
+      border: 1px solid var(--brass);
+      padding: 24px;
+      border-radius: 6px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .calc-result-val {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--brass);
+      margin: 6px 0;
+    }
+    .btn-calc-submit {
+      width: 100%;
+      background: var(--brass);
+      color: #fff;
+      font-weight: 700;
+      padding: 16px;
+      border: none;
+      border-radius: 4px;
+      margin-top: 16px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .btn-calc-submit:hover {
+      background: #d4a96b;
+    }
+
+    /* Projects Grid */
+    .projects-section {
+      padding: 110px 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .project-item {
+      cursor: pointer;
+      group: relative;
+    }
+    .project-thumb-box {
+      width: 100%;
+      height: 380px;
+      background: #e2ded5;
+      overflow: hidden;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .project-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .project-item:hover .project-thumb-box img {
+      transform: scale(1.05);
+    }
+    .project-category-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--brass);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .project-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .project-meta {
+      font-size: 0.85rem;
+      color: var(--stone);
+    }
+
+    /* Footer */
+    .arch-footer {
+      border-top: 1px solid var(--border);
+      padding: 80px 60px 40px;
+      background: #f5f2eb;
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+      .arch-hero {
+        grid-template-columns: 1fr;
+        padding: 60px 24px;
+        gap: 40px;
+      }
+      .calc-inner {
+        grid-template-columns: 1fr;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .arch-header {
+        padding: 16px 20px;
+      }
+      .arch-nav {
+        display: none;
+      }
+      .hero-title {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top GS Digital Navigation Bar -->
+  <div class="demo-bar">
+    <a href="/index.html#portfolio">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+      Voltar para GS Digital
+    </a>
+    <div class="demo-bar-badge">
+      🏛️ PROJETO DEMO: ARQUITETURA & DESIGN DE INTERIORES
+    </div>
+    <a href="/index.html#simulador" class="btn-cta-demo">
+      Solicitar Site Semelhante ↗
+    </a>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="arch-header">
+    <a href="#" class="arch-brand">
+      Studio <span>Arkhé</span>
+    </a>
+
+    <nav class="arch-nav">
+      <a href="#projetos" class="active">Projetos</a>
+      <a href="#calculadora">Calculadora m²</a>
+      <a href="#filosofia">Filosofia</a>
+      <a href="#contato">Atelier</a>
+    </nav>
+
+    <a href="#calculadora" class="btn-arch-cta">
+      Estudo de Projeto
+    </a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="arch-hero">
+    <div>
+      <div class="hero-pretitle">Arquitetura Sensorial & Concreto Aparente</div>
+      <h1 class="hero-title">
+        Espaços que respiram luz, calma e autenticidade.
+      </h1>
+      <p class="hero-text">
+        Criamos residências contemporâneas e espaços corporativos onde a integração biofílica, o minimalismo acolhedor e a pureza dos materiais transformam o habitar diário.
+      </p>
+      <div style="display: flex; gap: 20px; align-items: center;">
+        <a href="#projetos" class="btn-arch-cta" style="padding: 16px 32px; font-size: 0.85rem;">
+          Explorar Portfólio
+        </a>
+        <a href="#calculadora" style="color: var(--charcoal); text-decoration: none; font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+          Simular Investimento →
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-img-box">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" alt="Residência Monólito - Studio Arkhé">
+      <div class="hero-floating-card">
+        <div class="hero-floating-title">Casa Monólito</div>
+        <div class="hero-floating-sub">Fazenda Boa Vista, SP — 680 m²</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="calc-section" id="calculadora">
+    <div class="calc-inner">
+      <div>
+        <span class="calc-badge">Ferramenta Interativa</span>
+        <h2 class="calc-title">Simulador de Estimativa de Projeto</h2>
+        <p class="calc-desc">
+          Obtenha uma estimativa instantânea de honorários de projeto arquitetônico executivo e interiores para planejar a realização do seu espaço com previsibilidade e clareza.
+        </p>
+        <div style="border-left: 2px solid var(--brass); padding-left: 20px; margin-top: 30px;">
+          <p style="font-size: 0.9rem; color: #a0a09e;">
+            "Um projeto bem dimensionado economiza até 25% no custo total da obra através de detalhamento executivo rigoroso e compatibilização 3D BIM."
+          </p>
+          <span style="font-size: 0.78rem; color: var(--brass); font-weight: 700; text-transform: uppercase; margin-top: 6px; display: block;">— Arq. Felipe Arkhé, CAU/SP</span>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-field">
+          <label class="calc-label">Tipo de Projeto</label>
+          <select class="calc-select" id="calcType" onchange="calculateBudget()">
+            <option value="180">Arquitetura Residencial Completa (BIM + RRT)</option>
+            <option value="140">Design de Interiores & Marcenaria Sob Medida</option>
+            <option value="210">Comercial, Gastronomia & Corporativo</option>
+          </select>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-label">
+            <span>Área Construída / Intervenção</span>
+            <span style="color: var(--brass);" id="areaVal">240 m²</span>
+          </div>
+          <input type="range" class="calc-slider" id="calcArea" min="50" max="800" step="10" value="240" oninput="calculateBudget()">
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label">Padrão de Especificação</label>
+          <select class="calc-select" id="calcStandard" onchange="calculateBudget()">
+            <option value="1.0">Alto Padrão Contemporâneo</option>
+            <option value="1.25">Luxo & Materiais Nobres Importados</option>
+            <option value="1.5">Ultra Luxo com Domótica & Paisagismo Exclusivo</option>
+          </select>
+        </div>
+
+        <div class="calc-result-box">
+          <div style="font-size: 0.8rem; color: #a0a09e; text-transform: uppercase; letter-spacing: 1px;">Honorários Estimados de Projeto</div>
+          <div class="calc-result-val" id="calcTotal">R$ 43.200,00</div>
+          <div style="font-size: 0.78rem; color: #a0a09e;">Inclui: Estudo Preliminar, Imagens 3D, Projeto Executivo e RRT/CAU</div>
+        </div>
+
+        <button class="btn-calc-submit" onclick="alert('✅ Estudo preliminar solicitado! No site real da GS Digital, os dados da simulação são enviados diretamente ao WhatsApp do escritório com o briefing pronto.')">
+          Receber Proposta Detalhada no WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Gallery -->
+  <section class="projects-section" id="projetos">
+    <div class="section-head">
+      <div>
+        <div class="hero-pretitle">Obras Recentes</div>
+        <h2 style="font-family: var(--font-display); font-size: 3rem; font-weight: 400;">Obras & Projetos</h2>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-item" onclick="viewProject('Casa Brisa - Trancoso', '620 m²', 'Residencial Litorâneo')">
+        <div class="project-thumb-box">
+          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=700&q=80" alt="Casa Brisa">
+        </div>
+        <div class="project-category-tag">Residencial Litorâneo</div>
+        <h3 class="project-title">Casa Brisa — Trancoso</h3>
+        <div class="project-meta">Madeira Cumaru, Ventilação Cruzada • 620 m²</div>
+      </div>
+
+      <div class="project-item" onclick="viewProject('Atelier Croma - Jardins', '280 m²', 'Design de Interiores')">
+        <div class="project-thumb-box">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80" alt="Apartamento Jardins">
+        </div>
+        <div class="project-category-tag">Design de Interiores</div>
+        <h3 class="project-title">Apartamento Jardins — SP</h3>
+        <div class="project-meta">Mármore Travertino Navona • 280 m²</div>
+      </div>
+
+      <div class="project-item" onclick="viewProject('Restaurante Terra - Pinheiros', '450 m²', 'Corporativo & Gastronomia')">
+        <div class="project-thumb-box">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Restaurante Terra">
+        </div>
+        <div class="project-category-tag">Comercial & Gastronomia</div>
+        <h3 class="project-title">Restaurante Terra — Pinheiros</h3>
+        <div class="project-meta">Biofilia e Iluminação Cênica • 450 m²</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="arch-footer">
+    <div style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">
+      STUDIO ARKHÉ
+    </div>
+    <p style="font-size: 0.85rem; color: var(--stone); margin-bottom: 24px;">
+      Rua Oscar Freire, 1420 — Cerqueira César, São Paulo - SP | CAU/SP nº 38.291-0
+    </p>
+    <p style="font-size: 0.8rem; color: var(--stone);">
+      © 2026 Studio Arkhé Arquitetura & Interiores. Desenvolvido com maestria pela <strong>GS Digital</strong>.
+    </p>
+  </footer>
+
+  <script>
+    function calculateBudget() {
+      const typeRate = parseFloat(document.getElementById('calcType').value);
+      const area = parseFloat(document.getElementById('calcArea').value);
+      const standardMult = parseFloat(document.getElementById('calcStandard').value);
+
+      document.getElementById('areaVal').textContent = `${area} m²`;
+
+      const total = area * typeRate * standardMult;
+      document.getElementById('calcTotal').textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function viewProject(name, area, cat) {
+      alert(`Projeto: ${name}\nCategoria: ${cat}\nÁrea: ${area}\n\nEm uma aplicação real da GS Digital, abre-se uma galeria modal imersiva em alta resolução com plantas baixas 3D e memorial de acabamentos.`);
+    }
+
+    // Run initial calc
+    calculateBudget();
+  </script>
+</body>
+</html>

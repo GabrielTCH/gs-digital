@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GS Digital | Criação de Sites Futuristas & Manutenções Preventivas</title>
+  <meta name="description" content="Desenvolvimento de sites de alta conversão, portais ultra-rápidos e manutenções preventivas 24/7 com tecnologia de ponta e design futurista na GS Digital.">
+  <meta name="theme-color" content="#05080d">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Cybernetic Ambient Background -->
+  <div class="cyber-background" aria-hidden="true">
+    <div class="grid-overlay"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <canvas id="particle-canvas"></canvas>
+  </div>
+
+  <!-- Floating Glass Navbar -->
+  <header class="site-header" id="header">
+    <div class="container">
+      <nav class="nav-wrapper">
+        <a href="#hero" class="brand-logo" id="nav-logo" aria-label="GS Digital Home">
+          <img src="assets/images/logo.png" alt="GS Digital Logo" width="48" height="48">
+          <span class="brand-text">GS <span>Digital</span></span>
+        </a>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#hero" class="nav-link active" id="nav-link-hero">Início</a></li>
+          <li><a href="#diferenciais" class="nav-link" id="nav-link-bento">Diferenciais</a></li>
+          <li><a href="#servicos" class="nav-link" id="nav-link-servicos">Serviços</a></li>
+          <li><a href="#portfolio" class="nav-link" id="nav-link-portfolio">Portfólio</a></li>
+          <li><a href="#simulador" class="nav-link" id="nav-link-simulador">Simulador</a></li>
+          <li><a href="#contato" class="nav-link" id="nav-link-contato">Contato</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <a href="#simulador" class="btn btn-primary btn-sm" id="btn-header-cta">
+            <span>Orçamento Rápido</span>
+            <span class="btn-icon-right">⚡</span>
+          </a>
+          <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Abrir Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="badge-tech">
+              <span class="pulse-dot"></span>
+              <span>Arquitetura Digital de Alta Performance</span>
+            </div>
+            
+            <h1>
+              <span class="gradient-text-silver">Transformamos Ideias em</span>
+              <span class="gradient-text-cyan"> Experiências Digitais</span>
+              <span class="gradient-text-silver"> que Convertem.</span>
+            </h1>
+
+            <p class="hero-description">
+              Criamos sites modernos, ultrarrápidos e visualmente impecáveis, acompanhados de <strong>manutenções preventivas contínuas</strong> para garantir que a sua empresa nunca fique fora do ar.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#simulador" class="btn btn-primary" id="btn-hero-calc">
+                <span>Simular Meu Projeto</span>
+                <span class="btn-icon-right">→</span>
+              </a>
+              <a href="#portfolio" class="btn btn-secondary" id="btn-hero-portfolio">
+                <span>Ver Portfólio</span>
+                <span class="btn-icon-right">✦</span>
+              </a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-number">100<span>%</span></span>
+                <span class="stat-label">Foco em Performance</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">0.3<span>s</span></span>
+                <span class="stat-label">Tempo Médio de Resposta</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">24<span>/7</span></span>
+                <span class="stat-label">Manutenção Preventiva</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-main-card">
+              <div class="hero-card-header">
+                <div class="window-dots">
+                  <span class="window-dot dot-red"></span>
+                  <span class="window-dot dot-yellow"></span>
+                  <span class="window-dot dot-green"></span>
+                </div>
+                <div class="status-badge">
+                  <span class="pulse-dot"></span>
+                  <span>ONLINE • 99.9% UPTIME</span>
+                </div>
+              </div>
+              <img src="assets/images/project_1.jpg" alt="Preview de Projeto GS Digital" class="hero-preview-img" width="470" height="264">
+            </div>
+
+            <!-- Floating Glass Badges (Pinterest Inspiration) -->
+            <div class="floating-badge badge-top-right">
+              <div class="badge-icon">⚡</div>
+              <div class="badge-info">
+                <h4>Core Web Vitals</h4>
+                <p>100/100 no Google</p>
+              </div>
+            </div>
+
+            <div class="floating-badge badge-bottom-left">
+              <div class="badge-icon">🛡️</div>
+              <div class="badge-info">
+                <h4>Proteção Ativa</h4>
+                <p>Manutenção Preventiva 24h</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid High-Tech (Pin 6 Inspiration) -->
+    <section class="section" id="diferenciais">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-tech">
+            <span>Diferenciais Tecnológicos</span>
+          </div>
+          <h2>Engenharia Web Feita para <span class="gradient-text-cyan">Dominar o Mercado</span></h2>
+          <p>Combinamos design inovador com infraestrutura sólida para que o seu site seja bonito, seguro e extremamente veloz.</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Card 1: Lighthouse Performance -->
+          <div class="bento-card bento-col-8">
+            <div class="bento-header">
+              <div>
+                <h3 class="bento-title">Velocidade Extrema & Otimização Google</h3>
+                <p class="bento-subtitle">Sites construídos com código limpo, sem dependências desnecessárias, atingindo pontuações máximas.</p>
+              </div>
+              <span class="portfolio-tag">Lighthouse Certified</span>
+            </div>
+
+            <div class="lighthouse-display">
+              <div class="gauge-item">
+                <div class="gauge-circle">100</div>
+                <span class="gauge-label">Performance</span>
+              </div>
+              <div class="gauge-item">
+                <div class="gauge-circle">100</div>
+                <span class="gauge-label">Acessibilidade</span>
+              </div>
+              <div class="gauge-item">
+                <div class="gauge-circle">100</div>
+                <span class="gauge-label">Boas Práticas</span>
+              </div>
+              <div class="gauge-item">
+                <div class="gauge-circle">100</div>
+                <span class="gauge-label">SEO Ranqueamento</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Preventive Maintenance Status Monitor -->
+          <div class="bento-card bento-col-4">
+            <div class="bento-header">
+              <h3 class="bento-title">Manutenção Preventiva 24/7</h3>
+              <span class="pulse-dot"></span>
+            </div>
+            <p class="bento-subtitle">Monitoramento proativo que evita falhas antes que elas aconteçam.</p>
+            
+            <div class="maintenance-monitor">
+              <div class="status-row">
+                <div class="status-row-title">
+                  <span class="status-indicator"></span>
+                  <span>Firewall & Segurança</span>
+                </div>
+                <span class="status-value">100% Protegido</span>
+              </div>
+              <div class="status-row">
+                <div class="status-row-title">
+                  <span class="status-indicator"></span>
+                  <span>Backups em Nuvem</span>
+                </div>
+                <span class="status-value">Diários / Ativo</span>
+              </div>
+              <div class="status-row">
+                <div class="status-row-title">
+                  <span class="status-indicator"></span>
+                  <span>Latência do Servidor</span>
+                </div>
+                <span class="status-value">22ms (Ultra-rápido)</span>
+              </div>
+              <div class="status-row">
+                <div class="status-row-title">
+                  <span class="status-indicator"></span>
+                  <span>Atualizações de Código</span>
+                </div>
+                <span class="status-value">Em Dia</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Modern UI/UX -->
+          <div class="bento-card bento-col-6">
+            <h3 class="bento-title">Design Futurista & Alta Conversão</h3>
+            <p class="bento-subtitle">Interfaces exclusivas em Dark Mode com estética glassmorphism e micro-interações que encantam o cliente e impulsionam vendas.</p>
+            <ul class="service-checklist" style="border-top: none;">
+              <li><span class="check-icon">✦</span> Paleta personalizada com contraste cirúrgico</li>
+              <li><span class="check-icon">✦</span> Tipografia moderna e hierarquia visual estratégica</li>
+              <li><span class="check-icon">✦</span> Gatilhos de conversão direcionados para o WhatsApp</li>
+            </ul>
+          </div>
+
+          <!-- Card 4: Mobile-First Responsive -->
+          <div class="bento-card bento-col-6">
+            <h3 class="bento-title">Responsividade Perfeita em Qualquer Tela</h3>
+            <p class="bento-subtitle">Mais de 80% do tráfego hoje vem de smartphones. Garantimos uma experiência fluida tanto no celular quanto em monitores 4K.</p>
+            <ul class="service-checklist" style="border-top: none;">
+              <li><span class="check-icon">✦</span> Layouts adaptáveis fluidos sem quebras</li>
+              <li><span class="check-icon">✦</span> Carregamento de imagens responsivas ultraleves</li>
+              <li><span class="check-icon">✦</span> Navegação por toque intuitiva e ergonômica</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Services Section -->
+    <section class="section" id="servicos">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-tech">
+            <span>Soluções Especializadas</span>
+          </div>
+          <h2>O Que a <span class="gradient-text-cyan">GS Digital</span> Faz Por Você</h2>
+          <p>Focamos no que realmente gera resultados: colocar você online com excelência e manter sua plataforma sempre protegida.</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service 1: Criação de Sites -->
+          <div class="service-card service-featured">
+            <span class="service-pill-top">Mais Procurado</span>
+            <div class="service-icon-box">🚀</div>
+            <h3 class="service-title">Criação de Sites</h3>
+            <p class="service-description">
+              Desenvolvimento completo de páginas e portais com visual arrojado, alta taxa de conversão e código moderno otimizado para o Google.
+            </p>
+            <ul class="service-checklist">
+              <li><span class="check-icon">✓</span> Landing Pages de Alta Conversão</li>
+              <li><span class="check-icon">✓</span> Sites Institucionais Corporativos</li>
+              <li><span class="check-icon">✓</span> E-commerces e Catálogos Modernos</li>
+              <li><span class="check-icon">✓</span> Integração Direta com WhatsApp e CRM</li>
+            </ul>
+          </div>
+
+          <!-- Service 2: Manutenções Preventivas -->
+          <div class="service-card service-featured">
+            <span class="service-pill-top">Essencial</span>
+            <div class="service-icon-box">🛡️</div>
+            <h3 class="service-title">Manutenções Preventivas</h3>
+            <p class="service-description">
+              Cuidamos de tudo nos bastidores para que você nunca perca vendas por site fora do ar, links quebrados ou ataques virtuais.
+            </p>
+            <ul class="service-checklist">
+              <li><span class="check-icon">✓</span> Monitoramento de Uptime 24 Horas</li>
+              <li><span class="check-icon">✓</span> Backups Periódicos Automatizados</li>
+              <li><span class="check-icon">✓</span> Blindagem e Varredura de Segurança</li>
+              <li><span class="check-icon">✓</span> Atualizações Técnicas e Suporte Dedicado</li>
+            </ul>
+          </div>
+
+          <!-- Service 3: Otimização de Performance -->
+          <div class="service-card">
+            <div class="service-icon-box">⚡</div>
+            <h3 class="service-title">Otimização & Aceleração</h3>
+            <p class="service-description">
+              Seu site atual está lento? Nós reescrevemos o código, otimizamos mídias e configuramos servidores edge para carregamento instantâneo.
+            </p>
+            <ul class="service-checklist">
+              <li><span class="check-icon">✓</span> Redução de Tempo de Carregamento para &lt; 1s</li>
+              <li><span class="check-icon">✓</span> Ajuste fino dos Core Web Vitals</li>
+              <li><span class="check-icon">✓</span> Compactação Inteligente de Assets</li>
+              <li><span class="check-icon">✓</span> Melhora direta no custo por clique (Google Ads)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section" id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-tech">
+            <span>Portfólio de Demonstração</span>
+          </div>
+          <h2>Conheça Nossas <span class="gradient-text-cyan">Obras Digitais</span></h2>
+          <p>Exemplos de projetos e arquiteturas que desenvolvemos para demonstrar o padrão GS Digital de design e engenharia.</p>
+        </div>
+
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all">Todos os Projetos</button>
+          <button class="filter-btn" data-filter="ecommerce">E-commerce & Lojas</button>
+          <button class="filter-btn" data-filter="profissionais">Profissionais Liberais</button>
+          <button class="filter-btn" data-filter="landing">Landing Pages de Conversão</button>
+        </div>
+
+        <div class="portfolio-grid">
+          <!-- Project 1: E-commerce Nocturnal -->
+          <div class="portfolio-card" data-category="ecommerce">
+            <div class="portfolio-image-wrapper">
+              <img src="assets/images/cover_ecommerce.jpg" alt="NOCTURNAL Streetwear E-commerce" loading="lazy" width="600" height="338">
+              <div class="portfolio-overlay">
+                <span class="portfolio-tag">E-commerce / Moda Urbana</span>
+              </div>
+            </div>
+            <div class="portfolio-body">
+              <h3 class="portfolio-title">NOCTURNAL® — Loja Virtual & Streetwear</h3>
+              <p class="portfolio-desc">E-commerce de alto impacto com catálogo dinâmico de roupas, carrinho reativo em tempo real, cupom de desconto e simulador de checkout Pix com QR Code.</p>
+              <div class="portfolio-meta">
+                <a href="demos/ecommerce/index.html" target="_blank" class="portfolio-link-btn" style="background: rgba(0, 240, 255, 0.12); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 99px; color: var(--cyan-neon);">
+                  <span>Navegar na Loja Ao Vivo ↗</span>
+                </a>
+                <a href="#" class="portfolio-link-btn" data-project-id="ecommerce">
+                  <span>Detalhes Técnicos →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Valente & Prado Advocacia -->
+          <div class="portfolio-card" data-category="profissionais">
+            <div class="portfolio-image-wrapper">
+              <img src="assets/images/cover_advocacia.jpg" alt="Valente & Prado Advogados Associados" loading="lazy" width="600" height="338">
+              <div class="portfolio-overlay">
+                <span class="portfolio-tag">Advocacia / Direito Empresarial</span>
+              </div>
+            </div>
+            <div class="portfolio-body">
+              <h3 class="portfolio-title">Valente & Prado — Sociedade de Advogados</h3>
+              <p class="portfolio-desc">Portal jurídico institucional em azul marinho e ouro champanhe para banca de alta relevância, sócios mestres pela USP, áreas de atuação e formulário de diagnóstico sob sigilo.</p>
+              <div class="portfolio-meta">
+                <a href="demos/advocacia/index.html" target="_blank" class="portfolio-link-btn" style="background: rgba(0, 240, 255, 0.12); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 99px; color: var(--cyan-neon);">
+                  <span>Navegar no Site Jurídico ↗</span>
+                </a>
+                <a href="#" class="portfolio-link-btn" data-project-id="advocacia">
+                  <span>Detalhes Técnicos →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Studio Arkhé Arquitetura -->
+          <div class="portfolio-card" data-category="profissionais">
+            <div class="portfolio-image-wrapper">
+              <img src="assets/images/cover_arquitetura.jpg" alt="Studio Arkhé Arquitetura & Interiores" loading="lazy" width="600" height="338">
+              <div class="portfolio-overlay">
+                <span class="portfolio-tag">Arquitetura / Design de Interiores</span>
+              </div>
+            </div>
+            <div class="portfolio-body">
+              <h3 class="portfolio-title">Studio Arkhé — Arquitetura Sensorial</h3>
+              <p class="portfolio-desc">Design contemporâneo minimalista em travertino e linho, galeria interativa de projetos residenciais e calculadora em tempo real de investimento de projeto por m².</p>
+              <div class="portfolio-meta">
+                <a href="demos/arquitetura/index.html" target="_blank" class="portfolio-link-btn" style="background: rgba(0, 240, 255, 0.12); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 99px; color: var(--cyan-neon);">
+                  <span>Navegar no Atelier ↗</span>
+                </a>
+                <a href="#" class="portfolio-link-btn" data-project-id="arquitetura">
+                  <span>Detalhes Técnicos →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Dra. Helena Vaz Psicologia -->
+          <div class="portfolio-card" data-category="profissionais">
+            <div class="portfolio-image-wrapper">
+              <img src="assets/images/cover_psicologia.jpg" alt="Dra. Helena Vaz Psicologia Clínica" loading="lazy" width="600" height="338">
+              <div class="portfolio-overlay">
+                <span class="portfolio-tag">Psicologia Clínica & Terapia Online</span>
+              </div>
+            </div>
+            <div class="portfolio-body">
+              <h3 class="portfolio-title">Dra. Helena Vaz — Psicologia & Saúde Mental</h3>
+              <p class="portfolio-desc">Plataforma humanizada para psicoterapia presencial e online regulamentada pelo CFP. Agendamento interativo de primeira sessão e tira-dúvidas sobre reembolso em convênios.</p>
+              <div class="portfolio-meta">
+                <a href="demos/psicologia/index.html" target="_blank" class="portfolio-link-btn" style="background: rgba(0, 240, 255, 0.12); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 99px; color: var(--cyan-neon);">
+                  <span>Testar Agendamento Online ↗</span>
+                </a>
+                <a href="#" class="portfolio-link-btn" data-project-id="psicologia">
+                  <span>Detalhes Técnicos →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: Horizon Ocean Imobiliária -->
+          <div class="portfolio-card" data-category="landing">
+            <div class="portfolio-image-wrapper">
+              <img src="assets/images/cover_imobiliaria.jpg" alt="Horizon Ocean Residences Lançamento" loading="lazy" width="600" height="338">
+              <div class="portfolio-overlay">
+                <span class="portfolio-tag">Landing Page Imobiliária de Alto Luxo</span>
+              </div>
+            </div>
+            <div class="portfolio-body">
+              <h3 class="portfolio-title">Horizon Ocean Residences — Frente Mar</h3>
+              <p class="portfolio-desc">Landing page de lançamento imobiliário com foco em alta conversão. Seletor de tipologias de plantas (168 a 420m² duplex), simulador de parcelas de financiamento e captura de leads.</p>
+              <div class="portfolio-meta">
+                <a href="demos/imobiliaria/index.html" target="_blank" class="portfolio-link-btn" style="background: rgba(0, 240, 255, 0.12); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 99px; color: var(--cyan-neon);">
+                  <span>Navegar no Lançamento ↗</span>
+                </a>
+                <a href="#" class="portfolio-link-btn" data-project-id="imobiliaria">
+                  <span>Detalhes Técnicos →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: Lucas Meneses Nutrição -->
+          <div class="portfolio-card" data-category="landing">
+            <div class="portfolio-image-wrapper">
+              <img src="assets/images/cover_nutricao.jpg" alt="Lucas Meneses Nutrição Esportiva" loading="lazy" width="600" height="338">
+              <div class="portfolio-overlay">
+                <span class="portfolio-tag">Nutrição Esportiva & Performance</span>
+              </div>
+            </div>
+            <div class="portfolio-body">
+              <h3 class="portfolio-title">Lucas Meneses — Consultoria Nutricional</h3>
+              <p class="portfolio-desc">Landing page fitness de alta energia com calculadora interativa de Taxa Metabólica Basal (TMB), meta de hidratação diária, tabela comparativa de planos e aplicação rápida.</p>
+              <div class="portfolio-meta">
+                <a href="demos/nutricao/index.html" target="_blank" class="portfolio-link-btn" style="background: rgba(0, 240, 255, 0.12); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 99px; color: var(--cyan-neon);">
+                  <span>Testar Calculadora TMB ↗</span>
+                </a>
+                <a href="#" class="portfolio-link-btn" data-project-id="nutricao">
+                  <span>Detalhes Técnicos →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Budget Simulator -->
+    <section class="section calculator-section" id="simulador">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-tech">
+            <span>Orçamento Dinâmico</span>
+          </div>
+          <h2>Simule o Seu <span class="gradient-text-cyan">Projeto Ideal</span></h2>
+          <p>Escolha as características da sua aplicação e veja uma estimativa transparente em tempo real.</p>
+        </div>
+
+        <div class="calculator-wrapper">
+          <!-- Options Column -->
+          <div class="calc-options">
+            <!-- 1. Tipo de Projeto -->
+            <div>
+              <h3 class="calc-group-title"><span>01.</span> Tipo de Projeto</h3>
+              <div class="calc-grid-selector">
+                <div class="calc-select-card selected" data-calc-project data-calc-name="Landing Page de Alta Conversão" data-calc-price="1290">
+                  <span class="calc-card-icon">⚡</span>
+                  <span class="calc-card-name">Landing Page</span>
+                  <span class="calc-card-sub">Foco em Vendas Rápidas</span>
+                </div>
+                <div class="calc-select-card" data-calc-project data-calc-name="Site Profissional Liberal" data-calc-price="2190">
+                  <span class="calc-card-icon">💼</span>
+                  <span class="calc-card-name">Profissional Liberal</span>
+                  <span class="calc-card-sub">Médico, Advogado, Arquiteto</span>
+                </div>
+                <div class="calc-select-card" data-calc-project data-calc-name="E-commerce & Loja Virtual" data-calc-price="3490">
+                  <span class="calc-card-icon">🛍️</span>
+                  <span class="calc-card-name">Loja Virtual / E-commerce</span>
+                  <span class="calc-card-sub">Catálogo, Carrinho & Pix</span>
+                </div>
+                <div class="calc-select-card" data-calc-project data-calc-name="Portal / Sistema Sob Medida" data-calc-price="4890">
+                  <span class="calc-card-icon">💻</span>
+                  <span class="calc-card-name">Sistema / Portal</span>
+                  <span class="calc-card-sub">Funcionalidades Avançadas</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Prazo de Entrega -->
+            <div>
+              <h3 class="calc-group-title"><span>02.</span> Prazo de Desenvolvimento</h3>
+              <div class="calc-grid-selector">
+                <div class="calc-select-card selected" data-calc-urgency data-calc-multiplier="1">
+                  <span class="calc-card-icon">📅</span>
+                  <span class="calc-card-name">Padrão</span>
+                  <span class="calc-card-sub">7 a 14 dias úteis</span>
+                </div>
+                <div class="calc-select-card" data-calc-urgency data-calc-multiplier="1.2">
+                  <span class="calc-card-icon">🚀</span>
+                  <span class="calc-card-name">Expresso VIP</span>
+                  <span class="calc-card-sub">3 a 5 dias úteis</span>
+                </div>
+                <div class="calc-select-card" data-calc-urgency data-calc-multiplier="0.95">
+                  <span class="calc-card-icon">⏳</span>
+                  <span class="calc-card-name">Flexível</span>
+                  <span class="calc-card-sub">Desconto no prazo longo</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Manutenção Preventiva Mensal -->
+            <div>
+              <h3 class="calc-group-title"><span>03.</span> Plano de Manutenção Preventiva</h3>
+              <label class="checkbox-toggle-wrapper" for="calc-maintenance-toggle">
+                <div class="toggle-info">
+                  <h4>Incluir Manutenção Preventiva Contínua</h4>
+                  <p>Backups em nuvem, monitoramento 24h, segurança e suporte técnico mensal (+ R$ 189/mês)</p>
+                </div>
+                <div class="switch">
+                  <input type="checkbox" id="calc-maintenance-toggle" checked>
+                  <span class="slider"></span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Summary Column -->
+          <div class="calc-summary-box">
+            <div class="calc-summary-header">
+              <h4 class="calc-summary-title">Resumo do Investimento</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Valores estimados para dar início imediato ao seu projeto.</p>
+            </div>
+
+            <div class="calc-summary-items">
+              <div class="calc-item-row">
+                <span>Projeto selecionado:</span>
+                <strong id="summary-project-name">Landing Page de Alta Conversão</strong>
+              </div>
+              <div class="calc-item-row">
+                <span>Desenvolvimento e Design:</span>
+                <strong id="summary-project-price">R$ 1.290</strong>
+              </div>
+              <div class="calc-item-row" id="summary-maintenance-row">
+                <span>Manutenção Preventiva:</span>
+                <strong id="summary-maintenance-price" style="color: var(--cyan-neon);">+ R$ 189 /mês</strong>
+              </div>
+            </div>
+
+            <div class="calc-price-total">
+              <div class="total-label">Investimento Total Estimado</div>
+              <div class="total-value" id="summary-total-value">R$ 1.290</div>
+              <div class="total-recurrence">Condições facilitadas no Pix ou até 12x no cartão</div>
+            </div>
+
+            <a href="#" target="_blank" class="btn btn-primary" id="btn-send-calc-whatsapp">
+              <span>Enviar Proposta no WhatsApp</span>
+              <span class="btn-icon-right">💬</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" id="depoimentos">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-tech">
+            <span>Avaliações & Confiança</span>
+          </div>
+          <h2>O Que Dizem Sobre Nossa <span class="gradient-text-cyan">Velocidade & Cuidado</span></h2>
+          <p>Compromisso sério com pontualidade, suporte humanizado e código de primeira linha.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"O site desenvolvido pela GS Digital transformou a imagem da nossa empresa. A velocidade de carregamento é absurda e a manutenção preventiva nos dá total tranquilidade."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">RD</div>
+              <div class="author-info">
+                <h5>Rodrigo Duarte</h5>
+                <span>Diretor de Operações</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"Tínhamos problemas constantes com lentidão e quedas de servidor. Contratamos a GS Digital para refazer nosso site e o plano de manutenção preventiva resolveu tudo!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">CA</div>
+              <div class="author-info">
+                <h5>Camila Andrade</h5>
+                <span>Founder na TechStart</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"O design futurista em modo escuro e ciano chamou atenção imediata de todos os nossos parceiros comerciais. A taxa de conversão da landing page dobrou na primeira semana."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MS</div>
+              <div class="author-info">
+                <h5>Marcos Santana</h5>
+                <span>Gestor de Tráfego</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Final Call to Action -->
+    <section class="section" id="contato">
+      <div class="container">
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <div class="badge-tech">
+              <span>Contato Direto</span>
+            </div>
+            <h3>Pronto Para Levar Seu Negócio ao <span class="gradient-text-cyan">Próximo Nível?</span></h3>
+            <p>Converse diretamente com nossa equipe e tire seu projeto do papel hoje mesmo.</p>
+
+            <div class="contact-details">
+              <a href="https://wa.me/5511999999999" target="_blank" class="contact-item">
+                <div class="contact-icon">💬</div>
+                <div>
+                  <strong>WhatsApp Oficial</strong>
+                  <div style="font-size: 0.85rem; color: var(--cyan-neon);">Atendimento Imediato</div>
+                </div>
+              </a>
+              <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div>
+                  <strong>E-mail</strong>
+                  <div style="font-size: 0.85rem; color: var(--text-secondary);">contato@gsdigital.com.br</div>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                  <strong>Localização</strong>
+                  <div style="font-size: 0.85rem; color: var(--text-secondary);">Brasil • Atendimento Nacional e Global</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Seu Nome ou Empresa</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="Ex: Gabriel Toledo" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-service" class="form-label">Qual serviço você precisa?</label>
+              <select id="contact-service" class="form-input" required>
+                <option value="Criação de Site Novo">Criação de Site Novo</option>
+                <option value="Manutenção Preventiva de Site Existente">Manutenção Preventiva de Site Existente</option>
+                <option value="Otimização e Aceleração de Velocidade">Otimização e Aceleração de Velocidade</option>
+                <option value="Pacote Completo (Site + Manutenção)">Pacote Completo (Site + Manutenção)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Detalhes da sua ideia</label>
+              <textarea id="contact-message" class="form-textarea" placeholder="Conte brevemente sobre o seu projeto ou objetivos..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-submit-contact">
+              <span>Iniciar Conversa</span>
+              <span class="btn-icon-right">→</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Project Modal -->
+  <div class="modal-backdrop" id="project-modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Fechar Modal">✕</button>
+      <img src="assets/images/project_1.jpg" alt="Projeto Detalhado" id="modal-img" class="modal-image" width="800" height="450">
+      <div class="modal-inner-body">
+        <span class="portfolio-tag" id="modal-category" style="margin-bottom: 12px; display: inline-block;">Categoria</span>
+        <h3 id="modal-title" style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 12px; color: #fff;">Título do Projeto</h3>
+        <p id="modal-desc" style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.65;">Descrição detalhada do projeto.</p>
+        
+        <div style="margin-bottom: 20px;">
+          <h4 style="font-size: 0.9rem; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em;">Métricas Conquistadas:</h4>
+          <div id="modal-metrics" style="display: flex; gap: 10px; flex-wrap: wrap;"></div>
+        </div>
+
+        <div style="padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <span style="font-size: 0.78rem; color: var(--text-muted); display: block;">Stack Tecnológica:</span>
+            <span id="modal-stack" style="font-size: 0.88rem; color: var(--cyan-bright); font-weight: 500;">Tecnologia</span>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="#" id="modal-live-demo-link" target="_blank" class="btn btn-secondary btn-sm" style="color: var(--cyan-neon); border-color: var(--border-cyan);">
+              <span>Abrir Aplicação Interativa ↗</span>
+            </a>
+            <a href="#simulador" class="btn btn-primary btn-sm" onclick="document.getElementById('project-modal').classList.remove('active'); document.body.style.overflow='';">
+              <span>Quero Algo Assim</span>
+              <span class="btn-icon-right">⚡</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modern Dark Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="#hero" class="brand-logo" aria-label="GS Digital Home">
+          <img src="assets/images/logo.png" alt="GS Digital Logo" width="40" height="40">
+          <span class="brand-text">GS <span>Digital</span></span>
+        </a>
+
+        <div class="footer-socials">
+          <a href="https://github.com/GabrielTCH" target="_blank" class="social-link" aria-label="GitHub">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://wa.me/5511999999999" target="_blank" class="social-link" aria-label="WhatsApp">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 012.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.22-.16-.47-.29z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 GS Digital. Todos os direitos reservados. Projetado para máxima performance.</p>
+        <p>
+          Especialistas em <a href="#servicos">Criação de Sites</a> & <a href="#servicos">Manutenções Preventivas</a>. 
+          • <a href="admin.html" target="_blank" style="color: #94a3b8; margin-left: 8px;">⚙️ Área do Administrador</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

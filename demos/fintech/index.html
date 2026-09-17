@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aether Pay | Sistema Bancário & Carteira Digital Corporativa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #060a12;
+      --bg-sidebar: #09101d;
+      --bg-surface: #0e1726;
+      --bg-card: rgba(18, 28, 48, 0.7);
+      --bg-card-hover: rgba(24, 38, 64, 0.85);
+      
+      --cyan-neon: #00f0ff;
+      --cyan-glow: 0 0 25px rgba(0, 240, 255, 0.35);
+      --cyan-subtle: rgba(0, 240, 255, 0.08);
+      --blue-accent: #0284c7;
+      --green-cash: #10b981;
+      --red-alert: #ef4444;
+      --gold-vip: #f59e0b;
+
+      --text-main: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-cyan: rgba(0, 240, 255, 0.25);
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+
+    /* Top GS Digital Demo Header */
+    .demo-bar {
+      background: rgba(9, 16, 29, 0.95);
+      border-bottom: 1px solid var(--border-cyan);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cyan-subtle);
+      border: 1px solid var(--cyan-neon);
+      color: var(--cyan-neon);
+      padding: 4px 14px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .back-btn {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: var(--cyan-neon); color: #000; }
+
+    /* Layout Structure */
+    .app-layout { display: flex; flex: 1; }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 280px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-subtle);
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--cyan-neon), var(--blue-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #05080e;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .brand-title span { color: var(--cyan-neon); }
+
+    .nav-menu { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .nav-item {
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .nav-item:hover { color: #fff; background: rgba(255,255,255,0.04); }
+    .nav-item.active {
+      background: var(--cyan-subtle);
+      color: var(--cyan-neon);
+      border-color: var(--border-cyan);
+    }
+    .nav-icon { font-size: 1.15rem; width: 22px; text-align: center; }
+
+    /* User Profile Chip */
+    .user-chip {
+      margin-top: auto;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan-neon), #0077fe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #030811;
+      font-size: 0.9rem;
+    }
+    .user-info h5 { font-size: 0.88rem; color: #fff; }
+    .user-info p { font-size: 0.74rem; color: var(--cyan-neon); }
+
+    /* Main Content Area */
+    .main-content {
+      flex: 1;
+      padding: 36px 44px;
+      overflow-y: auto;
+      background: radial-gradient(circle at 80% 10%, rgba(0, 240, 255, 0.04) 0%, transparent 60%);
+    }
+
+    /* Views (Tabs) */
+    .view-pane { display: none; }
+    .view-pane.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Header Bar */
+    .view-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .view-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; }
+    .view-subtitle { color: var(--text-muted); font-size: 0.95rem; margin-top: 4px; }
+
+    /* Dashboard Cards Grid */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    .balance-card {
+      background: linear-gradient(145deg, rgba(20, 34, 58, 0.8), rgba(9, 15, 26, 0.95));
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), var(--cyan-glow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .balance-header { display: flex; justify-content: space-between; align-items: center; }
+    .balance-tag { font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .eye-toggle { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; }
+    .eye-toggle:hover { color: var(--cyan-neon); }
+
+    .balance-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 12px 0 16px;
+      letter-spacing: -0.02em;
+    }
+    .yield-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--green-cash);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    .quick-actions-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .quick-btn {
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: var(--radius-md);
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quick-btn:hover {
+      background: var(--cyan-neon);
+      color: #030811;
+      box-shadow: 0 0 20px var(--cyan-neon);
+      transform: translateY(-2px);
+    }
+    .quick-icon { font-size: 1.3rem; }
+
+    /* 3D Holographic Card */
+    .card-scene {
+      perspective: 1000px;
+      height: 220px;
+    }
+    .card-object {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+    }
+    .card-object.flipped { transform: rotateY(180deg); }
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7), 0 0 25px rgba(0, 240, 255, 0.2);
+    }
+    .card-front {
+      background: linear-gradient(135deg, rgba(25, 42, 70, 0.95), rgba(8, 14, 25, 0.95));
+    }
+    .card-back {
+      background: linear-gradient(135deg, rgba(14, 24, 42, 0.95), rgba(5, 9, 16, 0.95));
+      transform: rotateY(180deg);
+    }
+    .card-magnetic { height: 38px; background: #000; margin: 6px -24px 14px; }
+    .card-chip { width: 42px; height: 30px; background: linear-gradient(135deg, #ffd700, #b8860b); border-radius: 6px; }
+    .card-num { font-family: 'Space Grotesk', monospace; font-size: 1.25rem; letter-spacing: 0.15em; color: #fff; }
+
+    /* Generic Panels */
+    .panel-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+    .panel-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; }
+
+    /* Form & Sliders */
+    .input-group { margin-bottom: 20px; }
+    .input-label { display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+    .input-label strong { color: #fff; font-family: 'Space Grotesk', sans-serif; }
+    .form-input {
+      width: 100%;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--cyan-neon); box-shadow: 0 0 15px rgba(0, 240, 255, 0.25); }
+
+    .range-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.1);
+      outline: none;
+      -webkit-appearance: none;
+      margin: 10px 0;
+    }
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--cyan-neon);
+      cursor: pointer;
+      box-shadow: 0 0 15px var(--cyan-neon);
+    }
+
+    /* Primary Action Button */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--cyan-neon) 0%, var(--blue-accent) 100%);
+      color: #030811;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px 28px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+    }
+    .btn-action:hover {
+      box-shadow: 0 0 25px var(--cyan-neon);
+      transform: translateY(-2px);
+      color: #000;
+    }
+
+    /* Simulation Results Box */
+    .sim-result-box {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin: 20px 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: center;
+    }
+    .sim-stat-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+    .sim-stat-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; }
+
+    /* Transactions Table */
+    .tx-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem; }
+    .tx-table th { padding: 12px 14px; color: var(--text-muted); border-bottom: 1px solid var(--border-subtle); font-weight: 600; }
+    .tx-table td { padding: 16px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .tx-val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+    .tx-in { color: var(--green-cash); }
+    .tx-out { color: var(--red-alert); }
+
+    /* Receipt Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 5, 10, 0.85);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 2000;
+    }
+    .modal-receipt {
+      background: #0c1422;
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      max-width: 480px;
+      width: 100%;
+      padding: 34px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8), var(--cyan-glow);
+      text-align: center;
+    }
+    .receipt-header { border-bottom: 1px dashed rgba(255,255,255,0.15); padding-bottom: 18px; margin-bottom: 20px; }
+    .receipt-details { text-align: left; font-size: 0.88rem; line-height: 1.8; margin-bottom: 24px; }
+    .receipt-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.04); padding: 4px 0; }
+    .receipt-row span { color: var(--text-muted); }
+    .receipt-row strong { color: #fff; }
+
+    @media (max-width: 1024px) {
+      .app-layout { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .overview-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top GS Digital Demo Header -->
+  <div class="demo-bar">
+    <a href="../../index.html#portfolio" class="back-btn">← Voltar para GS Digital</a>
+    <div class="demo-badge">✦ PROJETO REAL: Aether Pay - Sistema Bancário Corporativo</div>
+    <a href="../../index.html#simulador" class="back-btn" style="background: var(--cyan-neon); color: #000;">Contratar Sistema Semelhante ⚡</a>
+  </div>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand-box">
+        <div class="brand-icon">AP</div>
+        <div class="brand-title">AETHER <span>PAY</span></div>
+      </div>
+
+      <ul class="nav-menu">
+        <li class="nav-item active" onclick="switchFintechView('dashboard', this)">
+          <span class="nav-icon">📊</span>
+          <span>Visão Geral</span>
+        </li>
+        <li class="nav-item" onclick="switchFintechView('pix', this)">
+          <span class="nav-icon">⚡</span>
+          <span>Área Pix</span>
+        </li>
+        <li class="nav-item" onclick="switchFintechView('emprestimo', this)">
+          <span class="nav-icon">💰</span>
+          <span>Empréstimo Pessoal</span>
+        </li>
+        <li class="nav-item" onclick="switchFintechView('fgts', this)">
+          <span class="nav-icon">🏦</span>
+          <span>Antecipação FGTS</span>
+        </li>
+        <li class="nav-item" onclick="switchFintechView('cartoes', this)">
+          <span class="nav-icon">💳</span>
+          <span>Meus Cartões</span>
+        </li>
+        <li class="nav-item" onclick="switchFintechView('extrato', this)">
+          <span class="nav-icon">📜</span>
+          <span>Extrato Completo</span>
+        </li>
+      </ul>
+
+      <div class="user-chip">
+        <div class="avatar">GT</div>
+        <div class="user-info">
+          <h5>Gabriel Toledo</h5>
+          <p>Conta Premium VIP</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Views Content -->
+    <main class="main-content">
+
+      <!-- ================= 1. DASHBOARD ================= -->
+      <div class="view-pane active" id="view-dashboard">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Olá, Gabriel!</h1>
+            <p class="view-subtitle">Conta Corrente Digital • Agência 0001 • Conta 842109-3</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="back-btn" onclick="switchFintechView('pix', document.querySelectorAll('.nav-item')[1])">+ Novo Pix ⚡</button>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <!-- Balance -->
+          <div class="balance-card">
+            <div>
+              <div class="balance-header">
+                <span class="balance-tag">Saldo Disponível em Conta</span>
+                <button class="eye-toggle" onclick="toggleBalanceVisibility()" id="btn-eye" title="Ocultar Saldo">👁️</button>
+              </div>
+              <div class="balance-amount" id="dash-balance">R$ 28.450,00</div>
+              <div class="yield-badge">
+                <span>📈 Rendimento CDI: <strong>104%</strong> (+ R$ 24,18 hoje)</span>
+              </div>
+            </div>
+
+            <div class="quick-actions-bar">
+              <div class="quick-btn" onclick="switchFintechView('pix', document.querySelectorAll('.nav-item')[1])">
+                <span class="quick-icon">⚡</span>
+                <span>Fazer Pix</span>
+              </div>
+              <div class="quick-btn" onclick="switchFintechView('emprestimo', document.querySelectorAll('.nav-item')[2])">
+                <span class="quick-icon">💰</span>
+                <span>Empréstimo</span>
+              </div>
+              <div class="quick-btn" onclick="switchFintechView('fgts', document.querySelectorAll('.nav-item')[3])">
+                <span class="quick-icon">🏦</span>
+                <span>Saque FGTS</span>
+              </div>
+              <div class="quick-btn" onclick="switchFintechView('cartoes', document.querySelectorAll('.nav-item')[4])">
+                <span class="quick-icon">💳</span>
+                <span>Cartões</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D Card Scene -->
+          <div>
+            <div class="card-scene">
+              <div class="card-object" id="dash-holo-card" onclick="flipDashCard()">
+                <div class="card-face card-front">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--cyan-neon); letter-spacing: 0.1em;">AETHER BLACK VIP</span>
+                    <span style="font-size: 0.78rem; color: var(--text-muted);">DEBIT / CREDIT</span>
+                  </div>
+                  <div class="card-chip"></div>
+                  <div>
+                    <div class="card-num" id="dash-card-num">•••• •••• •••• 9104</div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.75rem; color: var(--text-muted);">
+                      <span>GABRIEL TOLEDO</span>
+                      <span>EXP: 09/29</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-face card-back">
+                  <div class="card-magnetic"></div>
+                  <div style="display: flex; justify-content: flex-end; align-items: center; gap: 8px;">
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">CVV:</span>
+                    <span style="background: #fff; color: #000; padding: 2px 8px; font-weight: 700; border-radius: 4px;">932</span>
+                  </div>
+                  <div style="font-size: 0.72rem; color: var(--text-muted); text-align: center;">Protegido por Tokenização Quântica GS Digital.</div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+              <button class="back-btn" onclick="flipDashCard()" style="margin: 0 auto; font-size: 0.78rem;">🔄 Girar Cartão (Frente/Verso)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Statement Sample -->
+        <div class="panel-box">
+          <div class="panel-header">
+            <h2 class="panel-title">Últimas Movimentações</h2>
+            <button class="back-btn" onclick="switchFintechView('extrato', document.querySelectorAll('.nav-item')[5])">Ver Extrato Completo →</button>
+          </div>
+
+          <table class="tx-table">
+            <thead>
+              <tr>
+                <th>Transação</th>
+                <th>Data / Hora</th>
+                <th>Categoria</th>
+                <th>Valor</th>
+                <th>Comprovante</th>
+              </tr>
+            </thead>
+            <tbody id="dash-tx-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= 2. ÁREA PIX ================= -->
+      <div class="view-pane" id="view-pix">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Área Pix ⚡</h1>
+            <p class="view-subtitle">Pagamentos instantâneos 24 horas por dia com liquidação em segundos.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+          <!-- Transfer Form -->
+          <div class="panel-box">
+            <h2 class="panel-title" style="margin-bottom: 20px;">Enviar Transferência Pix</h2>
+
+            <div class="input-group">
+              <label class="input-label">Tipo de Chave Pix</label>
+              <select class="form-input" id="pix-type-select">
+                <option value="CPF / CNPJ">CPF / CNPJ</option>
+                <option value="E-mail">E-mail</option>
+                <option value="Telefone Celular">Telefone Celular</option>
+                <option value="Chave Aleatória (EVP)">Chave Aleatória (EVP)</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">Chave de Destino</label>
+              <input type="text" class="form-input" id="pix-target-key" placeholder="Digite a chave..." value="pix@gsdigital.com.br">
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">Nome do Favorecido</label>
+              <input type="text" class="form-input" id="pix-target-name" placeholder="Nome completo" value="GS Digital Serviços Tecnológicos">
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">Valor a Transferir (R$)</label>
+              <input type="number" class="form-input" id="pix-send-amount" placeholder="0,00" value="450.00" style="font-size: 1.4rem; font-weight: 700; color: var(--cyan-neon);">
+            </div>
+
+            <button class="btn-action" onclick="executePixTransfer()">Confirmar e Transferir Pix ✦</button>
+          </div>
+
+          <!-- Receive & Keys Info -->
+          <div class="panel-box">
+            <h2 class="panel-title" style="margin-bottom: 20px;">Minhas Chaves Cadastradas</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px;">
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 600; font-size: 0.9rem;">CPF</div>
+                  <div style="color: var(--cyan-neon); font-size: 0.82rem; font-family: monospace;">***.482.918-**</div>
+                </div>
+                <span style="color: #10b981; font-size: 0.78rem;">Ativa</span>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 600; font-size: 0.9rem;">E-mail Corporativo</div>
+                  <div style="color: var(--cyan-neon); font-size: 0.82rem; font-family: monospace;">gabriel@aetherpay.com.br</div>
+                </div>
+                <span style="color: #10b981; font-size: 0.78rem;">Ativa</span>
+              </div>
+            </div>
+
+            <button class="back-btn" style="width: 100%; justify-content: center; padding: 12px;" onclick="alert('Chave aleatória gerada com sucesso e vinculada à conta!')">+ Cadastrar Nova Chave</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 3. EMPRÉSTIMOS ================= -->
+      <div class="view-pane" id="view-emprestimo">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Empréstimo Pessoal Aether Crédito</h1>
+            <p class="view-subtitle">Dinheiro na conta na hora com taxas reduzidas a partir de 1,49% ao mês.</p>
+          </div>
+          <div style="background: rgba(245, 158, 11, 0.12); border: 1px solid var(--gold-vip); color: var(--gold-vip); padding: 8px 16px; border-radius: 99px; font-weight: 700; font-size: 0.88rem;">
+            ★ Limite Pré-Aprovado: R$ 35.000,00
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px;">
+          <!-- Simulator Form -->
+          <div class="panel-box">
+            <h2 class="panel-title" style="margin-bottom: 22px;">Simule as Condições</h2>
+
+            <div class="input-group">
+              <div class="input-label">
+                <span>Valor Desejado:</span>
+                <strong id="loan-amount-label">R$ 15.000</strong>
+              </div>
+              <input type="range" class="range-slider" id="loan-slider-amount" min="1000" max="35000" step="500" value="15000" oninput="calculateLoan()">
+            </div>
+
+            <div class="input-group">
+              <div class="input-label">
+                <span>Número de Parcelas:</span>
+                <strong id="loan-months-label">24x</strong>
+              </div>
+              <input type="range" class="range-slider" id="loan-slider-months" min="6" max="48" step="6" value="24" oninput="calculateLoan()">
+            </div>
+
+            <div class="sim-result-box">
+              <div>
+                <div class="sim-stat-label">Valor da Parcela</div>
+                <div class="sim-stat-value" id="loan-installment-val" style="color: var(--cyan-neon);">R$ 748,50</div>
+              </div>
+              <div>
+                <div class="sim-stat-label">Taxa Mensal</div>
+                <div class="sim-stat-value" style="color: #10b981;">1,49% a.m.</div>
+              </div>
+              <div>
+                <div class="sim-stat-label">Total a Pagar</div>
+                <div class="sim-stat-value" id="loan-total-val">R$ 17.964</div>
+              </div>
+            </div>
+
+            <button class="btn-action" onclick="contractLoan()">Contratar e Creditar no Saldo Agora ✦</button>
+            <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
+              Primeira parcela com carência de até 60 dias. Sujeito à análise regulatória do Banco Central.
+            </p>
+          </div>
+
+          <!-- Benefits Card -->
+          <div class="panel-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h2 class="panel-title" style="margin-bottom: 16px;">Vantagens Aether Crédito</h2>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 0.9rem; color: var(--text-secondary);">
+                <li>✓ <strong>Sem burocracia:</strong> Contratação 100% digital em 1 clique.</li>
+                <li>✓ <strong>Depósito instantâneo:</strong> O dinheiro entra direto no seu saldo da conta corrente.</li>
+                <li>✓ <strong>Débito automático suave:</strong> Escolha a data de vencimento da fatura.</li>
+                <li>✓ <strong>Desconto na antecipação:</strong> Abata juros ao pagar parcelas adiantadas.</li>
+              </ul>
+            </div>
+
+            <div style="background: rgba(0, 240, 255, 0.06); border: 1px solid var(--border-cyan); border-radius: 12px; padding: 16px; text-align: center; margin-top: 20px;">
+              <span style="font-size: 0.8rem; color: var(--cyan-neon); font-weight: 700;">CONTRATAÇÃO GARANTIDA</span>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Valores simulados reais com atualização imediata no extrato bancário.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 4. ANTECIPAÇÃO FGTS ================= -->
+      <div class="view-pane" id="view-fgts">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Antecipação do Saque-Aniversário FGTS</h1>
+            <p class="view-subtitle">Receba até 7 anos do seu FGTS retido hoje mesmo sem comprometer sua renda mensal.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px;">
+          <div class="panel-box">
+            <h2 class="panel-title" style="margin-bottom: 20px;">Simulador de Liberação do FGTS</h2>
+
+            <div class="input-group">
+              <label class="input-label">Saldo Total Retido no FGTS (Consulta CEF)</label>
+              <input type="text" class="form-input" id="fgts-total-balance" value="R$ 24.800,00" readonly style="color: #10b981; font-weight: 700; font-size: 1.2rem;">
+            </div>
+
+            <div class="input-group">
+              <div class="input-label">
+                <span>Quantas Parcelas Anuais Deseja Antecipar?</span>
+                <strong id="fgts-years-label">5 Anos</strong>
+              </div>
+              <input type="range" class="range-slider" id="fgts-slider" min="1" max="7" step="1" value="5" oninput="calculateFgts()">
+            </div>
+
+            <div class="sim-result-box">
+              <div>
+                <div class="sim-stat-label">Valor Liberado na Hora</div>
+                <div class="sim-stat-value" id="fgts-cash-val" style="color: var(--cyan-neon);">R$ 14.280,00</div>
+              </div>
+              <div>
+                <div class="sim-stat-label">Taxa Fixa</div>
+                <div class="sim-stat-value" style="color: #10b981;">1,29% a.m.</div>
+              </div>
+              <div>
+                <div class="sim-stat-label">Desconto das Parcelas</div>
+                <div class="sim-stat-value">Direto no FGTS</div>
+              </div>
+            </div>
+
+            <button class="btn-action" onclick="contractFgts()">Antecipar FGTS e Depositar no Saldo ✦</button>
+          </div>
+
+          <div class="panel-box">
+            <h2 class="panel-title" style="margin-bottom: 16px;">Como Funciona o Saque-Aniversário?</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 18px;">
+              Você não precisa pagar boletos mensais. O pagamento é realizado anualmente debitando diretamente do seu saldo acumulado no Fundo de Garantia (FGTS).
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; color: var(--text-secondary);">
+              <div>✓ Não consulta SPC/Serasa (Negativados podem contratar)</div>
+              <div>✓ O dinheiro cai em até 2 minutos na sua conta Aether Pay</div>
+              <div>✓ Taxa muito mais baixa do que cheque especial ou cartão</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 5. MEUS CARTÕES ================= -->
+      <div class="view-pane" id="view-cartoes">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Gestão de Cartões de Crédito & Débito</h1>
+            <p class="view-subtitle">Controle de limites, bloqueios temporários e geração de cartões virtuais dinâmicos.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+          <div class="panel-box">
+            <h2 class="panel-title" style="margin-bottom: 18px;">Ajustar Limite do Cartão de Crédito</h2>
+            
+            <div class="input-group">
+              <div class="input-label">
+                <span>Limite Atual do Cartão:</span>
+                <strong id="limit-label" style="color: var(--cyan-neon); font-size: 1.2rem;">R$ 12.000,00</strong>
+              </div>
+              <input type="range" class="range-slider" id="limit-slider" min="1000" max="25000" step="500" value="12000" oninput="updateCardLimit()">
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 6px;">
+                <span>Mín: R$ 1.000</span>
+                <span>Máx Pré-Aprovado: R$ 25.000</span>
+              </div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 18px; margin: 20px 0;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem;">
+                <span>Fatura Atual (Vencimento 10/10):</span>
+                <strong style="color: var(--red-alert);">R$ 1.840,50</strong>
+              </div>
+              <button class="back-btn" style="width: 100%; justify-content: center; background: var(--cyan-neon); color: #000; font-weight: 700; margin-top: 10px;" onclick="payCreditCardBill()">
+                Pagar Fatura com Saldo da Conta
+              </button>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+              <button class="back-btn" style="flex: 1; justify-content: center;" onclick="toggleCardBlock(this)">🔒 Bloquear Cartão Físico</button>
+              <button class="back-btn" style="flex: 1; justify-content: center;" onclick="generateVirtualCard()">+ Novo Cartão Virtual</button>
+            </div>
+          </div>
+
+          <div class="panel-box">
+            <h2 class="panel-title" style="margin-bottom: 18px;">Cartão Virtual Temporário Ativo</h2>
+            <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(6, 10, 18, 0.9)); border: 1px solid var(--cyan-neon); border-radius: 16px; padding: 22px; margin-bottom: 16px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 18px;">
+                <span style="font-weight: 700; color: var(--cyan-neon);">AETHER VIRTUAL SINGLE USE</span>
+                <span style="font-size: 0.8rem; background: rgba(0,240,255,0.2); padding: 2px 8px; border-radius: 4px;">Online</span>
+              </div>
+              <div style="font-family: monospace; font-size: 1.3rem; letter-spacing: 0.15em; color: #fff; margin-bottom: 12px;" id="virt-card-num">
+                5412 •••• •••• 3019
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #cbd5e1;">
+                <span>VALIDADE: 10/26</span>
+                <span>CVV DINÂMICO: <strong id="virt-cvv">741</strong></span>
+              </div>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
+              O cartão virtual muda de CVV a cada 24 horas para garantir que suas compras na internet sejam 100% livres de clonagem.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 6. EXTRATO COMPLETO ================= -->
+      <div class="view-pane" id="view-extrato">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Extrato Bancário Detalhado</h1>
+            <p class="view-subtitle">Todas as movimentações financeiras com auditoria e comprovantes digitais.</p>
+          </div>
+          <button class="back-btn" onclick="alert('Relatório OFX / PDF exportado com sucesso!')">📥 Exportar PDF / OFX</button>
+        </div>
+
+        <div class="panel-box">
+          <table class="tx-table">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Data / Hora</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Valor (R$)</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="full-statement-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Official Bank Receipt Modal -->
+  <div class="modal-overlay" id="receipt-modal">
+    <div class="modal-receipt">
+      <div class="receipt-header">
+        <div style="font-size: 2.2rem; margin-bottom: 6px;">🏛️</div>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: #fff;">Comprovante de Transação</h3>
+        <p style="font-size: 0.8rem; color: var(--cyan-neon);">Banco Aether Pay S.A. • ISPB 84210923</p>
+      </div>
+
+      <div class="receipt-details">
+        <div class="receipt-row">
+          <span>Tipo de Operação:</span>
+          <strong id="rec-op-type">Transferência Pix</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Valor da Transação:</span>
+          <strong id="rec-amount" style="color: var(--cyan-neon); font-size: 1.1rem;">R$ 450,00</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Destinatário / Favorecido:</span>
+          <strong id="rec-target-name">GS Digital</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Data e Horário:</span>
+          <strong id="rec-datetime">17/09/2026 18:30:12</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Autenticação Bancária (ID):</span>
+          <strong id="rec-auth-id" style="font-family: monospace; font-size: 0.75rem;">E84210923202609170094F</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Status da Liquidação:</span>
+          <strong style="color: #10b981;">Efetivado com Sucesso</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button class="back-btn" style="flex: 1; justify-content: center; background: var(--cyan-neon); color: #000; font-weight: 700;" onclick="closeReceiptModal()">Concluir</button>
+        <button class="back-btn" style="flex: 1; justify-content: center;" onclick="window.print()">Imprimir / Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State management
+    let balance = 28450.00;
+    let balanceVisible = true;
+    let transactions = [
+      { id: 'tx_01', desc: 'Recebimento Pix - Projeto GS Digital', date: '17/09/2026 16:40', cat: 'Faturamento', type: 'in', val: 3200.00 },
+      { id: 'tx_02', desc: 'Pagamento Servidor Cloud AWS', date: '17/09/2026 11:20', cat: 'Infraestrutura', type: 'out', val: 245.50 },
+      { id: 'tx_03', desc: 'Transferência Pix - Fornecedor Design', date: '16/09/2026 14:15', cat: 'Serviços', type: 'out', val: 800.00 },
+      { id: 'tx_04', desc: 'Rendimento Diário Conta CDI 104%', date: '16/09/2026 06:00', cat: 'Investimentos', type: 'in', val: 24.18 },
+      { id: 'tx_05', desc: 'Supermercado Pão de Açúcar', date: '15/09/2026 19:30', cat: 'Alimentação', type: 'out', val: 184.90 }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderBalance();
+      renderTransactions();
+      calculateLoan();
+      calculateFgts();
+    });
+
+    function switchFintechView(viewId, el) {
+      document.querySelectorAll('.view-pane').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('view-' + viewId).classList.add('active');
+    }
+
+    function renderBalance() {
+      const el = document.getElementById('dash-balance');
+      if (balanceVisible) {
+        el.textContent = `R$ ${balance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+      } else {
+        el.textContent = '••••••••';
+      }
+    }
+
+    function toggleBalanceVisibility() {
+      balanceVisible = !balanceVisible;
+      document.getElementById('btn-eye').textContent = balanceVisible ? '👁️' : '🙈';
+      renderBalance();
+    }
+
+    function flipDashCard() {
+      document.getElementById('dash-holo-card').classList.toggle('flipped');
+    }
+
+    function renderTransactions() {
+      const dashTbody = document.getElementById('dash-tx-tbody');
+      const fullTbody = document.getElementById('full-statement-tbody');
+      
+      dashTbody.innerHTML = '';
+      fullTbody.innerHTML = '';
+
+      transactions.forEach((tx, idx) => {
+        const valClass = tx.type === 'in' ? 'tx-in' : 'tx-out';
+        const prefix = tx.type === 'in' ? '+ ' : '- ';
+        const formattedVal = `${prefix}R$ ${tx.val.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+
+        // Render first 4 in dashboard
+        if (idx < 4) {
+          const tr1 = document.createElement('tr');
+          tr1.innerHTML = `
+            <td><strong>${tx.desc}</strong></td>
+            <td style="color: var(--text-muted); font-size: 0.82rem;">${tx.date}</td>
+            <td><span style="background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 4px; font-size: 0.78rem;">${tx.cat}</span></td>
+            <td class="tx-val ${valClass}">${formattedVal}</td>
+            <td><button class="back-btn" style="padding: 3px 10px; font-size: 0.75rem;" onclick="viewReceipt('${tx.desc}', ${tx.val}, '${tx.date}')">Ver 📄</button></td>
+          `;
+          dashTbody.appendChild(tr1);
+        }
+
+        // Full statement
+        const tr2 = document.createElement('tr');
+        tr2.innerHTML = `
+          <td><strong>${tx.desc}</strong></td>
+          <td style="color: var(--text-muted); font-size: 0.82rem;">${tx.date}</td>
+          <td><span style="background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 4px; font-size: 0.78rem;">${tx.cat}</span></td>
+          <td>${tx.type === 'in' ? 'Entrada' : 'Saída'}</td>
+          <td class="tx-val ${valClass}">${formattedVal}</td>
+          <td><button class="back-btn" style="padding: 3px 10px; font-size: 0.75rem;" onclick="viewReceipt('${tx.desc}', ${tx.val}, '${tx.date}')">Comprovante</button></td>
+        `;
+        fullTbody.appendChild(tr2);
+      });
+    }
+
+    // 1. Pix Transfer Action
+    function executePixTransfer() {
+      const amount = parseFloat(document.getElementById('pix-send-amount').value) || 0;
+      const targetKey = document.getElementById('pix-target-key').value.trim();
+      const targetName = document.getElementById('pix-target-name').value.trim();
+
+      if (amount <= 0 || amount > balance) {
+        alert('Valor de Pix inválido ou saldo insuficiente!');
+        return;
+      }
+
+      balance -= amount;
+      renderBalance();
+
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
+
+      transactions.unshift({
+        id: 'tx_' + Date.now(),
+        desc: `Pix enviado para ${targetName}`,
+        date: dateStr,
+        cat: 'Transferência Pix',
+        type: 'out',
+        val: amount
+      });
+      renderTransactions();
+
+      openReceiptModal('Transferência Pix Instantânea', amount, targetName, dateStr);
+    }
+
+    // 2. Loan Simulator & Contract
+    function calculateLoan() {
+      const amount = parseInt(document.getElementById('loan-slider-amount').value, 10);
+      const months = parseInt(document.getElementById('loan-slider-months').value, 10);
+      
+      document.getElementById('loan-amount-label').textContent = `R$ ${amount.toLocaleString('pt-BR')}`;
+      document.getElementById('loan-months-label').textContent = `${months}x`;
+
+      const rate = 0.0149; // 1.49% a.m.
+      const installment = (amount * (rate * Math.pow(1 + rate, months))) / (Math.pow(1 + rate, months) - 1);
+      const total = installment * months;
+
+      document.getElementById('loan-installment-val').textContent = `R$ ${installment.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('loan-total-val').textContent = `R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+
+    function contractLoan() {
+      const amount = parseInt(document.getElementById('loan-slider-amount').value, 10);
+      const months = parseInt(document.getElementById('loan-slider-months').value, 10);
+
+      if (confirm(`Confirmar a contratação do Empréstimo Pessoal de R$ ${amount.toLocaleString('pt-BR')} em ${months} parcelas? O valor será creditado imediatamente na sua conta.`)) {
+        balance += amount;
+        renderBalance();
+
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
+
+        transactions.unshift({
+          id: 'tx_' + Date.now(),
+          desc: `Liberação de Empréstimo Pessoal (${months}x)`,
+          date: dateStr,
+          cat: 'Empréstimos',
+          type: 'in',
+          val: amount
+        });
+        renderTransactions();
+
+        openReceiptModal('Contratação de Empréstimo Pessoal', amount, 'Aether Crédito S.A.', dateStr);
+      }
+    }
+
+    // 3. FGTS Anticipation
+    function calculateFgts() {
+      const years = parseInt(document.getElementById('fgts-slider').value, 10);
+      document.getElementById('fgts-years-label').textContent = `${years} Anos`;
+
+      // Sim calculation based on years
+      const baseLiberado = years * 2850;
+      document.getElementById('fgts-cash-val').textContent = `R$ ${baseLiberado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    }
+
+    function contractFgts() {
+      const years = parseInt(document.getElementById('fgts-slider').value, 10);
+      const amount = years * 2850;
+
+      if (confirm(`Confirmar antecipação de ${years} saques-aniversário do seu FGTS no valor líquido de R$ ${amount.toLocaleString('pt-BR')}? O dinheiro cai imediatamente na sua conta corrente.`)) {
+        balance += amount;
+        renderBalance();
+
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
+
+        transactions.unshift({
+          id: 'tx_' + Date.now(),
+          desc: `Depósito Antecipação Saque-Aniversário FGTS (${years} anos)`,
+          date: dateStr,
+          cat: 'FGTS',
+          type: 'in',
+          val: amount
+        });
+        renderTransactions();
+
+        openReceiptModal('Antecipação Saque-Aniversário FGTS', amount, 'Caixa Econômica Federal / Aether Pay', dateStr);
+      }
+    }
+
+    // 4. Cards Controls
+    function updateCardLimit() {
+      const limit = parseInt(document.getElementById('limit-slider').value, 10);
+      document.getElementById('limit-label').textContent = `R$ ${limit.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    }
+
+    function toggleCardBlock(btn) {
+      if (btn.textContent.includes('Bloquear')) {
+        btn.textContent = '🔓 Desbloquear Cartão';
+        btn.style.background = '#ef4444';
+        alert('Cartão físico bloqueado temporariamente para sua segurança!');
+      } else {
+        btn.textContent = '🔒 Bloquear Cartão Físico';
+        btn.style.background = '';
+        alert('Cartão físico desbloqueado com sucesso!');
+      }
+    }
+
+    function generateVirtualCard() {
+      const r = () => Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('virt-card-num').textContent = `5412 ${r()} ${r()} ${r()}`;
+      document.getElementById('virt-cvv').textContent = Math.floor(100 + Math.random() * 900);
+      alert('Novo cartão virtual gerado com CVV dinâmico de 24 horas!');
+    }
+
+    function payCreditCardBill() {
+      const billAmount = 1840.50;
+      if (balance < billAmount) {
+        alert('Saldo insuficiente para pagar a fatura completa!');
+        return;
+      }
+      balance -= billAmount;
+      renderBalance();
+
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
+
+      transactions.unshift({
+        id: 'tx_' + Date.now(),
+        desc: 'Pagamento de Fatura Cartão Aether Black',
+        date: dateStr,
+        cat: 'Cartão de Crédito',
+        type: 'out',
+        val: billAmount
+      });
+      renderTransactions();
+      openReceiptModal('Pagamento de Fatura de Cartão de Crédito', billAmount, 'Aether Cartões', dateStr);
+    }
+
+    // Modal Receipt Helper
+    function openReceiptModal(opType, amount, targetName, datetime) {
+      document.getElementById('rec-op-type').textContent = opType;
+      document.getElementById('rec-amount').textContent = `R$ ${amount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+      document.getElementById('rec-target-name').textContent = targetName;
+      document.getElementById('rec-datetime').textContent = datetime;
+      document.getElementById('rec-auth-id').textContent = 'AUTH_' + Math.random().toString(36).substring(2, 12).toUpperCase() + '_' + Date.now();
+      document.getElementById('receipt-modal').style.display = 'flex';
+    }
+
+    function closeReceiptModal() {
+      document.getElementById('receipt-modal').style.display = 'none';
+    }
+
+    function viewReceipt(desc, val, date) {
+      openReceiptModal(desc, val, 'Aether Pay / Destinatário Autenticado', date);
+    }
+  </script>
+</body>
+</html>

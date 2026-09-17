@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusFlow AI Studio | Console Corporativo de Modelos & Observabilidade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #060911;
+      --bg-sidebar: #090e1a;
+      --bg-card: rgba(14, 23, 38, 0.75);
+      --cyan-neon: #00f0ff;
+      --cyan-glow: 0 0 20px rgba(0, 240, 255, 0.35);
+      --green-status: #10b981;
+      --purple-accent: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-cyan: rgba(0, 240, 255, 0.25);
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+
+    /* Top GS Digital Demo Header */
+    .demo-bar {
+      background: rgba(9, 15, 26, 0.95);
+      border-bottom: 1px solid var(--border-cyan);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--cyan-neon);
+      color: var(--cyan-neon);
+      padding: 4px 14px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .back-btn {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: var(--cyan-neon); color: #000; }
+
+    /* Layout */
+    .app-layout { display: flex; flex: 1; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 270px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-subtle);
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--cyan-neon), var(--purple-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+    .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; }
+    .logo-text span { color: var(--cyan-neon); }
+
+    .nav-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .nav-btn {
+      padding: 11px 16px;
+      border-radius: 10px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .nav-btn:hover { color: #fff; background: rgba(255,255,255,0.04); }
+    .nav-btn.active {
+      color: var(--cyan-neon);
+      background: rgba(0, 240, 255, 0.08);
+      border-color: var(--border-cyan);
+    }
+
+    /* Main Area */
+    .main-area { flex: 1; padding: 28px 36px; overflow-y: auto; }
+    .view-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .view-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; }
+    .view-sub { color: var(--text-muted); font-size: 0.9rem; margin-top: 3px; }
+
+    /* Panels */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 22px;
+    }
+
+    /* Playground Studio Layout */
+    .playground-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 24px;
+    }
+
+    .chat-box {
+      background: #040811;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 20px;
+      height: 380px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .msg-bubble {
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      max-width: 90%;
+    }
+    .msg-user {
+      align-self: flex-end;
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid var(--border-cyan);
+      color: #fff;
+    }
+    .msg-ai {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+
+    .prompt-row { display: flex; gap: 10px; }
+    .prompt-textarea {
+      flex: 1;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #fff;
+      font-size: 0.92rem;
+      outline: none;
+      resize: none;
+      height: 60px;
+    }
+    .prompt-textarea:focus { border-color: var(--cyan-neon); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
+
+    .btn-run {
+      background: linear-gradient(135deg, var(--cyan-neon), var(--purple-accent));
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      padding: 0 26px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-run:hover { box-shadow: 0 0 20px var(--cyan-neon); transform: translateY(-2px); }
+
+    /* Parameters Sidebar */
+    .param-group { margin-bottom: 20px; }
+    .param-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px; }
+    .param-label strong { color: var(--cyan-neon); font-family: var(--font-mono); }
+    .slider { width: 100%; height: 6px; accent-color: var(--cyan-neon); cursor: pointer; }
+    .select-field {
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.88rem;
+      outline: none;
+    }
+
+    /* Telemetry Counters */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .stat-title { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; }
+    .stat-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-top: 6px; }
+
+    /* Traces Table */
+    .trace-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
+    .trace-table th { padding: 12px 14px; color: var(--text-muted); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-mono); }
+    .trace-table td { padding: 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-family: var(--font-mono); }
+    .status-200 { color: var(--green-status); }
+
+    @media (max-width: 1024px) {
+      .app-layout { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .playground-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top GS Digital Demo Header -->
+  <div class="demo-bar">
+    <a href="../../index.html#portfolio" class="back-btn">← Voltar para GS Digital</a>
+    <div class="demo-badge">✦ PROJETO REAL: NexusFlow AI - Plataforma SaaS & Observabilidade</div>
+    <a href="../../index.html#simulador" class="back-btn" style="background: var(--cyan-neon); color: #000;">Desenvolver Plataforma SaaS ⚡</a>
+  </div>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo-box">
+        <div class="logo-icon">NX</div>
+        <div class="logo-text">Nexus<span>Flow</span> AI</div>
+      </div>
+
+      <ul class="nav-list">
+        <li class="nav-btn active" onclick="switchNexusTab('playground', this)">🤖 Prompt Playground</li>
+        <li class="nav-btn" onclick="switchNexusTab('analytics', this)">📊 Observabilidade & Métricas</li>
+        <li class="nav-btn" onclick="switchNexusTab('traces', this)">🔍 Logs & Request Traces</li>
+        <li class="nav-btn" onclick="switchNexusTab('keys', this)">🔑 Chaves de API & Segurança</li>
+      </ul>
+
+      <div style="margin-top: auto; padding: 16px; background: rgba(0, 240, 255, 0.05); border: 1px solid var(--border-cyan); border-radius: 12px;">
+        <div style="font-size: 0.78rem; color: var(--cyan-neon); font-weight: 700;">CONSUMO DO MÊS</div>
+        <div style="font-family: var(--font-mono); font-size: 1.3rem; font-weight: 700; color: #fff; margin: 4px 0;">$ 1.482,20</div>
+        <div style="font-size: 0.74rem; color: var(--text-muted);">98.500.000 tokens processados</div>
+      </div>
+    </aside>
+
+    <!-- Main Views -->
+    <main class="main-area">
+
+      <!-- ================= 1. PROMPT PLAYGROUND ================= -->
+      <div class="tab-content active" id="tab-playground">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Prompt & Model Studio</h1>
+            <p class="view-sub">Experimente e compare modelos de linguagem de alta performance com streaming em tempo real.</p>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--green-status); background: rgba(16, 185, 129, 0.1); border: 1px solid var(--green-status); padding: 6px 14px; border-radius: 99px;">
+            ● Model Cluster Online (Latência p50: 180ms)
+          </div>
+        </div>
+
+        <div class="playground-grid">
+          <!-- Chat Window -->
+          <div>
+            <div class="chat-box" id="chat-messages">
+              <div class="msg-bubble msg-ai">
+                Olá! Eu sou o modelo <strong>Nexus-4 Omni</strong>. Como posso acelerar o desenvolvimento do seu projeto hoje?
+              </div>
+            </div>
+
+            <div class="prompt-row">
+              <textarea id="user-prompt-input" class="prompt-textarea" placeholder="Digite seu comando para a IA... (ex: Crie uma arquitetura de microsserviços para fintech)"></textarea>
+              <button class="btn-run" onclick="sendPrompt()">Executar ✦</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">
+              <span>Tokens da Sessão: <strong id="token-counter" style="color: var(--cyan-neon);">248</strong></span>
+              <span>Custo Estimado: <strong id="cost-counter" style="color: #10b981;">$0.0014</strong></span>
+              <span>Tempo de Resposta: <strong id="latency-counter" style="color: #fff;">184ms</strong></span>
+            </div>
+          </div>
+
+          <!-- Hyperparameters Sidebar -->
+          <div class="panel-card" style="margin-bottom: 0;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 18px;">Parâmetros do Modelo</h3>
+
+            <div class="param-group">
+              <label class="param-label">Modelo Neural</label>
+              <select class="select-field" id="model-select" onchange="changeModel()">
+                <option value="Nexus-4 Omni (Ultra-fast)">Nexus-4 Omni (Geral & Multimodal)</option>
+                <option value="Nexus-Reasoning Pro">Nexus-Reasoning Pro (Raciocínio Lógico)</option>
+                <option value="Nexus-Coder 2.5">Nexus-Coder 2.5 (Código & Engenharia)</option>
+              </select>
+            </div>
+
+            <div class="param-group">
+              <div class="param-label">
+                <span>Temperatura (Criatividade):</span>
+                <strong id="temp-val">0.7</strong>
+              </div>
+              <input type="range" class="slider" min="0" max="1.5" step="0.1" value="0.7" oninput="document.getElementById('temp-val').textContent = this.value">
+            </div>
+
+            <div class="param-group">
+              <div class="param-label">
+                <span>Max Tokens (Limite Resposta):</span>
+                <strong id="tokens-val">2048</strong>
+              </div>
+              <input type="range" class="slider" min="256" max="4096" step="256" value="2048" oninput="document.getElementById('tokens-val').textContent = this.value">
+            </div>
+
+            <div class="param-group">
+              <label class="param-label">System Prompt (Instrução do Sistema)</label>
+              <textarea class="prompt-textarea" style="height: 90px; width: 100%; font-size: 0.8rem;" id="sys-prompt">Você é um arquiteto sênior da GS Digital focado em código limpo, alta segurança e performance 100/100.</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 2. OBSERVABILIDADE & MÉTRICAS ================= -->
+      <div class="tab-content" id="tab-analytics">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Observabilidade de Produção</h1>
+            <p class="view-sub">Métricas de tráfego, latência e consumo de tokens em tempo real.</p>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-title">Requisições / Minuto</div>
+            <div class="stat-val" style="color: var(--cyan-neon);">2.840 RPM</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Latência p95</div>
+            <div class="stat-val" style="color: #10b981;">280ms</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Taxa de Sucesso</div>
+            <div class="stat-val" style="color: #10b981;">99.98%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Custo Médio / Req</div>
+            <div class="stat-val" style="color: var(--purple-accent);">$ 0.00052</div>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 16px;">Distribuição de Consumo por Modelo</h3>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+                <span>Nexus-4 Omni</span>
+                <strong style="color: var(--cyan-neon);">64% (63.040.000 tokens)</strong>
+              </div>
+              <div style="background: rgba(255,255,255,0.1); height: 8px; border-radius: 99px; overflow: hidden;">
+                <div style="background: var(--cyan-neon); width: 64%; height: 100%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+                <span>Nexus-Reasoning Pro</span>
+                <strong style="color: var(--purple-accent);">26% (25.610.000 tokens)</strong>
+              </div>
+              <div style="background: rgba(255,255,255,0.1); height: 8px; border-radius: 99px; overflow: hidden;">
+                <div style="background: var(--purple-accent); width: 26%; height: 100%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+                <span>Nexus-Coder 2.5</span>
+                <strong style="color: #10b981;">10% (9.850.000 tokens)</strong>
+              </div>
+              <div style="background: rgba(255,255,255,0.1); height: 8px; border-radius: 99px; overflow: hidden;">
+                <div style="background: #10b981; width: 10%; height: 100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 3. TRACES & LOGS ================= -->
+      <div class="tab-content" id="tab-traces">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Logs & Request Traces (LangSmith Style)</h1>
+            <p class="view-sub">Auditoria completa de cada chamada de API recebida pelo gateway.</p>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <table class="trace-table">
+            <thead>
+              <tr>
+                <th>TIMESTAMP</th>
+                <th>MODELO</th>
+                <th>STATUS</th>
+                <th>LATÊNCIA</th>
+                <th>TOKENS</th>
+                <th>CUSTO</th>
+                <th>TRACE ID</th>
+              </tr>
+            </thead>
+            <tbody id="traces-tbody">
+              <tr>
+                <td>18:31:04</td>
+                <td>Nexus-4 Omni</td>
+                <td class="status-200">200 OK</td>
+                <td>184ms</td>
+                <td>42 in / 198 out</td>
+                <td>$0.0014</td>
+                <td>tr_8a91b2c3d4e5</td>
+              </tr>
+              <tr>
+                <td>18:30:52</td>
+                <td>Nexus-Reasoning Pro</td>
+                <td class="status-200">200 OK</td>
+                <td>412ms</td>
+                <td>120 in / 450 out</td>
+                <td>$0.0038</td>
+                <td>tr_7f8e9d0c1b2a</td>
+              </tr>
+              <tr>
+                <td>18:30:11</td>
+                <td>Nexus-Coder 2.5</td>
+                <td class="status-200">200 OK</td>
+                <td>210ms</td>
+                <td>85 in / 310 out</td>
+                <td>$0.0021</td>
+                <td>tr_6a5b4c3d2e1f</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= 4. API KEYS ================= -->
+      <div class="tab-content" id="tab-keys">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Chaves de API & Políticas de Acesso</h1>
+            <p class="view-sub">Autenticação com criptografia TLS 1.3 e controle granular de permissões.</p>
+          </div>
+          <button class="back-btn" onclick="createKey()" style="background: var(--cyan-neon); color: #000;">+ Criar Nova Chave</button>
+        </div>
+
+        <div class="panel-card">
+          <table class="trace-table">
+            <thead>
+              <tr>
+                <th>NOME</th>
+                <th>PREFIXO DO TOKEN</th>
+                <th>PERMISSÕES</th>
+                <th>CRIADO EM</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody id="keys-tbody">
+              <tr>
+                <td><strong>Gateway Produção</strong></td>
+                <td>nx_live_84f9****************</td>
+                <td>Read, Write, Model Access</td>
+                <td>10/09/2026</td>
+                <td style="color: #10b981;">Ativa</td>
+              </tr>
+              <tr>
+                <td><strong>Staging & Testes</strong></td>
+                <td>nx_test_19a2****************</td>
+                <td>Model Access</td>
+                <td>14/09/2026</td>
+                <td style="color: #10b981;">Ativa</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    function switchNexusTab(tabId, btn) {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    let sessionTokens = 248;
+    let sessionCost = 0.0014;
+
+    function sendPrompt() {
+      const input = document.getElementById('user-prompt-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chat = document.getElementById('chat-messages');
+
+      // User Message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'msg-bubble msg-user';
+      userMsg.textContent = text;
+      chat.appendChild(userMsg);
+      input.value = '';
+
+      // AI Response with streaming effect
+      const aiMsg = document.createElement('div');
+      aiMsg.className = 'msg-bubble msg-ai';
+      aiMsg.innerHTML = '<span style="color: var(--cyan-neon);">Processando inferência via Edge...</span>';
+      chat.appendChild(aiMsg);
+      chat.scrollTop = chat.scrollHeight;
+
+      setTimeout(() => {
+        aiMsg.innerHTML = `<strong>Resposta NexusFlow AI:</strong><br>` +
+          `Análise concluída com sucesso. Para implementar essa solução com o padrão <strong>GS Digital</strong>, recomendamos arquitetura desacoplada, Edge Caching e planos de <strong>Manutenção Preventiva 24/7</strong> para garantir latência inferior a 50ms e zero vulnerabilidades.`;
+        
+        sessionTokens += 186;
+        sessionCost += 0.0012;
+        document.getElementById('token-counter').textContent = sessionTokens;
+        document.getElementById('cost-counter').textContent = `$${sessionCost.toFixed(4)}`;
+        document.getElementById('latency-counter').textContent = `${Math.floor(160 + Math.random() * 80)}ms`;
+
+        // Add to traces table
+        const tbody = document.getElementById('traces-tbody');
+        const tr = document.createElement('tr');
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('pt-BR');
+        tr.innerHTML = `
+          <td>${timeStr}</td>
+          <td>${document.getElementById('model-select').value.split(' ')[0]}</td>
+          <td class="status-200">200 OK</td>
+          <td>${Math.floor(160 + Math.random() * 80)}ms</td>
+          <td>${Math.floor(40 + Math.random() * 30)} in / ${Math.floor(150 + Math.random() * 50)} out</td>
+          <td>$0.0012</td>
+          <td>tr_${Math.random().toString(36).substring(2, 14)}</td>
+        `;
+        tbody.prepend(tr);
+      }, 600);
+    }
+
+    function createKey() {
+      const tbody = document.getElementById('keys-tbody');
+      const name = prompt('Nome da nova chave de API:', 'Nova Chave de Serviço');
+      if (!name) return;
+
+      const hex = Math.random().toString(36).substring(2, 6);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong>${name}</strong></td>
+        <td>nx_live_${hex}****************</td>
+        <td>Read, Write, Model Access</td>
+        <td>Hoje (Agora)</td>
+        <td style="color: #10b981;">Ativa</td>
+      `;
+      tbody.prepend(tr);
+      alert('Nova chave de API gerada com sucesso e adicionada com permissões de Produção!');
+    }
+
+    function changeModel() {
+      const model = document.getElementById('model-select').value;
+      alert(`Modelo ativo alterado para: ${model}`);
+    }
+  </script>
+</body>
+</html>
