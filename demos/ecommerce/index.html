@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOCTURNAL® | Streetwear & Cyber Apparel — Loja Oficial</title>
+  <title>NOCTURNAL® | Cyber Streetwear & Techwear Apparel — Loja Oficial</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #070a0f;
@@ -17,8 +17,10 @@
       --accent: #00ff88;
       --accent-glow: rgba(0, 255, 136, 0.25);
       --cyan: #00f0ff;
+      --cyan-glow: rgba(0, 240, 255, 0.25);
       --text: #f1f5f9;
       --text-muted: #94a3b8;
+      --gold: #fbbf24;
       --font-display: 'Space Grotesk', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
     }
@@ -37,11 +39,11 @@
       overflow-x: hidden;
     }
 
-    /* Top GS Digital Banner */
+    /* Top GS Digital Demo Header Bar */
     .demo-bar {
       background: linear-gradient(90deg, #090e18 0%, #0d1b2a 50%, #090e18 100%);
       border-bottom: 1px solid rgba(0, 240, 255, 0.3);
-      padding: 10px 20px;
+      padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -67,80 +69,174 @@
       background: rgba(0, 240, 255, 0.1);
       color: #00f0ff;
       border: 1px solid rgba(0, 240, 255, 0.3);
-      padding: 3px 10px;
+      padding: 3px 12px;
       border-radius: 999px;
       font-size: 0.75rem;
       letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .demo-bar .btn-cta-demo {
       background: linear-gradient(135deg, #00f0ff, #00a8ff);
       color: #05080d;
-      padding: 5px 14px;
+      padding: 6px 16px;
       border-radius: 6px;
       font-weight: 700;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .demo-bar .btn-cta-demo:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Top Promo Marquee Ticker (Inspiration: Baw, Pace, Renner) */
+    .promo-ticker {
+      background: #020408;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 7px 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #cbd5e1;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: tickerSlide 28s linear infinite;
+    }
+    .ticker-track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 24px;
+    }
+    .ticker-track span strong {
+      color: var(--accent);
+    }
+    @keyframes tickerSlide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* Store Header */
     .store-header {
-      background: rgba(7, 10, 15, 0.85);
-      backdrop-filter: blur(15px);
+      background: rgba(7, 10, 15, 0.92);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 41px;
       z-index: 900;
-      padding: 18px 40px;
+      padding: 14px 36px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
     }
     .brand-logo {
       font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 700;
+      font-size: 1.55rem;
+      font-weight: 800;
       letter-spacing: 2px;
       color: #fff;
       display: flex;
       align-items: center;
       gap: 8px;
       text-decoration: none;
+      flex-shrink: 0;
     }
     .brand-logo span {
       color: var(--accent);
       text-shadow: 0 0 12px var(--accent-glow);
     }
+
+    /* Search Bar in Header */
+    .header-search {
+      flex: 1;
+      max-width: 440px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: #0d121a;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 18px 10px 42px;
+      color: #fff;
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      transition: all 0.2s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    }
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
     .store-nav {
       display: flex;
-      gap: 28px;
+      align-items: center;
+      gap: 22px;
     }
     .store-nav a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
+      font-size: 0.88rem;
+      font-weight: 600;
       transition: color 0.2s;
+      cursor: pointer;
     }
     .store-nav a:hover, .store-nav a.active {
       color: #fff;
     }
+    .store-nav a.highlight-nav {
+      color: var(--accent);
+    }
+
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .btn-size-guide-nav {
+      background: transparent;
+      border: 1px dashed var(--border);
+      color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-size-guide-nav:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
     .cart-trigger {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border);
       color: #fff;
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.88rem;
+      font-weight: 700;
       position: relative;
       transition: all 0.2s ease;
     }
@@ -162,22 +258,22 @@
       box-shadow: 0 0 8px var(--accent);
     }
 
-    /* Hero Banner with Cyberpunk Street Background */
+    /* Hero Banner with Streetwear Model */
     .hero-banner {
       position: relative;
-      padding: 100px 50px;
-      background: linear-gradient(90deg, rgba(7, 10, 15, 0.95) 0%, rgba(7, 10, 15, 0.85) 50%, rgba(7, 10, 15, 0.65) 100%),
+      padding: 85px 50px;
+      background: linear-gradient(90deg, rgba(7, 10, 15, 0.96) 0%, rgba(7, 10, 15, 0.88) 55%, rgba(7, 10, 15, 0.5) 100%),
                   url('https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       overflow: hidden;
-      box-shadow: inset 0 -40px 60px rgba(7, 10, 15, 0.85);
-      gap: 50px;
+      box-shadow: inset 0 -40px 60px rgba(7, 10, 15, 0.95);
+      gap: 40px;
     }
     .hero-content {
-      max-width: 620px;
+      max-width: 640px;
       z-index: 2;
     }
     .hero-tag {
@@ -189,17 +285,17 @@
       color: var(--accent);
       padding: 6px 14px;
       border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      font-size: 0.78rem;
+      font-weight: 800;
       letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
     }
     .hero-title {
       font-family: var(--font-display);
-      font-size: 3.8rem;
-      font-weight: 700;
+      font-size: 3.6rem;
+      font-weight: 800;
       line-height: 1.05;
       margin-bottom: 18px;
       letter-spacing: -1px;
@@ -212,46 +308,78 @@
     }
     .hero-sub {
       color: #cbd5e1;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
+      font-size: 1.05rem;
+      margin-bottom: 28px;
       line-height: 1.7;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
     }
+    .hero-metrics {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+    }
+    .hero-metric-item strong {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--accent);
+      display: block;
+    }
+    .hero-metric-item span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Fixed Hero Lookbook Card showing authentic techwear clothing on model */
     .hero-lookbook-card {
       position: relative;
-      width: 420px;
-      height: 480px;
-      border-radius: 16px;
+      width: 440px;
+      height: 520px;
+      border-radius: 18px;
       overflow: hidden;
-      border: 1px solid rgba(0, 255, 136, 0.3);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 255, 136, 0.15);
+      border: 1px solid rgba(0, 255, 136, 0.35);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 255, 136, 0.15);
       flex-shrink: 0;
     }
     .lookbook-hero-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top center;
       transition: transform 0.6s ease;
     }
     .hero-lookbook-card:hover .lookbook-hero-img {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
     .lookbook-badge {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: rgba(7, 10, 15, 0.88);
-      backdrop-filter: blur(12px);
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      background: rgba(7, 10, 15, 0.92);
+      backdrop-filter: blur(14px);
       border: 1px solid var(--accent);
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
+      padding: 14px 18px;
+      border-radius: 10px;
       color: #fff;
+    }
+    .lookbook-badge-top {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+    .lookbook-badge-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .pulse-green {
       width: 8px;
@@ -260,11 +388,13 @@
       border-radius: 50%;
       box-shadow: 0 0 10px var(--accent);
       animation: pulseGreen 1.5s infinite;
+      display: inline-block;
     }
     @keyframes pulseGreen {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.4); opacity: 0.5; }
     }
+
     .hero-actions {
       display: flex;
       gap: 16px;
@@ -272,7 +402,7 @@
     .btn-primary {
       background: var(--accent);
       color: #05080d;
-      font-weight: 700;
+      font-weight: 800;
       padding: 14px 28px;
       border-radius: 8px;
       border: none;
@@ -293,7 +423,7 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border);
       color: #fff;
-      font-weight: 600;
+      font-weight: 700;
       padding: 14px 24px;
       border-radius: 8px;
       cursor: pointer;
@@ -302,7 +432,7 @@
     }
     .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
     }
 
     /* Value Props Bar */
@@ -323,12 +453,13 @@
       border-right: none;
     }
     .prop-icon {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: var(--accent);
+      flex-shrink: 0;
     }
     .prop-title {
       font-size: 0.9rem;
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
     }
     .prop-desc {
@@ -339,38 +470,41 @@
     /* Catalog Section */
     .catalog-section {
       padding: 70px 40px;
-      max-width: 1400px;
+      max-width: 1440px;
       margin: 0 auto;
     }
     .catalog-header {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
+      gap: 20px;
+      flex-wrap: wrap;
     }
     .catalog-title {
       font-family: var(--font-display);
       font-size: 2.2rem;
-      font-weight: 700;
+      font-weight: 800;
     }
     .catalog-title span {
       color: var(--accent);
     }
     .filter-tabs {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       background: var(--bg-card);
       padding: 6px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid var(--border);
+      flex-wrap: wrap;
     }
     .tab-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 8px 18px;
-      border-radius: 6px;
-      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 700;
       font-size: 0.85rem;
       cursor: pointer;
       transition: all 0.2s;
@@ -381,18 +515,41 @@
     }
     .tab-btn.active {
       color: var(--accent);
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+    }
+
+    /* Active Search Indicator */
+    .search-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      font-size: 0.85rem;
+    }
+    .search-status-bar button {
+      background: transparent;
+      border: none;
+      color: var(--cyan);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
     }
 
     /* Products Grid */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
       gap: 28px;
     }
     .product-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -401,12 +558,12 @@
     }
     .product-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(0, 255, 136, 0.4);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 136, 0.15);
+      border-color: rgba(0, 255, 136, 0.45);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 24px rgba(0, 255, 136, 0.15);
     }
     .product-image-box {
       width: 100%;
-      height: 320px;
+      height: 330px;
       background: #0f1724;
       position: relative;
       display: flex;
@@ -419,6 +576,7 @@
       top: 14px;
       left: 14px;
       background: rgba(0, 255, 136, 0.15);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--accent);
       color: var(--accent);
       font-size: 0.72rem;
@@ -426,16 +584,30 @@
       padding: 4px 10px;
       border-radius: 6px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+    .product-quick-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(7, 10, 15, 0.75);
+      border: 1px solid var(--border);
+      color: #cbd5e1;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
       z-index: 2;
     }
     .product-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .product-card:hover .product-img {
-      transform: scale(1.06);
+      transform: scale(1.07);
     }
     .product-info {
       padding: 22px;
@@ -443,36 +615,85 @@
       flex-direction: column;
       flex-grow: 1;
     }
+    .product-category-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
     .product-category {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      font-weight: 700;
     }
+
+    /* Product Star Rating on every card */
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .rating-count {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+    }
+
     .product-name {
       font-size: 1.15rem;
       font-weight: 700;
       margin-bottom: 12px;
       color: #fff;
+      line-height: 1.3;
     }
     .product-price-row {
       display: flex;
       align-items: baseline;
       gap: 10px;
-      margin-bottom: 18px;
+      margin-bottom: 4px;
     }
     .price-current {
       font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 700;
+      font-size: 1.4rem;
+      font-weight: 800;
       color: var(--accent);
     }
     .price-old {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       text-decoration: line-through;
     }
+    .installments-text {
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      margin-bottom: 14px;
+    }
+    .installments-text span {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    /* Available sizes preview chips */
+    .sizes-chips {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .size-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #cbd5e1;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
     .product-actions {
       margin-top: auto;
       display: flex;
@@ -480,10 +701,10 @@
     }
     .btn-add-cart {
       flex: 1;
-      background: rgba(0, 255, 136, 0.1);
-      border: 1px solid rgba(0, 255, 136, 0.3);
+      background: rgba(0, 255, 136, 0.12);
+      border: 1px solid rgba(0, 255, 136, 0.35);
       color: var(--accent);
-      font-weight: 700;
+      font-weight: 800;
       padding: 12px;
       border-radius: 8px;
       cursor: pointer;
@@ -497,7 +718,7 @@
     .btn-add-cart:hover {
       background: var(--accent);
       color: #05080d;
-      box-shadow: 0 0 15px var(--accent-glow);
+      box-shadow: 0 0 18px var(--accent-glow);
     }
     .btn-quick-view {
       background: rgba(255, 255, 255, 0.05);
@@ -514,6 +735,185 @@
     }
     .btn-quick-view:hover {
       background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Reviews Section */
+    .reviews-section {
+      background: #090e15;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 40px;
+    }
+    .reviews-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .reviews-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .reviews-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+    }
+    .reviews-title span {
+      color: var(--accent);
+    }
+
+    /* Rating Summary Card */
+    .rating-summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 260px 1fr 280px;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+    .rating-big-box {
+      text-align: center;
+      border-right: 1px solid var(--border);
+      padding-right: 30px;
+    }
+    .rating-number {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1;
+      color: #fff;
+    }
+    .rating-stars-huge {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin: 8px 0;
+    }
+    .rating-count-total {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .rating-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rating-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+    .rating-bar-track {
+      flex: 1;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .rating-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 999px;
+    }
+
+    .rating-trust-box {
+      border-left: 1px solid var(--border);
+      padding-left: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .trust-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+    }
+    .trust-badge-icon {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    /* Customer Reviews Grid */
+    .customer-reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .review-card:hover {
+      border-color: rgba(0, 255, 136, 0.3);
+      transform: translateY(-3px);
+    }
+    .review-author-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .review-author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+    .review-author-info {
+      flex: 1;
+    }
+    .review-author-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .review-verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .review-stars {
+      color: var(--gold);
+      font-size: 0.88rem;
+    }
+    .review-text {
+      color: #cbd5e1;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .review-product-tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .review-date {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: #64748b;
     }
 
     /* Cart Drawer */
@@ -523,7 +923,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(8px);
       z-index: 2000;
       opacity: 0;
@@ -539,7 +939,7 @@
       top: 0;
       right: 0;
       width: 100%;
-      max-width: 460px;
+      max-width: 480px;
       height: 100vh;
       background: #0a0f18;
       border-left: 1px solid var(--border);
@@ -553,7 +953,7 @@
       transform: translateX(0);
     }
     .cart-header {
-      padding: 24px;
+      padding: 22px 24px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -562,7 +962,7 @@
     .cart-title {
       font-family: var(--font-display);
       font-size: 1.3rem;
-      font-weight: 700;
+      font-weight: 800;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -571,7 +971,7 @@
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       cursor: pointer;
       line-height: 1;
       transition: color 0.2s;
@@ -581,7 +981,7 @@
     }
     .shipping-bar-box {
       padding: 16px 24px;
-      background: rgba(0, 255, 136, 0.05);
+      background: rgba(0, 255, 136, 0.06);
       border-bottom: 1px solid var(--border);
       font-size: 0.8rem;
     }
@@ -609,7 +1009,7 @@
       padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
     .empty-cart-msg {
       text-align: center;
@@ -619,25 +1019,25 @@
     }
     .cart-item {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       background: var(--bg-card);
       padding: 14px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid var(--border);
       position: relative;
     }
     .cart-item-img {
-      width: 70px;
-      height: 70px;
+      width: 75px;
+      height: 80px;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 8px;
       background: #111827;
     }
     .cart-item-details {
       flex: 1;
     }
     .cart-item-name {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 700;
       margin-bottom: 4px;
     }
@@ -647,23 +1047,23 @@
       margin-bottom: 8px;
     }
     .cart-item-price {
-      font-weight: 700;
+      font-weight: 800;
       color: var(--accent);
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
     .cart-qty-ctrl {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-top: 6px;
+      margin-top: 8px;
     }
     .qty-btn {
       background: rgba(255, 255, 255, 0.1);
       border: none;
       color: #fff;
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -675,15 +1075,15 @@
     }
     .qty-val {
       font-size: 0.85rem;
-      font-weight: 600;
-      min-width: 20px;
+      font-weight: 700;
+      min-width: 22px;
       text-align: center;
     }
     .btn-remove-item {
       background: transparent;
       border: none;
       color: #ef4444;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       position: absolute;
       top: 12px;
@@ -710,7 +1110,7 @@
       border: 1px solid var(--border);
       color: #fff;
       padding: 10px 14px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 0.85rem;
       text-transform: uppercase;
     }
@@ -723,23 +1123,23 @@
       border: 1px solid var(--border);
       color: #fff;
       padding: 10px 16px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
     }
     .cart-total-row {
       display: flex;
       justify-content: space-between;
       margin-bottom: 8px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
     }
     .cart-total-final {
       display: flex;
       justify-content: space-between;
       margin: 16px 0;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 800;
       color: #fff;
     }
@@ -769,6 +1169,254 @@
       transform: translateY(-2px);
     }
 
+    /* Quick View & Product Modal */
+    .quick-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .quick-modal.active {
+      display: flex;
+    }
+    .quick-content {
+      background: #0d121a;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 255, 136, 0.15);
+    }
+    .quick-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+    .quick-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .quick-img-box {
+      background: #090e15;
+      position: relative;
+      height: 100%;
+      min-height: 480px;
+    }
+    .quick-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .quick-info-box {
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+    }
+    .quick-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .quick-title {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .quick-stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+    .quick-price-box {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .quick-price-val {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .quick-pix-highlight {
+      font-size: 0.8rem;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .size-select-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .btn-open-size-chart {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .modal-size-grid {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .modal-size-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .modal-size-btn.active, .modal-size-btn:hover {
+      background: var(--accent);
+      color: #05080d;
+      border-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    /* CEP Shipping Calculator Box */
+    .shipping-calc-box {
+      background: #070a0f;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+    }
+    .shipping-calc-box label {
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+      display: block;
+      color: #cbd5e1;
+    }
+    .cep-input-group {
+      display: flex;
+      gap: 8px;
+    }
+    .cep-input {
+      flex: 1;
+      background: #0d121a;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    .cep-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .cep-btn:hover {
+      background: rgba(0, 255, 136, 0.2);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .cep-result {
+      margin-top: 12px;
+      display: none;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      border-top: 1px dashed var(--border);
+      padding-top: 10px;
+    }
+    .cep-result div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    /* Size Chart Modal */
+    .size-guide-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 3500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .size-guide-modal.active {
+      display: flex;
+    }
+    .size-guide-content {
+      background: #0d121a;
+      border: 1px solid var(--accent);
+      border-radius: 16px;
+      max-width: 580px;
+      width: 100%;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    }
+    .size-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.85rem;
+    }
+    .size-table th, .size-table td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: center;
+    }
+    .size-table th {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent);
+    }
+
     /* Checkout Simulator Modal */
     .checkout-modal {
       position: fixed;
@@ -776,9 +1424,9 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(10px);
-      z-index: 3000;
+      z-index: 3200;
       display: none;
       align-items: center;
       justify-content: center;
@@ -790,12 +1438,12 @@
     .checkout-content {
       background: #0d121a;
       border: 1px solid var(--accent);
-      border-radius: 16px;
+      border-radius: 18px;
       max-width: 520px;
       width: 100%;
       padding: 36px;
       position: relative;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 136, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 255, 136, 0.2);
     }
     .checkout-close {
       position: absolute;
@@ -808,43 +1456,205 @@
       cursor: pointer;
     }
 
-    /* Footer */
+    /* Footer (Inspiration: Major e-commerces) */
     .store-footer {
+      background: #04070b;
       border-top: 1px solid var(--border);
-      padding: 50px 40px 30px;
-      background: #05080d;
+      padding: 70px 40px 30px;
+    }
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .footer-newsletter-box {
+      background: #090e15;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+    }
+    .newsletter-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .newsletter-info h3 span {
+      color: var(--accent);
+    }
+    .newsletter-info p {
       color: var(--text-muted);
-      font-size: 0.85rem;
-      text-align: center;
+      font-size: 0.88rem;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 480px;
+      width: 100%;
+    }
+    .newsletter-input {
+      flex: 1;
+      background: #05080c;
+      border: 1px solid var(--border);
+      padding: 12px 18px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.88rem;
+    }
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .newsletter-btn {
+      background: var(--accent);
+      color: #05080d;
+      font-weight: 800;
+      padding: 12px 22px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.88rem;
+      transition: all 0.2s;
+    }
+    .newsletter-btn:hover {
+      box-shadow: 0 0 15px var(--accent-glow);
     }
 
-    @media (max-width: 900px) {
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 50px;
+      margin-bottom: 60px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+    .footer-badges-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .payment-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #cbd5e1;
+    }
+    .payment-pill.pix {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: #64748b;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 1024px) {
       .hero-banner {
         flex-direction: column;
         text-align: center;
-        padding: 50px 20px;
+        padding: 60px 20px;
       }
       .hero-actions {
         justify-content: center;
       }
+      .hero-metrics {
+        justify-content: center;
+      }
+      .hero-lookbook-card {
+        width: 100%;
+        max-width: 440px;
+        height: 420px;
+      }
       .value-props {
         grid-template-columns: 1fr 1fr;
       }
+      .rating-summary-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .rating-big-box {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 20px;
+        padding-right: 0;
+      }
+      .rating-trust-box {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding-top: 20px;
+        padding-left: 0;
+      }
+      .quick-content {
+        grid-template-columns: 1fr;
+      }
+      .quick-img-box {
+        min-height: 300px;
+        height: 320px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
       .store-header {
-        padding: 14px 20px;
+        padding: 12px 18px;
       }
       .store-nav {
         display: none;
       }
-      .catalog-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
+      .header-search {
+        max-width: 200px;
       }
-    }
-    @media (max-width: 600px) {
+      .catalog-section, .reviews-section, .store-footer {
+        padding: 40px 18px;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
       .value-props {
         grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
       }
       .demo-bar {
         flex-direction: column;
@@ -863,28 +1673,62 @@
       Voltar para GS Digital
     </a>
     <div class="demo-bar-badge">
-      ⚡ PROJETO DEMO: E-COMMERCE DE MODA & STREETWEAR
+      ⚡ PROJETO DEMO: E-COMMERCE DE ALTA PERFORMANCE & STREETWEAR
     </div>
     <a href="/index.html#simulador" class="btn-cta-demo">
-      Solicitar Site Semelhante ↗
+      Solicitar Loja Semelhante ↗
     </a>
   </div>
 
-  <!-- Store Header -->
+  <!-- Top Promo Ticker Marquee -->
+  <div class="promo-ticker">
+    <div class="ticker-track">
+      <span>⚡ <strong>FRETE GRÁTIS</strong> EM COMPRAS ACIMA DE R$ 299</span>
+      <span>●</span>
+      <span>💳 <strong>5% DE DESCONTO EXTRA</strong> PAGANDO NO PIX</span>
+      <span>●</span>
+      <span>📦 <strong>ENVIO EXPRESS</strong> EM ATÉ 24 HORAS</span>
+      <span>●</span>
+      <span>🔄 <strong>PRIMEIRA TROCA GRÁTIS</strong> EM ATÉ 30 DIAS</span>
+      <span>●</span>
+      <span>🏷️ CUPOM DE BOAS-VINDAS: <strong>GSDIGITAL10</strong> (10% OFF)</span>
+      <span>●</span>
+      <span>⚡ <strong>FRETE GRÁTIS</strong> EM COMPRAS ACIMA DE R$ 299</span>
+      <span>●</span>
+      <span>💳 <strong>5% DE DESCONTO EXTRA</strong> PAGANDO NO PIX</span>
+      <span>●</span>
+      <span>📦 <strong>ENVIO EXPRESS</strong> EM ATÉ 24 HORAS</span>
+      <span>●</span>
+      <span>🔄 <strong>PRIMEIRA TROCA GRÁTIS</strong> EM ATÉ 30 DIAS</span>
+    </div>
+  </div>
+
+  <!-- Store Header with Live Search & Actions -->
   <header class="store-header">
     <a href="#" class="brand-logo">
       <span>//</span> NOCTURNAL®
     </a>
 
+    <!-- Live Search Bar -->
+    <div class="header-search">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="liveSearchInput" class="search-input" placeholder="Buscar hoodies, t-shirts, cargo, sneakers..." oninput="handleLiveSearch(this.value)">
+    </div>
+
     <nav class="store-nav">
-      <a href="#catalogo" class="active">Coleções</a>
-      <a href="#catalogo" onclick="filterCategory('hoodies')">Hoodies</a>
-      <a href="#catalogo" onclick="filterCategory('tshirts')">T-Shirts</a>
-      <a href="#catalogo" onclick="filterCategory('cargo')">Calças</a>
-      <a href="#catalogo" onclick="filterCategory('accessories')">Acessórios</a>
+      <a href="#catalogo" class="active" onclick="filterCategory('all', null)">Todos</a>
+      <a href="#catalogo" onclick="filterCategory('hoodies', null)">Hoodies</a>
+      <a href="#catalogo" onclick="filterCategory('tshirts', null)">T-Shirts</a>
+      <a href="#catalogo" onclick="filterCategory('cargo', null)">Calças Cargo</a>
+      <a href="#catalogo" onclick="filterCategory('sneakers', null)">Sneakers</a>
+      <a href="#catalogo" onclick="filterCategory('accessories', null)">Acessórios</a>
+      <a href="#avaliacoes" class="highlight-nav">★ Avaliações</a>
     </nav>
 
     <div class="header-actions">
+      <button class="btn-size-guide-nav" onclick="openSizeGuide()">
+        📏 Guia de Medidas
+      </button>
       <button class="cart-trigger" onclick="toggleCart()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
         <span>Carrinho</span>
@@ -893,35 +1737,58 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section with Authentic Streetwear Model Lookbook -->
   <section class="hero-banner">
     <div class="hero-content">
       <div class="hero-tag">
-        <span>●</span> Novo Drop 04 / Cyber Edition
+        <span>●</span> Novo Drop 04 // Cyber Techwear 2026
       </div>
       <h1 class="hero-title">
         NEON SHADOWS<br>
         <span>COLLECTION.</span>
       </h1>
       <p class="hero-sub">
-        Streetwear de alta gramatura, cortes assimétricos e detalhes refletivos em tecido ripstop. Feito para quem domina a noite.
+        Streetwear de alta gramatura com cortes utilitários, detalhes refletivos em tecido ripstop militar e acabamento impermeável. Peças numeradas produzidas para resistir ao ritmo urbano.
       </p>
+
+      <div class="hero-metrics">
+        <div class="hero-metric-item">
+          <strong>16 PEÇAS</strong>
+          <span>Coleção Limitada</span>
+        </div>
+        <div class="hero-metric-item">
+          <strong>320 GSM</strong>
+          <span>Algodão Pesado</span>
+        </div>
+        <div class="hero-metric-item">
+          <strong>★ 4.9 / 5.0</strong>
+          <span>+2.480 Avaliações</span>
+        </div>
+      </div>
+
       <div class="hero-actions">
         <a href="#catalogo" class="btn-primary">
-          Explorar Drop Completo
+          Explorar Catálogo Completo
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
         </a>
-        <button class="btn-secondary" onclick="toggleCart()">
-          Ver Sacola Aberta
+        <button class="btn-secondary" onclick="openQuickView(1)">
+          Ver Peça Destaque (Drop 04)
         </button>
       </div>
     </div>
 
+    <!-- Authentic Streetwear Garment Photography Lookbook Card -->
     <div class="hero-lookbook-card">
-      <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=700&q=80" alt="Cyberpunk Streetwear Model" class="lookbook-hero-img">
+      <img src="https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=800&q=80" alt="Cyber Techwear Streetwear Garment" class="lookbook-hero-img">
       <div class="lookbook-badge">
-        <span class="pulse-green"></span>
-        <span>Drop 04 // Edição Limitada (250 Peças)</span>
+        <div class="lookbook-badge-top">
+          <span>DROP 04 // TECHWEAR RIPSTOP</span>
+          <span style="color: var(--accent);">R$ 489,00</span>
+        </div>
+        <div class="lookbook-badge-sub">
+          <span class="pulse-green"></span>
+          <span>Modelo vestindo Jaqueta Tática + Calça Cargo Refletiva (Tamanho G)</span>
+        </div>
       </div>
     </div>
   </section>
@@ -932,28 +1799,28 @@
       <div class="prop-icon">⚡</div>
       <div>
         <div class="prop-title">Envio Express 24h</div>
-        <div class="prop-desc">Despacho prioritário para todo o Brasil</div>
+        <div class="prop-desc">Despacho prioritário rastreado para todo o Brasil</div>
       </div>
     </div>
     <div class="prop-item">
       <div class="prop-icon">💎</div>
       <div>
-        <div class="prop-title">Algodão 100% Egípcio</div>
-        <div class="prop-desc">Gramatura premium 320g anti-encolhimento</div>
+        <div class="prop-title">Algodão 100% Egípcio 320g</div>
+        <div class="prop-desc">Gramatura premium ultra resistente anti-encolhimento</div>
       </div>
     </div>
     <div class="prop-item">
       <div class="prop-icon">🔒</div>
       <div>
-        <div class="prop-title">Checkout Blindado</div>
-        <div class="prop-desc">5% OFF no Pix instantâneo ou 6x sem juros</div>
+        <div class="prop-title">Checkout 100% Blindado</div>
+        <div class="prop-desc">5% OFF no Pix instantâneo ou 6x sem juros no cartão</div>
       </div>
     </div>
     <div class="prop-item">
       <div class="prop-icon">🔄</div>
       <div>
-        <div class="prop-title">Troca Grátis 30 Dias</div>
-        <div class="prop-desc">Logística reversa simplificada sem custos</div>
+        <div class="prop-title">Primeira Troca Grátis</div>
+        <div class="prop-desc">Até 30 dias com logística reversa sem custos</div>
       </div>
     </div>
   </section>
@@ -962,21 +1829,178 @@
   <section class="catalog-section" id="catalogo">
     <div class="catalog-header">
       <div>
-        <h2 class="catalog-title">Catálogo <span>Drop 2026</span></h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">Peças limitadas. Edições numeradas.</p>
+        <h2 class="catalog-title">Catálogo Oficial <span>Drop 2026</span></h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">16 modelos exclusivos de alta performance. Estoques limitados por drop.</p>
       </div>
 
-      <div class="filter-tabs">
-        <button class="tab-btn active" onclick="filterCategory('all', this)">Todos</button>
+      <div class="filter-tabs" id="categoryTabs">
+        <button class="tab-btn active" onclick="filterCategory('all', this)">Todos (16)</button>
         <button class="tab-btn" onclick="filterCategory('hoodies', this)">Hoodies & Jaquetas</button>
         <button class="tab-btn" onclick="filterCategory('tshirts', this)">Camisetas Oversized</button>
-        <button class="tab-btn" onclick="filterCategory('cargo', this)">Calças Cargo</button>
+        <button class="tab-btn" onclick="filterCategory('cargo', this)">Calças & Bermudas</button>
+        <button class="tab-btn" onclick="filterCategory('sneakers', this)">Sneakers</button>
         <button class="tab-btn" onclick="filterCategory('accessories', this)">Acessórios</button>
       </div>
     </div>
 
+    <!-- Active Search Filter Status -->
+    <div class="search-status-bar" id="searchStatusBar">
+      <span>Filtrando por: <strong id="searchTermDisplay"></strong> (<span id="searchResultCount">0</span> itens encontrados)</span>
+      <button onclick="clearSearch()">Limpar Busca</button>
+    </div>
+
     <div class="products-grid" id="productsGrid">
       <!-- Generated dynamically by JS -->
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section (Social Proof & Detailed Feedback) -->
+  <section class="reviews-section" id="avaliacoes">
+    <div class="reviews-container">
+      <div class="reviews-header">
+        <div>
+          <div style="font-size: 0.8rem; color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">
+            Feedback Real de Quem Usa
+          </div>
+          <h2 class="reviews-title">Avaliações da <span>Comunidade</span></h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">Opiniões verificadas de clientes que adquiriram peças dos drops recentes.</p>
+        </div>
+
+        <button class="btn-secondary" onclick="alert('Funcionalidade de deixar avaliação aberta para clientes autenticados após a entrega do pedido.')">
+          Escrever Avaliação ✍️
+        </button>
+      </div>
+
+      <!-- Rating Summary Card -->
+      <div class="rating-summary-card">
+        <div class="rating-big-box">
+          <div class="rating-number">4.9</div>
+          <div class="rating-stars-huge">★★★★★</div>
+          <div class="rating-count-total">Baseado em 2.486 avaliações verificadas</div>
+        </div>
+
+        <div class="rating-bars">
+          <div class="rating-bar-row">
+            <span>5 estrelas</span>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 93%;"></div></div>
+            <span>93%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>4 estrelas</span>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 5%;"></div></div>
+            <span>5%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>3 estrelas</span>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 2%;"></div></div>
+            <span>2%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>2 estrelas</span>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
+            <span>0%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>1 estrela</span>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
+            <span>0%</span>
+          </div>
+        </div>
+
+        <div class="rating-trust-box">
+          <div class="trust-badge-item">
+            <span class="trust-badge-icon">✔</span>
+            <span><strong>99.2%</strong> recomendam esta marca</span>
+          </div>
+          <div class="trust-badge-item">
+            <span class="trust-badge-icon">🛡️</span>
+            <span>Auditoria <strong>Trustpilot & RA1000</strong></span>
+          </div>
+          <div class="trust-badge-item">
+            <span class="trust-badge-icon">🚀</span>
+            <span>Entrega média de <strong>2.3 dias úteis</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Reviews Grid with Outfit Photos -->
+      <div class="customer-reviews-grid">
+        <!-- Review 1 -->
+        <div class="review-card">
+          <div class="review-author-row">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Lucas Ferraz" class="review-author-avatar">
+            <div class="review-author-info">
+              <div class="review-author-name">Lucas Ferraz</div>
+              <div class="review-verified-badge">✔ Compra Verificada • São Paulo, SP</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">
+            "O Cyberech Utility Hoodie é simplesmente outro patamar. A gramatura do tecido é extremamente pesada (320g real), o caimento oversized é impecável e os bolsos ripstop são super funcionais. Chegou em 2 dias aqui na capital."
+          </p>
+          <div class="review-product-tag">
+            <span>📦 Comprou: <strong>Cyberech Utility Hoodie (Tam. G)</strong></span>
+            <span class="review-date">Há 3 dias</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card">
+          <div class="review-author-row">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Mariana Bittencourt" class="review-author-avatar">
+            <div class="review-author-info">
+              <div class="review-author-name">Mariana Bittencourt</div>
+              <div class="review-verified-badge">✔ Compra Verificada • Curitiba, PR</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">
+            "Comprei a camiseta oversized Tokyo Protocol e a calça parachute. Fiquei chocada com os detalhes refletivos na luz da noite. O tecido não amarrota fácil e a gola canelada grossa não alarga na lavagem. Virei cliente fiel."
+          </p>
+          <div class="review-product-tag">
+            <span>📦 Comprou: <strong>Tokyo Protocol Tee + Parachute Pant</strong></span>
+            <span class="review-date">Há 5 dias</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+          <div class="review-author-row">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" alt="Rodrigo Tavares" class="review-author-avatar">
+            <div class="review-author-info">
+              <div class="review-author-name">Rodrigo Tavares</div>
+              <div class="review-verified-badge">✔ Compra Verificada • Belo Horizonte, MG</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">
+            "A Nightraid Cargo Pants veste perfeitamente. Uso para andar de skate e ir para eventos underground. Tem ajuste nas pernas com cordão elástico reforçado e as costuras duplas aguentam tudo. 5 estrelas sem pensar duas vezes."
+          </p>
+          <div class="review-product-tag">
+            <span>📦 Comprou: <strong>Nightraid Cargo Tactical (Tam. 42)</strong></span>
+            <span class="review-date">Há 1 semana</span>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="review-card">
+          <div class="review-author-row">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=150&q=80" alt="Camila Santos" class="review-author-avatar">
+            <div class="review-author-info">
+              <div class="review-author-name">Camila Santos</div>
+              <div class="review-verified-badge">✔ Compra Verificada • Rio de Janeiro, RJ</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">
+            "O tênis Matrix Chunky Runner V2 superou todas as expectativas. Muito leve no pé, amortecimento responsivo e um visual futurista absurdo. Todo mundo pergunta onde comprei na rua."
+          </p>
+          <div class="review-product-tag">
+            <span>📦 Comprou: <strong>Matrix Chunky Runner V2 (Tam. 39)</strong></span>
+            <span class="review-date">Há 2 semanas</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -991,10 +2015,11 @@
       <button class="close-cart" onclick="toggleCart()">&times;</button>
     </div>
 
+    <!-- Free Shipping Progress -->
     <div class="shipping-bar-box">
       <div class="shipping-text">
         <span id="shippingStatusText">Faltam R$ 45,00 para Frete Grátis</span>
-        <span style="color: var(--accent); font-weight: 700;">Meta: R$ 399</span>
+        <span style="color: var(--accent); font-weight: 700;">Meta: R$ 299</span>
       </div>
       <div class="progress-track">
         <div class="progress-fill" id="shippingProgress" style="width: 82%;"></div>
@@ -1013,19 +2038,22 @@
 
       <div class="cart-total-row">
         <span>Subtotal</span>
-        <span id="cartSubtotal">R$ 499,00</span>
+        <span id="cartSubtotal">R$ 548,00</span>
       </div>
       <div class="cart-total-row" id="discountRow" style="display: none; color: var(--accent);">
-        <span>Desconto (10%)</span>
-        <span id="cartDiscount">- R$ 49,90</span>
+        <span>Desconto de Cupom (10%)</span>
+        <span id="cartDiscount">- R$ 54,80</span>
       </div>
       <div class="cart-total-row">
         <span>Frete</span>
-        <span id="shippingCost" style="color: var(--accent); font-weight: 600;">GRÁTIS</span>
+        <span id="shippingCost" style="color: var(--accent); font-weight: 700;">GRÁTIS</span>
       </div>
       <div class="cart-total-final">
         <span>Total</span>
-        <span id="cartTotal">R$ 499,00</span>
+        <span id="cartTotal">R$ 548,00</span>
+      </div>
+      <div style="font-size: 0.78rem; color: var(--cyan); text-align: right; margin-bottom: 14px;">
+        ⚡ Pague no Pix com +5% OFF: <strong id="cartPixTotalPreview">R$ 520,60</strong>
       </div>
 
       <button class="btn-checkout" onclick="openCheckout()">
@@ -1035,12 +2063,118 @@
     </div>
   </div>
 
+  <!-- Quick View Product Modal -->
+  <div class="quick-modal" id="quickModal">
+    <div class="quick-content">
+      <button class="quick-close" onclick="closeQuickModal()">&times;</button>
+      <div class="quick-img-box">
+        <img id="modalProductImg" src="" alt="">
+      </div>
+      <div class="quick-info-box">
+        <span class="quick-tag" id="modalProductBadge"></span>
+        <h3 class="quick-title" id="modalProductTitle"></h3>
+        <div class="quick-stars" id="modalProductStars">★★★★★ 4.9 (184 avaliações)</div>
+
+        <div class="quick-price-box">
+          <div class="quick-price-val" id="modalProductPrice">R$ 0,00</div>
+          <div class="quick-pix-highlight" id="modalProductPix">ou R$ 0,00 à vista no Pix (5% OFF)</div>
+          <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 4px;" id="modalProductInstallments">Em até 6x sem juros no cartão</div>
+        </div>
+
+        <div class="size-select-label">
+          <span>Selecione o Tamanho:</span>
+          <button class="btn-open-size-chart" onclick="openSizeGuide()">Tabela de Medidas</button>
+        </div>
+        <div class="modal-size-grid" id="modalSizeGrid">
+          <!-- Populated by JS -->
+        </div>
+
+        <button class="btn-primary" id="modalBtnAddToCart" style="width: 100%; justify-content: center; margin-bottom: 16px;">
+          Adicionar à Sacola
+        </button>
+
+        <!-- CEP Shipping Calculator -->
+        <div class="shipping-calc-box">
+          <label>Calcular Frete e Prazo de Entrega:</label>
+          <div class="cep-input-group">
+            <input type="text" class="cep-input" id="modalCepInput" placeholder="Ex: 01310-100" maxlength="9">
+            <button class="cep-btn" onclick="calculateCep()">Calcular</button>
+          </div>
+          <div class="cep-result" id="modalCepResult">
+            <div>
+              <span>🚀 <strong>Sedex Express</strong> (1 a 2 dias úteis)</span>
+              <span style="color: var(--accent); font-weight: 700;">R$ 18,90</span>
+            </div>
+            <div>
+              <span>📦 <strong>PAC Econômico</strong> (3 a 5 dias úteis)</span>
+              <span style="color: var(--accent); font-weight: 700;">GRÁTIS</span>
+            </div>
+            <div>
+              <span>📍 <strong>Retirada no Hub SP</strong> (Mesmo dia)</span>
+              <span style="color: var(--accent); font-weight: 700;">GRÁTIS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Size Guide Modal -->
+  <div class="size-guide-modal" id="sizeGuideModal">
+    <div class="size-guide-content">
+      <button class="checkout-close" onclick="closeSizeGuide()">&times;</button>
+      <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 8px;">📏 Guia Oficial de Medidas Streetwear</h3>
+      <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Nossa modelagem possui caimento oversized autêntico com ombros caídos e tecido de alta gramatura.</p>
+
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>Tamanho</th>
+            <th>Tórax / Busto</th>
+            <th>Comprimento</th>
+            <th>Manga</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>P</strong></td>
+            <td>56 cm</td>
+            <td>74 cm</td>
+            <td>24 cm</td>
+          </tr>
+          <tr>
+            <td><strong>M</strong></td>
+            <td>58 cm</td>
+            <td>76 cm</td>
+            <td>25 cm</td>
+          </tr>
+          <tr>
+            <td><strong>G</strong></td>
+            <td>61 cm</td>
+            <td>78 cm</td>
+            <td>26 cm</td>
+          </tr>
+          <tr>
+            <td><strong>GG</strong></td>
+            <td>64 cm</td>
+            <td>80 cm</td>
+            <td>27 cm</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="background: rgba(0, 255, 136, 0.08); border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 8px; padding: 12px; font-size: 0.78rem; color: #cbd5e1;">
+        💡 <strong>Dica de caimento:</strong> Se você prefere um caimento regular, opte por um número menor. Para o caimento clássico oversized, escolha o seu tamanho padrão.
+      </div>
+    </div>
+  </div>
+
   <!-- Checkout Simulator Modal -->
   <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
       <button class="checkout-close" onclick="closeCheckout()">&times;</button>
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-        <div style="background: rgba(0, 255, 136, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.2rem;">⚡</div>
+        <div style="background: rgba(0, 255, 136, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.3rem;">⚡</div>
         <div>
           <h3 style="font-family: var(--font-display); font-size: 1.3rem;">Simulador de Checkout Pix</h3>
           <p style="font-size: 0.8rem; color: var(--text-muted);">Demonstração de integração com gateway de pagamento instantâneo</p>
@@ -1048,151 +2182,469 @@
       </div>
 
       <div style="background: #070a0f; border: 1px dashed var(--accent); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 20px;">
-        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Total a pagar no Pix (5% extra de desconto):</div>
-        <div style="font-family: var(--font-display); font-size: 2rem; color: var(--accent); font-weight: 800;" id="checkoutPixVal">R$ 474,05</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Total a pagar no Pix (5% extra de desconto aplicado):</div>
+        <div style="font-family: var(--font-display); font-size: 2.2rem; color: var(--accent); font-weight: 800;" id="checkoutPixVal">R$ 520,60</div>
 
-        <!-- SVG simulated QR Code -->
-        <div style="background: #fff; padding: 16px; border-radius: 8px; display: inline-block; margin: 16px auto;">
+        <!-- Simulated QR Code -->
+        <div style="background: #fff; padding: 16px; border-radius: 10px; display: inline-block; margin: 16px auto;">
           <svg width="150" height="150" viewBox="0 0 100 100" fill="#05080d">
             <rect width="100" height="100" fill="#ffffff"/>
             <path d="M10 10h30v30H10zm5 5v20h20V15zm5 5h10v10H20zM60 10h30v30H60zm5 5v20h20V15zm5 5h10v10H70zM10 60h30v30H10zm5 5v20h20V65zm5 5h10v10H20zM50 10h6v10h-6zm0 20h6v10h-6zm0 20h10v6h-10zm20 10h10v6h-10zm-10 10h6v20h-6zm16 0h14v10h-14zm0 16h8v14h-8zm-26 4h10v10h-10z" />
           </svg>
         </div>
 
-        <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px;">Código Pix Copia e Cola:</div>
-        <div style="background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.75rem; word-break: break-all; color: #fff; margin-bottom: 12px;">
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px;">Código Pix Copia e Cola:</div>
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.75rem; word-break: break-all; color: #fff; margin-bottom: 14px;">
           00020126580014br.gov.bcb.pix0136gsdigital-nocturnal-store-demo-20265204000053039865802BR
         </div>
-        <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="alert('✅ Código Pix copiado para a área de transferência! Em um e-commerce real da GS Digital, o pagamento é confirmado automaticamente em 3 segundos via Webhook.')">
+        <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="alert('✅ Código Pix copiado para a área de transferência! Em um e-commerce real desenvolvido pela GS Digital, a confirmação de recebimento ocorre em 3 segundos via Webhook.')">
           Copiar Código Pix
         </button>
       </div>
 
-      <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center;">
-        🔒 Transação simulada. E-commerces desenvolvidos pela GS Digital contam com integração com Mercado Pago, Asaas, Stripe, Correios e Bling ERP.
+      <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; line-height: 1.5;">
+        🔒 Transação demonstrativa simulada. E-commerces desenvolvidos pela <strong>GS Digital</strong> possuem integração completa com Mercado Pago, Asaas, Stripe, Bling ERP, Tiny e Correios/Melhor Envio.
       </p>
     </div>
   </div>
 
   <!-- Store Footer -->
   <footer class="store-footer">
-    <p>© 2026 NOCTURNAL® Cyber Streetwear — Modelo de E-commerce de Alta Performance desenvolvido pela <strong>GS Digital</strong>.</p>
-    <p style="margin-top: 8px; font-size: 0.75rem;">Tecnologia: Vanilla JS, Arquitetura Headless, Otimização de Imagens WebP e Carrinho Reativo.</p>
+    <div class="footer-container">
+      <!-- Newsletter Box -->
+      <div class="footer-newsletter-box">
+        <div class="newsletter-info">
+          <h3>Entre para a <span>NOCTURNAL Syndicate</span></h3>
+          <p>Receba avisos prioritários de drops secretos com 24h de antecedência e ganhe 10% OFF no primeiro pedido.</p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('🎉 Inscrição confirmada! Use o cupom GSDIGITAL10 para garantir 10% de desconto na sua primeira compra.');">
+          <input type="email" class="newsletter-input" placeholder="Digite seu melhor e-mail..." required>
+          <button type="submit" class="newsletter-btn">Cadastrar</button>
+        </form>
+      </div>
+
+      <!-- Footer Navigation Grid -->
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 14px;">
+            <span>//</span> NOCTURNAL®
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+            Marca brasileira independente de streetwear utilitário e techwear. Desenvolvida para quem valoriza materiais de peso, caimento autêntico e durabilidade sem concessões.
+          </p>
+          <div style="font-size: 0.8rem; color: #cbd5e1;">
+            📍 Showroom: Rua Augusta, 1492 — Consolação, São Paulo/SP
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Coleções & Drops</h4>
+          <ul>
+            <li><a href="#catalogo" onclick="filterCategory('hoodies', null)">Hoodies & Jaquetas Táticas</a></li>
+            <li><a href="#catalogo" onclick="filterCategory('tshirts', null)">Camisetas Oversized 320g</a></li>
+            <li><a href="#catalogo" onclick="filterCategory('cargo', null)">Calças Cargo & Parachute</a></li>
+            <li><a href="#catalogo" onclick="filterCategory('sneakers', null)">Sneakers & Calçados Tech</a></li>
+            <li><a href="#catalogo" onclick="filterCategory('accessories', null)">Acessórios & Chest Rigs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Ajuda & Suporte</h4>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="openSizeGuide()">Tabela Oficial de Medidas</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Rastreamento de Pedido: Insira o código enviado por e-mail ou WhatsApp.')">Rastrear meu Pedido</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Política de Trocas: A primeira troca é 100% gratuita em até 30 dias após o recebimento.')">Política de Troca & Devolução</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Atendimento ao Cliente: Segunda a Sexta das 09h às 19h via WhatsApp.')">SAC WhatsApp (11) 98765-4321</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pagamento & Segurança</h4>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">
+            Processamento criptografado com certificação SSL 256-Bit.
+          </p>
+          <div class="footer-badges-list">
+            <span class="payment-pill pix">⚡ PIX (5% OFF)</span>
+            <span class="payment-pill">Mastercard</span>
+            <span class="payment-pill">Visa</span>
+            <span class="payment-pill">Elo</span>
+            <span class="payment-pill">Boleto</span>
+          </div>
+
+          <div style="margin-top: 18px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 0.72rem; background: rgba(0, 255, 136, 0.1); color: var(--accent); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(0, 255, 136, 0.3);">🔒 SSL Blindado</span>
+            <span style="font-size: 0.72rem; background: rgba(251, 191, 36, 0.1); color: var(--gold); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(251, 191, 36, 0.3);">★ RA1000 Reclame Aqui</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 NOCTURNAL® Cyber Streetwear Ltda. CNPJ: 48.291.849/0001-32. Todos os direitos reservados.
+        </div>
+        <div>
+          Projeto Modelo de E-commerce de Alta Conversão criado por <strong>GS Digital</strong>.
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script>
-    // Products Data
+    // 16 Streetwear & Techwear Products with authentic apparel photography, ratings & specs
     const products = [
       {
         id: 1,
         name: "Cyberech Utility Hoodie",
         category: "hoodies",
+        categoryLabel: "Hoodies & Jaquetas",
         price: 389.00,
         oldPrice: 459.00,
         badge: "Mais Vendido",
-        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
-        sizes: ["P", "M", "G", "GG"]
+        rating: 4.9,
+        reviewsCount: 184,
+        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=700&q=80",
+        sizes: ["P", "M", "G", "GG"],
+        description: "Moletom pesado 320g com bolsos táticos utilitários em ripstop militar, costuras reforçadas e cordão refletivo. Peça ícone do drop."
       },
       {
         id: 2,
         name: "Neon Shadow Oversized Tee",
         category: "tshirts",
+        categoryLabel: "Camisetas Oversized",
         price: 189.00,
         oldPrice: 220.00,
         badge: "Drop 04",
-        image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
-        sizes: ["M", "G", "GG"]
+        rating: 4.8,
+        reviewsCount: 96,
+        image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=700&q=80",
+        sizes: ["P", "M", "G", "GG"],
+        description: "Camiseta com corte boxy em 100% algodão egípcio penteado, toque peletizado e estampa com tinta termossensível refletiva."
       },
       {
         id: 3,
         name: "Nightraid Cargo Tactical Pants",
         category: "cargo",
+        categoryLabel: "Calças & Bermudas",
         price: 349.00,
         oldPrice: 399.00,
         badge: "Ripstop 100%",
-        image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
-        sizes: ["38", "40", "42", "44"]
+        rating: 4.9,
+        reviewsCount: 142,
+        image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=700&q=80",
+        sizes: ["38", "40", "42", "44"],
+        description: "Calça com 6 bolsos expansíveis, zíperes selados à prova d'água e ajuste elástico nos tornozelos para modelagem versátil."
       },
       {
         id: 4,
         name: "Cyberpunk Tech Windbreaker",
         category: "hoodies",
+        categoryLabel: "Hoodies & Jaquetas",
         price: 489.00,
         oldPrice: 590.00,
         badge: "Waterproof",
-        image: "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=600&q=80",
-        sizes: ["P", "M", "G"]
+        rating: 5.0,
+        reviewsCount: 78,
+        image: "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=700&q=80",
+        sizes: ["P", "M", "G"],
+        description: "Jaqueta corta-vento impermeável em membrana respirável com zíper frontal selado e capuz com ajuste tridimensional."
       },
       {
         id: 5,
-        name: "Acid Wash Acid Protocol Tee",
+        name: "Acid Wash Heavyweight Tee",
         category: "tshirts",
+        categoryLabel: "Camisetas Oversized",
         price: 199.00,
         oldPrice: 230.00,
-        badge: "Exclusivo",
-        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
-        sizes: ["P", "M", "G", "GG"]
+        badge: "320 GSM",
+        rating: 4.9,
+        reviewsCount: 115,
+        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=700&q=80",
+        sizes: ["P", "M", "G", "GG"],
+        description: "Lavagem ácida artesanal com efeito desgastado exclusivo. Gola canelada grossa de 3cm que não laceia com o tempo."
       },
       {
         id: 6,
-        name: "Tactical Chest Rig & Pouch",
+        name: "Tactical Chest Rig & Modular Pouch",
         category: "accessories",
+        categoryLabel: "Acessórios",
         price: 159.00,
         oldPrice: 190.00,
-        badge: "Novo",
-        image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=600&q=80",
-        sizes: ["Único"]
+        badge: "Cordura® 500D",
+        rating: 4.7,
+        reviewsCount: 63,
+        image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=700&q=80",
+        sizes: ["Único"],
+        description: "Colete peitoral utilitário ajustável com fivelas de nylon de alta tenacidade e compartimento seguro para smartphone e chaves."
+      },
+      {
+        id: 7,
+        name: "Matrix Chunky Runner V2",
+        category: "sneakers",
+        categoryLabel: "Sneakers",
+        price: 629.00,
+        oldPrice: 749.00,
+        badge: "Lançamento",
+        rating: 4.9,
+        reviewsCount: 51,
+        image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80",
+        sizes: ["38", "39", "40", "41", "42", "43"],
+        description: "Sneaker de perfil futurista com solado robusto em EVA expandido ultraleve e cabedal em malha knit respirável com painéis refletivos."
+      },
+      {
+        id: 8,
+        name: "MA-1 Cyber Bomber Jacket",
+        category: "hoodies",
+        categoryLabel: "Hoodies & Jaquetas",
+        price: 549.00,
+        oldPrice: 649.00,
+        badge: "Térmica",
+        rating: 4.9,
+        reviewsCount: 88,
+        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80",
+        sizes: ["M", "G", "GG"],
+        description: "Releitura da clássica jaqueta militar bomber com forro térmico laranja fluorescente e bolso porta-canetas na manga esquerda."
+      },
+      {
+        id: 9,
+        name: "Parachute Tech Utility Pant",
+        category: "cargo",
+        categoryLabel: "Calças & Bermudas",
+        price: 329.00,
+        oldPrice: 379.00,
+        badge: "Ajuste Duplo",
+        rating: 4.8,
+        reviewsCount: 94,
+        image: "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=700&q=80",
+        sizes: ["38", "40", "42", "44"],
+        description: "Calça parachute em nylon balístico fosco com pinças anatômicas no joelho e cordões elásticos duplos nos tornozelos e cintura."
+      },
+      {
+        id: 10,
+        name: "Boxy Heavyweight Hoodie Gray",
+        category: "hoodies",
+        categoryLabel: "Hoodies & Jaquetas",
+        price: 379.00,
+        oldPrice: 430.00,
+        badge: "Comfort Fit",
+        rating: 4.9,
+        reviewsCount: 130,
+        image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=700&q=80",
+        sizes: ["P", "M", "G", "GG"],
+        description: "Moletom cinza chumbo sem felpa com tingimento reativo pré-encolhido. Capuz estruturado duplo que se mantém firme na cabeça."
+      },
+      {
+        id: 11,
+        name: "Crossbody Sling Bag Reflective",
+        category: "accessories",
+        categoryLabel: "Acessórios",
+        price: 139.00,
+        oldPrice: 170.00,
+        badge: "Refletivo 3M",
+        rating: 4.8,
+        reviewsCount: 82,
+        image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=700&q=80",
+        sizes: ["Único"],
+        description: "Bolsa transversal compacta com fita refletiva 3M Scotchlite, zíper YKK e mosquetão tático anodizado em preto fosco."
+      },
+      {
+        id: 12,
+        name: "Stealth Low-Tech Sneaker Black",
+        category: "sneakers",
+        categoryLabel: "Sneakers",
+        price: 579.00,
+        oldPrice: 680.00,
+        badge: "Solado Alto Impacto",
+        rating: 5.0,
+        reviewsCount: 42,
+        image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=700&q=80",
+        sizes: ["39", "40", "41", "42", "43"],
+        description: "Tênis cano baixo com visual minimalista industrial, costuras vulcanizadas e palmilha anatômica com tecnologia de memória ortopédica."
+      },
+      {
+        id: 13,
+        name: "Tokyo Protocol Graphic Tee",
+        category: "tshirts",
+        categoryLabel: "Camisetas Oversized",
+        price: 179.00,
+        oldPrice: 210.00,
+        badge: "Silk Screen HD",
+        rating: 4.7,
+        reviewsCount: 76,
+        image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=700&q=80",
+        sizes: ["P", "M", "G", "GG"],
+        description: "Tipografia inspirada no cyberpunk japonês nas costas com impressão em alta definição e toque zero que não resseca."
+      },
+      {
+        id: 14,
+        name: "Modular Utility Cargo Shorts",
+        category: "cargo",
+        categoryLabel: "Calças & Bermudas",
+        price: 249.00,
+        oldPrice: 290.00,
+        badge: "6 Bolsos",
+        rating: 4.8,
+        reviewsCount: 67,
+        image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=700&q=80",
+        sizes: ["38", "40", "42", "44"],
+        description: "Bermuda cargo acima do joelho em sarja peletizada pesada com bolsos fole, argola D-ring para chaveiros e cinto integrado."
+      },
+      {
+        id: 15,
+        name: "Cyber Reflective Bucket Hat",
+        category: "accessories",
+        categoryLabel: "Acessórios",
+        price: 119.00,
+        oldPrice: 145.00,
+        badge: "Impermeável",
+        rating: 4.9,
+        reviewsCount: 58,
+        image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=700&q=80",
+        sizes: ["Único"],
+        description: "Chapéu bucket hat com aba reforçada, forro respirável antitranspirante e logo bordado em linha fluorescente."
+      },
+      {
+        id: 16,
+        name: "Tactical Thermal Puffer Jacket",
+        category: "hoodies",
+        categoryLabel: "Hoodies & Jaquetas",
+        price: 689.00,
+        oldPrice: 820.00,
+        badge: "Inverno 2026",
+        rating: 5.0,
+        reviewsCount: 39,
+        image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=700&q=80",
+        sizes: ["P", "M", "G", "GG"],
+        description: "Jaqueta puffer acolchoada com isolamento térmico premium, gola alta protetora contra vento e acabamento repelente a líquidos."
       }
     ];
 
-    // Cart state
+    // Cart state with initial demo items
     let cart = [
-      { id: 1, name: "Cyberech Utility Hoodie", size: "G", price: 389.00, qty: 1, image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" },
-      { id: 6, name: "Tactical Chest Rig & Pouch", size: "Único", price: 159.00, qty: 1, image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=600&q=80" }
+      { id: 1, name: "Cyberech Utility Hoodie", size: "G", price: 389.00, qty: 1, image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=700&q=80" },
+      { id: 6, name: "Tactical Chest Rig & Modular Pouch", size: "Único", price: 159.00, qty: 1, image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=700&q=80" }
     ];
 
+    let currentCategory = 'all';
+    let searchQuery = '';
     let discountPercent = 0;
+    let selectedModalSize = '';
 
-    // Render Products
+    // Render Product Cards
     function renderProducts(items) {
       const grid = document.getElementById("productsGrid");
-      grid.innerHTML = items.map(p => `
-        <div class="product-card">
-          <div class="product-image-box">
-            <span class="product-badge">${p.badge}</span>
-            <img src="${p.image}" alt="${p.name}" class="product-img" loading="lazy">
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
+            <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
+            <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 8px;">Nenhum produto encontrado</h3>
+            <p>Tente buscar por outro termo ou selecione outra categoria.</p>
+            <button class="btn-secondary" style="margin-top: 18px;" onclick="clearSearch()">Limpar Filtros</button>
           </div>
-          <div class="product-info">
-            <span class="product-category">${p.category}</span>
-            <h3 class="product-name">${p.name}</h3>
-            <div class="product-price-row">
-              <span class="price-current">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
-              <span class="price-old">R$ ${p.oldPrice.toFixed(2).replace('.', ',')}</span>
+        `;
+        return;
+      }
+
+      grid.innerHTML = items.map(p => {
+        const installmentVal = (p.price / 6).toFixed(2).replace('.', ',');
+        const pixVal = (p.price * 0.95).toFixed(2).replace('.', ',');
+        const sizesHtml = p.sizes.map(s => `<span class="size-chip">${s}</span>`).join('');
+
+        return `
+          <div class="product-card">
+            <div class="product-image-box">
+              <span class="product-badge">${p.badge}</span>
+              <span class="product-quick-tag">6x s/ juros</span>
+              <img src="${p.image}" alt="${p.name}" class="product-img" loading="lazy">
             </div>
-            <div class="product-actions">
-              <button class="btn-add-cart" onclick="addToCart(${p.id})">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                Adicionar
-              </button>
-              <button class="btn-quick-view" title="Ver Detalhes" onclick="quickView(${p.id})">👁</button>
+            <div class="product-info">
+              <div class="product-category-row">
+                <span class="product-category">${p.categoryLabel}</span>
+                <div class="product-rating">
+                  <span>★ ${p.rating.toFixed(1)}</span>
+                  <span class="rating-count">(${p.reviewsCount})</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">${p.name}</h3>
+
+              <div class="product-price-row">
+                <span class="price-current">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                <span class="price-old">R$ ${p.oldPrice.toFixed(2).replace('.', ',')}</span>
+              </div>
+
+              <div class="installments-text">
+                6x de <strong>R$ ${installmentVal}</strong> ou <span>R$ ${pixVal}</span> no Pix
+              </div>
+
+              <div class="sizes-chips">
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Tam:</span>
+                ${sizesHtml}
+              </div>
+
+              <div class="product-actions">
+                <button class="btn-add-cart" onclick="addToCart(${p.id})">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                  Comprar
+                </button>
+                <button class="btn-quick-view" title="Ver Detalhes & Medidas" onclick="openQuickView(${p.id})">👁</button>
+              </div>
             </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
-    // Filter by Category
-    function filterCategory(cat, btn) {
-      if (btn) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    // Filter Logic combining category and search
+    function applyFilters() {
+      let filtered = products;
+
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === currentCategory);
       }
-      if (cat === 'all') {
-        renderProducts(products);
+
+      if (searchQuery.trim() !== '') {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(p => 
+          p.name.toLowerCase().includes(q) || 
+          p.categoryLabel.toLowerCase().includes(q) ||
+          p.badge.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q)
+        );
+
+        const statusBar = document.getElementById('searchStatusBar');
+        statusBar.style.display = 'flex';
+        document.getElementById('searchTermDisplay').textContent = `"${searchQuery}"`;
+        document.getElementById('searchResultCount').textContent = filtered.length;
       } else {
-        const filtered = products.filter(p => p.category === cat);
-        renderProducts(filtered);
+        document.getElementById('searchStatusBar').style.display = 'none';
       }
+
+      renderProducts(filtered);
+    }
+
+    // Category Filter Trigger
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('#categoryTabs .tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const allBtns = document.querySelectorAll('#categoryTabs .tab-btn');
+        if (cat === 'all' && allBtns[0]) allBtns[0].classList.add('active');
+      }
+      applyFilters();
+    }
+
+    // Live Search input
+    function handleLiveSearch(query) {
+      searchQuery = query;
+      applyFilters();
+    }
+
+    function clearSearch() {
+      searchQuery = '';
+      document.getElementById('liveSearchInput').value = '';
+      applyFilters();
     }
 
     // Cart Drawer Toggle
@@ -1203,19 +2655,21 @@
       overlay.classList.toggle('active');
     }
 
-    // Add to Cart
-    function addToCart(productId) {
+    // Add to Cart with specific size option
+    function addToCart(productId, chosenSize) {
       const product = products.find(p => p.id === productId);
       if (!product) return;
 
-      const existing = cart.find(item => item.id === productId);
+      const size = chosenSize || product.sizes[0];
+      const existing = cart.find(item => item.id === productId && item.size === size);
+
       if (existing) {
         existing.qty += 1;
       } else {
         cart.push({
           id: product.id,
           name: product.name,
-          size: product.sizes[0],
+          size: size,
           price: product.price,
           qty: 1,
           image: product.image
@@ -1225,44 +2679,39 @@
       toggleCart();
     }
 
-    // Quick View
-    function quickView(productId) {
-      addToCart(productId);
-    }
-
-    // Update Quantity
-    function updateQty(id, delta) {
-      const item = cart.find(i => i.id === id);
+    // Quantity modification
+    function updateQty(id, size, delta) {
+      const item = cart.find(i => i.id === id && i.size === size);
       if (item) {
         item.qty += delta;
         if (item.qty <= 0) {
-          cart = cart.filter(i => i.id !== id);
+          cart = cart.filter(i => !(i.id === id && i.size === size));
         }
         updateCartUI();
       }
     }
 
     // Remove Item
-    function removeItem(id) {
-      cart = cart.filter(i => i.id !== id);
+    function removeItem(id, size) {
+      cart = cart.filter(i => !(i.id === id && i.size === size));
       updateCartUI();
     }
 
     // Apply Coupon
     function applyCoupon() {
       const code = document.getElementById('couponInput').value.trim().toUpperCase();
-      if (code === 'GSDIGITAL10') {
+      if (code === 'GSDIGITAL10' || code === 'BEMVINDO10') {
         discountPercent = 0.10;
-        alert('🎉 Cupom GSDIGITAL10 aplicado com sucesso! 10% de desconto.');
+        alert(`🎉 Cupom ${code} aplicado com sucesso! 10% de desconto.`);
         updateCartUI();
       } else if (code === '') {
         alert('Digite um cupom. Experimente: GSDIGITAL10');
       } else {
-        alert('Cupom inválido. Tente usar: GSDIGITAL10');
+        alert('Cupom não encontrado. Tente usar: GSDIGITAL10 ou BEMVINDO10');
       }
     }
 
-    // Update Cart UI & Calculation
+    // Update Cart UI
     function updateCartUI() {
       const list = document.getElementById('cartItemsList');
       const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
@@ -1270,22 +2719,22 @@
       document.getElementById('cartCountTitle').textContent = totalQty;
 
       if (cart.length === 0) {
-        list.innerHTML = `<div class="empty-cart-msg">Sua sacola está vazia.<br><a href="#catalogo" onclick="toggleCart()" style="color: var(--accent); font-weight: 700; margin-top: 10px; display: inline-block;">Ver Coleção</a></div>`;
+        list.innerHTML = `<div class="empty-cart-msg">Sua sacola está vazia.<br><a href="#catalogo" onclick="toggleCart()" style="color: var(--accent); font-weight: 700; margin-top: 10px; display: inline-block;">Explorar Coleção</a></div>`;
       } else {
         list.innerHTML = cart.map(item => `
           <div class="cart-item">
             <img src="${item.image}" alt="${item.name}" class="cart-item-img">
             <div class="cart-item-details">
               <div class="cart-item-name">${item.name}</div>
-              <div class="cart-item-meta">Tamanho: ${item.size}</div>
+              <div class="cart-item-meta">Tamanho: <strong>${item.size}</strong></div>
               <div class="cart-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
               <div class="cart-qty-ctrl">
-                <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                <button class="qty-btn" onclick="updateQty(${item.id}, '${item.size}', -1)">-</button>
                 <span class="qty-val">${item.qty}</span>
-                <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                <button class="qty-btn" onclick="updateQty(${item.id}, '${item.size}', 1)">+</button>
               </div>
             </div>
-            <button class="btn-remove-item" onclick="removeItem(${item.id})" title="Remover">&times;</button>
+            <button class="btn-remove-item" onclick="removeItem(${item.id}, '${item.size}')" title="Remover">&times;</button>
           </div>
         `).join('');
       }
@@ -1293,6 +2742,7 @@
       const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
       const discount = subtotal * discountPercent;
       const total = subtotal - discount;
+      const pixTotal = total * 0.95;
 
       document.getElementById('cartSubtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
 
@@ -1305,9 +2755,10 @@
       }
 
       document.getElementById('cartTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+      document.getElementById('cartPixTotalPreview').textContent = `R$ ${pixTotal.toFixed(2).replace('.', ',')}`;
 
-      // Free shipping progress
-      const targetFreeShipping = 399.00;
+      // Free shipping progress bar (meta: R$ 299)
+      const targetFreeShipping = 299.00;
       const progressPercent = Math.min(100, Math.round((subtotal / targetFreeShipping) * 100));
       document.getElementById('shippingProgress').style.width = `${progressPercent}%`;
 
@@ -1318,8 +2769,68 @@
       } else {
         const remaining = targetFreeShipping - subtotal;
         statusText.textContent = `Faltam R$ ${remaining.toFixed(2).replace('.', ',')} para Frete Grátis`;
-        document.getElementById('shippingCost').textContent = "R$ 25,00";
+        document.getElementById('shippingCost').textContent = "R$ 18,90";
       }
+    }
+
+    // Quick View Modal
+    function openQuickView(productId) {
+      const p = products.find(prod => prod.id === productId);
+      if (!p) return;
+
+      document.getElementById('modalProductImg').src = p.image;
+      document.getElementById('modalProductBadge').textContent = `${p.categoryLabel} // ${p.badge}`;
+      document.getElementById('modalProductTitle').textContent = p.name;
+      document.getElementById('modalProductStars').innerHTML = `★★★★★ ${p.rating.toFixed(1)} (${p.reviewsCount} avaliações verificadas)`;
+      document.getElementById('modalProductPrice').textContent = `R$ ${p.price.toFixed(2).replace('.', ',')}`;
+      document.getElementById('modalProductPix').textContent = `ou R$ ${(p.price * 0.95).toFixed(2).replace('.', ',')} à vista no Pix (5% OFF)`;
+      document.getElementById('modalProductInstallments').textContent = `Ou em até 6x de R$ ${(p.price / 6).toFixed(2).replace('.', ',')} sem juros`;
+
+      selectedModalSize = p.sizes[0];
+      const sizeGrid = document.getElementById('modalSizeGrid');
+      sizeGrid.innerHTML = p.sizes.map(s => `
+        <button class="modal-size-btn ${s === selectedModalSize ? 'active' : ''}" onclick="selectModalSize('${s}', this)">
+          ${s}
+        </button>
+      `).join('');
+
+      document.getElementById('modalBtnAddToCart').onclick = function() {
+        addToCart(p.id, selectedModalSize);
+        closeQuickModal();
+      };
+
+      document.getElementById('modalCepResult').style.display = 'none';
+      document.getElementById('modalCepInput').value = '';
+
+      document.getElementById('quickModal').classList.add('active');
+    }
+
+    function selectModalSize(size, btn) {
+      selectedModalSize = size;
+      document.querySelectorAll('.modal-size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function closeQuickModal() {
+      document.getElementById('quickModal').classList.remove('active');
+    }
+
+    // CEP Calculation Simulator
+    function calculateCep() {
+      const cep = document.getElementById('modalCepInput').value.replace(/\D/g, '');
+      if (cep.length !== 8) {
+        alert('Por favor, digite um CEP válido com 8 dígitos (ex: 01310100).');
+        return;
+      }
+      document.getElementById('modalCepResult').style.display = 'block';
+    }
+
+    // Size Guide Modal
+    function openSizeGuide() {
+      document.getElementById('sizeGuideModal').classList.add('active');
+    }
+    function closeSizeGuide() {
+      document.getElementById('sizeGuideModal').classList.remove('active');
     }
 
     // Checkout Modal
@@ -1331,7 +2842,7 @@
       const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
       const discount = subtotal * discountPercent;
       const total = subtotal - discount;
-      const pixTotal = total * 0.95; // 5% extra on Pix
+      const pixTotal = total * 0.95;
 
       document.getElementById('checkoutPixVal').textContent = `R$ ${pixTotal.toFixed(2).replace('.', ',')}`;
       document.getElementById('checkoutModal').classList.add('active');
@@ -1341,7 +2852,16 @@
       document.getElementById('checkoutModal').classList.remove('active');
     }
 
-    // Initialize
+    // Close modals on escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeQuickModal();
+        closeSizeGuide();
+        closeCheckout();
+      }
+    });
+
+    // Initial render
     renderProducts(products);
     updateCartUI();
   </script>
