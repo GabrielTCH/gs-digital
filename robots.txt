@@ -1,0 +1,6 @@
+# robots.txt for GS Dev Studio / GS Digital
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.gsdevstudio.com.br/sitemap.xml
