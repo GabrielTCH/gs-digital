@@ -1586,3 +1586,48 @@ input:checked + .slider:before {
     gap: 16px;
   }
 }
+
+/* Floating WhatsApp Quick Action Button */
+.floating-wa-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+  z-index: 9999;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.floating-wa-btn:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 16px 35px rgba(37, 211, 102, 0.65);
+  color: #ffffff;
+}
+
+.floating-wa-btn svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+
+@media (max-width: 768px) {
+  .floating-wa-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+  }
+  .floating-wa-btn svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+

@@ -250,7 +250,7 @@ function initCalculator() {
         `💰 *Investimento estimado:* R$ ${calculatedProjectPrice.toLocaleString('pt-BR')}%0A` +
         `🛡️ *Manutenção Preventiva:* ${maintenanceActive ? 'Sim (R$ ' + maintenancePrice + '/mês)' : 'Não inclusa'}%0A%0A` +
         `Gostaria de formalizar uma proposta e dar início!`;
-      btnSendWhatsApp.href = `https://wa.me/5511999999999?text=${msg}`;
+      btnSendWhatsApp.href = `https://wa.me/5511968799692?text=${msg}`;
 
       btnSendWhatsApp.onclick = () => {
         // Save to Admin Leads
@@ -263,7 +263,7 @@ function initCalculator() {
           service: currentProject.name,
           price: `R$ ${calculatedProjectPrice.toLocaleString('pt-BR')}`,
           maint: maintenanceActive ? 'Sim' : 'Não',
-          phone: '5511999999999'
+          phone: '5511968799692'
         });
         localStorage.setItem('gs_leads', JSON.stringify(leads));
       };
@@ -489,7 +489,7 @@ function initContactForm() {
       service: service,
       price: 'Sob Consulta',
       maint: 'Pendente',
-      phone: '5511999999999'
+      phone: '5511968799692'
     });
     localStorage.setItem('gs_leads', JSON.stringify(leads));
 
@@ -502,7 +502,7 @@ function initContactForm() {
     submitBtn.style.opacity = '0.8';
 
     setTimeout(() => {
-      window.open(`https://wa.me/5511999999999?text=${whatsappText}`, '_blank');
+      window.open(`https://wa.me/5511968799692?text=${whatsappText}`, '_blank');
       submitBtn.innerHTML = `<span>Mensagem Enviada!</span> ✓`;
       submitBtn.style.background = '#10b981';
       form.reset();

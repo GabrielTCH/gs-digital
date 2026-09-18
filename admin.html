@@ -509,7 +509,7 @@
       let leads = JSON.parse(localStorage.getItem('gs_leads') || '[]');
       if (leads.length === 0) {
         leads = [
-          { date: '17/09/2026 15:40', client: 'Gabriel Toledo', service: 'Landing Page de Alta Conversão', price: 'R$ 1.290', maint: 'Sim', phone: '5511999999999' },
+          { date: '17/09/2026 15:40', client: 'Gabriel Toledo', service: 'Landing Page de Alta Conversão', price: 'R$ 1.290', maint: 'Sim', phone: '5511968799692' },
           { date: '16/09/2026 11:20', client: 'Dra. Camila Andrade', service: 'Site Institucional Corporativo', price: 'R$ 2.390', maint: 'Sim', phone: '5511988888888' }
         ];
         localStorage.setItem('gs_leads', JSON.stringify(leads));
@@ -523,7 +523,7 @@
           <td>${lead.service}</td>
           <td style="color:var(--cyan-neon); font-weight:700;">${lead.price}</td>
           <td>${lead.maint}</td>
-          <td><a href="https://wa.me/${lead.phone || '5511999999999'}" target="_blank" class="btn-outline" style="padding:4px 12px;">WhatsApp ↗</a></td>
+          <td><a href="https://wa.me/${lead.phone || '5511968799692'}" target="_blank" class="btn-outline" style="padding:4px 12px;">WhatsApp ↗</a></td>
         `;
         tbody.appendChild(tr);
       });
