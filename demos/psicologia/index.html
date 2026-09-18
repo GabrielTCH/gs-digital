@@ -6,7 +6,7 @@
   <title>Dra. Helena Vaz | Psicologia Clínica & Psicoterapia Online</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f8f6f0;
@@ -27,6 +27,10 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -80,13 +84,14 @@
       font-weight: 700;
       font-size: 0.75rem;
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+      text-decoration: none;
     }
 
     /* Header */
     .psy-header {
-      padding: 20px 50px;
+      padding: 18px 48px;
       background: rgba(248, 246, 240, 0.95);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -101,26 +106,26 @@
     }
     .psy-brand-name {
       font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       font-weight: 400;
       display: block;
     }
     .psy-brand-crp {
       font-size: 0.75rem;
       color: var(--sage);
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
     }
     .psy-nav {
       display: flex;
-      gap: 30px;
+      gap: 28px;
     }
     .psy-nav a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
+      font-size: 0.88rem;
+      font-weight: 600;
       transition: color 0.2s;
     }
     .psy-nav a:hover {
@@ -129,10 +134,10 @@
     .btn-psy-cta {
       background: var(--terracotta);
       color: #fff;
-      padding: 12px 24px;
+      padding: 11px 24px;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.88rem;
       box-shadow: 0 4px 15px rgba(188, 108, 37, 0.25);
       transition: all 0.2s;
@@ -143,6 +148,7 @@
     .btn-psy-cta:hover {
       background: #a25c1e;
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(188, 108, 37, 0.35);
     }
 
     /* Hero with Clinic Background */
@@ -154,10 +160,10 @@
     }
     .psy-hero {
       padding: 100px 50px;
-      max-width: 1250px;
+      max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 60px;
       align-items: center;
     }
@@ -165,7 +171,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid rgba(56, 102, 65, 0.25);
       color: var(--sage);
       padding: 6px 16px;
@@ -177,10 +183,14 @@
     }
     .hero-title-psy {
       font-family: var(--font-display);
-      font-size: 3.4rem;
+      font-size: 3.6rem;
       line-height: 1.15;
       color: var(--sage-dark);
       margin-bottom: 24px;
+    }
+    .hero-title-psy em {
+      font-style: italic;
+      color: var(--terracotta);
     }
     .hero-sub-psy {
       font-size: 1.1rem;
@@ -194,7 +204,7 @@
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(40, 54, 24, 0.15);
+      box-shadow: 0 20px 45px rgba(40, 54, 24, 0.18);
       background: #e9edc9;
     }
     .hero-avatar-img {
@@ -216,22 +226,23 @@
       color: var(--sage-dark);
       font-style: italic;
       border-left: 3px solid var(--terracotta);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
 
     /* Specialties */
     .section-psy {
       padding: 90px 50px;
-      max-width: 1250px;
+      max-width: 1280px;
       margin: 0 auto;
     }
     .psy-head {
       text-align: center;
-      max-width: 650px;
+      max-width: 680px;
       margin: 0 auto 50px;
     }
     .psy-head h2 {
       font-family: var(--font-display);
-      font-size: 2.6rem;
+      font-size: 2.7rem;
       color: var(--sage-dark);
       margin-bottom: 12px;
     }
@@ -268,24 +279,283 @@
       line-height: 1.6;
     }
 
+    /* ===================================================
+       NOVA ABA: RELATOS REAIS DE WHATSAPP EM CARROSSEL INFINITO
+       =================================================== */
+    .whatsapp-relatos-section {
+      background: #f1ede4;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 85px 0 95px;
+      position: relative;
+      overflow: hidden;
+    }
+    .relatos-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+    .relatos-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid #25d366;
+      color: #128c7e;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+    .relatos-title {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: var(--sage-dark);
+      margin-bottom: 12px;
+    }
+    .relatos-subtitle {
+      color: #5c6269;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .relatos-privacy-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--sage);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    /* Marquee Track & Animation */
+    .marquee-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 15px 0 25px;
+    }
+    .marquee-container::before,
+    .marquee-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 5;
+      pointer-events: none;
+    }
+    .marquee-container::before {
+      left: 0;
+      background: linear-gradient(to right, #f1ede4 0%, rgba(241, 237, 228, 0) 100%);
+    }
+    .marquee-container::after {
+      right: 0;
+      background: linear-gradient(to left, #f1ede4 0%, rgba(241, 237, 228, 0) 100%);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 28px;
+      width: max-content;
+      animation: infiniteScrollWhatsApp 48s linear infinite;
+    }
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+    @keyframes infiniteScrollWhatsApp {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* WhatsApp Card Mockup */
+    .wa-card {
+      width: 375px;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(40, 54, 24, 0.08);
+      border: 1px solid rgba(40, 54, 24, 0.12);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .wa-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(40, 54, 24, 0.14);
+    }
+
+    /* WhatsApp Header */
+    .wa-header {
+      background: #075e54;
+      color: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .wa-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #25d366;
+      color: #075e54;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border: 2px solid #ffffff;
+    }
+    .wa-contact-info {
+      flex: 1;
+    }
+    .wa-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .wa-status {
+      font-size: 0.7rem;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .wa-online-dot {
+      width: 6px;
+      height: 6px;
+      background: #25d366;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .wa-icons {
+      display: flex;
+      gap: 12px;
+      opacity: 0.85;
+      font-size: 0.95rem;
+    }
+
+    /* Chat Area */
+    .wa-chat-body {
+      background: #efeae2;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0);
+      background-size: 14px 14px;
+      padding: 18px 14px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wa-date-pill {
+      align-self: center;
+      background: rgba(255, 255, 255, 0.9);
+      color: #54656f;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+      margin-bottom: 4px;
+    }
+
+    /* Messages Bubbles */
+    .wa-bubble-patient {
+      background: #ffffff;
+      border-radius: 10px 10px 10px 2px;
+      padding: 12px 14px;
+      font-size: 0.86rem;
+      color: #111b21;
+      line-height: 1.5;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .wa-bubble-doctor {
+      background: #d9fdd3;
+      border-radius: 10px 10px 2px 10px;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      color: #111b21;
+      line-height: 1.5;
+      align-self: flex-end;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      position: relative;
+      max-width: 90%;
+    }
+    .wa-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      font-size: 0.68rem;
+      color: #667781;
+      margin-top: 4px;
+    }
+    .wa-checks {
+      color: #53bdeb; /* Blue checkmarks */
+      font-weight: bold;
+      font-size: 0.78rem;
+    }
+
+    /* Bottom Outcome Card Badge */
+    .wa-card-footer {
+      background: #ffffff;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.74rem;
+    }
+    .wa-outcome-tag {
+      background: rgba(56, 102, 65, 0.1);
+      color: var(--sage);
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .wa-time-treated {
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+
+    .carousel-interaction-hint {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
     /* Booking Simulator */
     .booking-section {
       background: #f0ede5;
-      padding: 90px 50px;
+      padding: 95px 50px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
     .booking-box {
-      max-width: 800px;
+      max-width: 820px;
       margin: 0 auto;
       background: var(--surface);
       border-radius: 20px;
-      padding: 44px;
+      padding: 48px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
     }
     .booking-box h3 {
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: 2.4rem;
       color: var(--sage-dark);
       margin-bottom: 8px;
       text-align: center;
@@ -293,8 +563,8 @@
     .booking-box p {
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 30px;
+      font-size: 0.95rem;
+      margin-bottom: 34px;
     }
     .booking-steps {
       display: grid;
@@ -311,7 +581,7 @@
     }
     .b-input, .b-select {
       width: 100%;
-      padding: 12px 14px;
+      padding: 13px 16px;
       border: 1px solid var(--border);
       border-radius: 8px;
       background: #faf9f6;
@@ -327,17 +597,18 @@
       width: 100%;
       background: var(--terracotta);
       color: #fff;
-      font-weight: 700;
+      font-weight: 800;
       padding: 16px;
       border: none;
       border-radius: 10px;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(188, 108, 37, 0.3);
+      box-shadow: 0 4px 18px rgba(188, 108, 37, 0.3);
       transition: all 0.2s;
     }
     .btn-confirm-session:hover {
       background: #a25c1e;
+      box-shadow: 0 6px 25px rgba(188, 108, 37, 0.4);
     }
 
     /* FAQ Accordion */
@@ -409,6 +680,9 @@
       .hero-title-psy {
         font-size: 2.5rem;
       }
+      .wa-card {
+        width: 320px;
+      }
     }
   </style>
 </head>
@@ -437,7 +711,7 @@
 
     <nav class="psy-nav">
       <a href="#especialidades">Especialidades</a>
-      <a href="#sobre">Abordagem (TCC)</a>
+      <a href="#relatos">Relatos Reais</a>
       <a href="#agendamento">Agendar Sessão</a>
       <a href="#faq">Dúvidas Frequentes</a>
     </nav>
@@ -455,7 +729,7 @@
           <span>🌱</span> Psicoterapia Presencial nos Jardins & Online pelo Mundo
         </div>
         <h1 class="hero-title-psy">
-          Um espaço seguro e acolhedor para a sua saúde mental.
+          Um espaço seguro e acolhedor para a sua <em>saúde mental</em>.
         </h1>
         <p class="hero-sub-psy">
           Atendimento especializado baseado na Terapia Cognitivo-Comportamental (TCC) para lidar com a ansiedade, síndrome de burnout, conflitos emocionais e reconectar-se com a sua essência.
@@ -464,7 +738,7 @@
           <a href="#agendamento" class="btn-psy-cta" style="padding: 14px 28px; font-size: 0.95rem;">
             Agendar Primeira Sessão
           </a>
-          <a href="https://wa.me/5511999999999" target="_blank" style="background: rgba(56, 102, 65, 0.1); color: var(--sage-dark); font-weight: 700; padding: 14px 24px; border-radius: 999px; text-decoration: none; font-size: 0.9rem;">
+          <a href="https://wa.me/5511971003344" target="_blank" style="background: rgba(56, 102, 65, 0.1); color: var(--sage-dark); font-weight: 700; padding: 14px 24px; border-radius: 999px; text-decoration: none; font-size: 0.9rem;">
             Tirar Dúvidas via WhatsApp 💬
           </a>
         </div>
@@ -479,7 +753,7 @@
     </div>
   </section>
 
-  <!-- Specialties Section -->
+  <!-- Demandas Clínicas Frequentes -->
   <section class="section-psy" id="especialidades">
     <div class="psy-head">
       <h2>Demandas Clínicas Frequentes</h2>
@@ -509,6 +783,328 @@
         <h3>Terapia de Casal</h3>
         <p>Melhora da comunicação assertiva, resolução de conflitos acumulados e reconstrução da intimidade afetiva a dois.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       NOVA ABA: RELATOS REAIS DO WHATSAPP EM CARROSSEL INFINITO
+       (Posicionada exatamente entre Demandas Clínicas e Agende seu Horário)
+       ======================================================= -->
+  <section class="whatsapp-relatos-section" id="relatos">
+    <div class="relatos-header">
+      <div class="relatos-badge">
+        <span>💬</span> MENSAGENS ESPONTÂNEAS NO WHATSAPP
+      </div>
+      <h2 class="relatos-title">Relatos Reais de Transformação</h2>
+      <p class="relatos-subtitle">
+        Mensagens enviadas com carinho por pacientes que encontraram alívio, clareza e novas ferramentas para viver melhor.
+      </p>
+      <div class="relatos-privacy-notice">
+        🔒 Nomes e fotos abreviados em conformidade com o Código de Ética Profissional do CFP.
+      </div>
+    </div>
+
+    <!-- Carrossel Marquee Infinito -->
+    <div class="marquee-container">
+      <div class="marquee-track">
+        
+        <!-- Relato 1: Pânico & Apresentações -->
+        <div class="wa-card">
+          <div class="wa-header">
+            <div class="wa-avatar">MS</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Paciente M.S. (32 anos)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Ontem</div>
+            <div class="wa-bubble-patient">
+              Dra. Helena, boa noite! Passando pra contar que hoje tive minha primeira apresentação presencial na empresa depois de 6 meses... e pela primeira vez <strong>NÃO TIVE NENHUMA CRISE DE PÂNICO!</strong> 😭🙌
+              <br><br>
+              Lembrei exatamente do exercício de respiração que treinamos na última sessão e consegui falar com calma. Estou chorando de alívio e gratidão!
+              <div class="wa-meta-row"><span>20:14</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              Que notícia maravilhosa, M.! Esse mérito é todo da sua coragem e dedicação nas tarefas. Muito orgulho do seu avanço! Nos vemos terça! 🌿🤍
+              <div class="wa-meta-row"><span>20:18</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">✨ Superação do Pânico</span>
+            <span class="wa-time-treated">4 meses de psicoterapia</span>
+          </div>
+        </div>
+
+        <!-- Relato 2: Burnout & Limites no Trabalho -->
+        <div class="wa-card">
+          <div class="wa-header">
+            <div class="wa-avatar">RT</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Paciente R.T. (41 anos)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Segunda-feira</div>
+            <div class="wa-bubble-patient">
+              Helena, só queria te agradecer pela sessão. Consegui ter aquela conversa difícil com meu gestor e <strong>estabeleci os limites que planejamos</strong>, sem sentir aquela culpa esmagadora de sempre.
+              <br><br>
+              Já faz 10 dias seguidos que durmo a noite toda sem acordar com o peito apertado. Você me devolveu a saúde mental.
+              <div class="wa-meta-row"><span>19:42</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              Fico profundamente emocionada, R.! Dizer 'não' ao excesso é dizer 'sim' à sua vida. Você aprendeu a se respeitar! 🌱
+              <div class="wa-meta-row"><span>19:46</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">⚡ Recuperação de Burnout</span>
+            <span class="wa-time-treated">5 meses de psicoterapia</span>
+          </div>
+        </div>
+
+        <!-- Relato 3: Terapia de Casal -->
+        <div class="wa-card">
+          <div class="wa-header">
+            <div class="wa-avatar">AF</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Pacientes A. & F. (Casal)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Hoje</div>
+            <div class="wa-bubble-patient">
+              Dra., estamos mandando essa mensagem juntos! Aquele exercício da escuta empática sem julgamento <strong>mudou totalmente o nosso final de semana</strong>.
+              <br><br>
+              Pela primeira vez em anos conversamos sobre nossas finanças e planos sem que isso virasse uma discussão. O clima em casa voltou a ser de paz e cumplicidade.
+              <div class="wa-meta-row"><span>11:30</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              Que conquista linda para a história de vocês dois! A comunicação afetiva é um músculo que se exercita. Parabéns aos dois! 🤍
+              <div class="wa-meta-row"><span>11:35</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">🤝 Diálogo & Conexão Afetiva</span>
+            <span class="wa-time-treated">3 meses de terapia de casal</span>
+          </div>
+        </div>
+
+        <!-- Relato 4: Ansiedade Generalizada -->
+        <div class="wa-card">
+          <div class="wa-header">
+            <div class="wa-avatar">CD</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Paciente C.D. (29 anos)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Quarta-feira</div>
+            <div class="wa-bubble-patient">
+              Dra. Helena, hoje completei 3 meses de terapia e pela primeira vez percebi o quanto eu mudei. Eu vivia refém do medo do futuro e do 'e se tudo der errado?'.
+              <br><br>
+              Consegui viajar no fim de semana e <strong>realmente aproveitei o momento presente</strong> sem aquela nóia constante. Minha mãe comentou que meu semblante está muito mais leve!
+              <div class="wa-meta-row"><span>15:10</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              Que relato precioso, C.! Viver no presente é uma libertação diária. Fico imensamente feliz pelo seu florescer! 🌿
+              <div class="wa-meta-row"><span>15:14</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">🌊 Redução da Ansiedade</span>
+            <span class="wa-time-treated">3 meses de psicoterapia</span>
+          </div>
+        </div>
+
+        <!-- Relato 5: Autoestima & Culpa -->
+        <div class="wa-card">
+          <div class="wa-header">
+            <div class="wa-avatar">GL</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Paciente G.L. (35 anos)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Sexta-feira</div>
+            <div class="wa-bubble-patient">
+              Oi Dra.! Lembra que eu não conseguia dizer não para ninguém e vivia exausta com a vida dos outros nas minhas costas?
+              <br><br>
+              Ontem consegui recusar um favor abusivo com muita tranquilidade e, o melhor de tudo: <strong>SEM AQUELA CULPA ME CORROENDO DEPOIS!</strong> A terapia tá sendo o melhor investimento que fiz em mim.
+              <div class="wa-meta-row"><span>18:05</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              G., estabelecer limites não é egoísmo, é autopreservação! Você assumiu o protagonismo da sua própria vida. Um abraço afetuoso! ✨
+              <div class="wa-meta-row"><span>18:12</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">🤍 Autoestima & Autonomia</span>
+            <span class="wa-time-treated">6 meses de psicoterapia</span>
+          </div>
+        </div>
+
+        <!-- DUPLICAÇÃO PARA EFEITO DE CARROSSEL INFINITO CONTÍNUO (SEAMLESS LOOP) -->
+        
+        <!-- Relato 1 Dup -->
+        <div class="wa-card" aria-hidden="true">
+          <div class="wa-header">
+            <div class="wa-avatar">MS</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Paciente M.S. (32 anos)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Ontem</div>
+            <div class="wa-bubble-patient">
+              Dra. Helena, boa noite! Passando pra contar que hoje tive minha primeira apresentação presencial na empresa depois de 6 meses... e pela primeira vez <strong>NÃO TIVE NENHUMA CRISE DE PÂNICO!</strong> 😭🙌
+              <br><br>
+              Lembrei exatamente do exercício de respiração que treinamos na última sessão e consegui falar com calma. Estou chorando de alívio e gratidão!
+              <div class="wa-meta-row"><span>20:14</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              Que notícia maravilhosa, M.! Esse mérito é todo da sua coragem e dedicação nas tarefas. Muito orgulho do seu avanço! Nos vemos terça! 🌿🤍
+              <div class="wa-meta-row"><span>20:18</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">✨ Superação do Pânico</span>
+            <span class="wa-time-treated">4 meses de psicoterapia</span>
+          </div>
+        </div>
+
+        <!-- Relato 2 Dup -->
+        <div class="wa-card" aria-hidden="true">
+          <div class="wa-header">
+            <div class="wa-avatar">RT</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Paciente R.T. (41 anos)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Segunda-feira</div>
+            <div class="wa-bubble-patient">
+              Helena, só queria te agradecer pela sessão. Consegui ter aquela conversa difícil com meu gestor e <strong>estabeleci os limites que planejamos</strong>, sem sentir aquela culpa esmagadora de sempre.
+              <br><br>
+              Já faz 10 dias seguidos que durmo a noite toda sem acordar com o peito apertado. Você me devolveu a saúde mental.
+              <div class="wa-meta-row"><span>19:42</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              Fico profundamente emocionada, R.! Dizer 'não' ao excesso é dizer 'sim' à sua vida. Você aprendeu a se respeitar! 🌱
+              <div class="wa-meta-row"><span>19:46</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">⚡ Recuperação de Burnout</span>
+            <span class="wa-time-treated">5 meses de psicoterapia</span>
+          </div>
+        </div>
+
+        <!-- Relato 3 Dup -->
+        <div class="wa-card" aria-hidden="true">
+          <div class="wa-header">
+            <div class="wa-avatar">AF</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Pacientes A. & F. (Casal)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Hoje</div>
+            <div class="wa-bubble-patient">
+              Dra., estamos mandando essa mensagem juntos! Aquele exercício da escuta empática sem julgamento <strong>mudou totalmente o nosso final de semana</strong>.
+              <br><br>
+              Pela primeira vez em anos conversamos sobre nossas finanças e planos sem que isso virasse uma discussão. O clima em casa voltou a ser de paz e cumplicidade.
+              <div class="wa-meta-row"><span>11:30</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              Que conquista linda para a história de vocês dois! A comunicação afetiva é um músculo que se exercita. Parabéns aos dois! 🤍
+              <div class="wa-meta-row"><span>11:35</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">🤝 Diálogo & Conexão Afetiva</span>
+            <span class="wa-time-treated">3 meses de terapia de casal</span>
+          </div>
+        </div>
+
+        <!-- Relato 4 Dup -->
+        <div class="wa-card" aria-hidden="true">
+          <div class="wa-header">
+            <div class="wa-avatar">CD</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Paciente C.D. (29 anos)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Quarta-feira</div>
+            <div class="wa-bubble-patient">
+              Dra. Helena, hoje completei 3 meses de terapia e pela primeira vez percebi o quanto eu mudei. Eu vivia refém do medo do futuro e do 'e se tudo der errado?'.
+              <br><br>
+              Consegui viajar no fim de semana e <strong>realmente aproveitei o momento presente</strong> sem aquela nóia constante. Minha mãe comentou que meu semblante está muito mais leve!
+              <div class="wa-meta-row"><span>15:10</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              Que relato precioso, C.! Viver no presente é uma libertação diária. Fico imensamente feliz pelo seu florescer! 🌿
+              <div class="wa-meta-row"><span>15:14</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">🌊 Redução da Ansiedade</span>
+            <span class="wa-time-treated">3 meses de psicoterapia</span>
+          </div>
+        </div>
+
+        <!-- Relato 5 Dup -->
+        <div class="wa-card" aria-hidden="true">
+          <div class="wa-header">
+            <div class="wa-avatar">GL</div>
+            <div class="wa-contact-info">
+              <div class="wa-name">Paciente G.L. (35 anos)</div>
+              <div class="wa-status"><span class="wa-online-dot"></span> online agora</div>
+            </div>
+            <div class="wa-icons">📞 ⋮</div>
+          </div>
+          <div class="wa-chat-body">
+            <div class="wa-date-pill">Sexta-feira</div>
+            <div class="wa-bubble-patient">
+              Oi Dra.! Lembra que eu não conseguia dizer não para ninguém e vivia exausta com a vida dos outros nas minhas costas?
+              <br><br>
+              Ontem consegui recusar um favor abusivo com muita tranquilidade e, o melhor de tudo: <strong>SEM AQUELA CULPA ME CORROENDO DEPOIS!</strong> A terapia tá sendo o melhor investimento que fiz em mim.
+              <div class="wa-meta-row"><span>18:05</span></div>
+            </div>
+            <div class="wa-bubble-doctor">
+              G., estabelecer limites não é egoísmo, é autopreservação! Você assumiu o protagonismo da sua própria vida. Um abraço afetuoso! ✨
+              <div class="wa-meta-row"><span>18:12</span> <span class="wa-checks">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-card-footer">
+            <span class="wa-outcome-tag">🤍 Autoestima & Autonomia</span>
+            <span class="wa-time-treated">6 meses de psicoterapia</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="carousel-interaction-hint">
+      <span>⏸️ Passe o mouse (ou toque) sobre os relatos para pausar a leitura</span>
     </div>
   </section>
 
