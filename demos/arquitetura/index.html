@@ -40,7 +40,7 @@
 
     html, body {
       height: 100%;
-      overflow: hidden; /* Controlled via our Single-Flick Scroll Engine */
+      overflow: hidden; /* Gerenciado pelo motor Single-Flick Scroll */
       background-color: var(--bg-dark);
       color: var(--charcoal);
       font-family: var(--font-body);
@@ -74,8 +74,8 @@
       height: 100vh;
       z-index: 1;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 50%, rgba(9, 11, 14, 0.05) 0%, rgba(9, 11, 14, 0.78) 100%),
-                  linear-gradient(180deg, rgba(9, 11, 14, 0.65) 0%, rgba(9, 11, 14, 0.15) 45%, rgba(9, 11, 14, 0.75) 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(9, 11, 14, 0.04) 0%, rgba(9, 11, 14, 0.76) 100%),
+                  linear-gradient(180deg, rgba(9, 11, 14, 0.62) 0%, rgba(9, 11, 14, 0.12) 45%, rgba(9, 11, 14, 0.75) 100%);
     }
 
     /* Top GS Digital Banner */
@@ -129,10 +129,10 @@
       text-decoration: none;
     }
 
-    /* Architectural Header */
+    /* Architectural Header - Guias por Seções de Conteúdo */
     .arch-header {
       padding: 14px 48px;
-      background: rgba(14, 17, 22, 0.82);
+      background: rgba(14, 17, 22, 0.84);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -166,12 +166,12 @@
     }
     .arch-nav {
       display: flex;
-      gap: 28px;
+      gap: 32px;
     }
     .arch-nav a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       font-weight: 600;
@@ -212,7 +212,7 @@
       color: #000;
     }
 
-    /* Interactive 3D Room HUD Navigator (Right Side) */
+    /* Interactive 3D HUD Navigator (Right Side) */
     .room-hud {
       position: fixed;
       right: 28px;
@@ -265,7 +265,7 @@
       background: #11141a;
       border: 1px solid var(--brass);
       color: #fff;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 4px;
       font-size: 0.72rem;
       font-weight: 700;
@@ -274,7 +274,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.6);
     }
 
-    /* Floating Current Room Badge (Bottom-Left) */
+    /* Floating Current Section & Room Badge (Bottom-Left) */
     .current-room-badge {
       position: fixed;
       bottom: 24px;
@@ -312,13 +312,13 @@
     }
     .room-badge-text-main {
       font-family: var(--font-heading);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 800;
       color: #fff;
       letter-spacing: 1px;
     }
 
-    /* Single-Flick Scroll Navigation Control Pill (Bottom Center) */
+    /* Single-Flick Scroll Dynamic Pill (Bottom Center) */
     .scroll-flick-pill {
       position: fixed;
       bottom: 24px;
@@ -377,11 +377,11 @@
       overflow-y: scroll;
       scroll-behavior: smooth;
       scroll-snap-type: y mandatory;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
     .page-content::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
+      display: none;
     }
 
     .arch-section {
@@ -400,7 +400,7 @@
       box-sizing: border-box;
     }
 
-    /* Section 1: Hero Section */
+    /* Section 1: Início (Fachada Principal) */
     .hero-container {
       max-width: 760px;
       background: var(--surface-card);
@@ -489,7 +489,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* Section 2: Living Room — Filosofia & Abordagem */
+    /* Section 2: Filosofia (Living Pé-Direito Duplo) */
     .philosophy-card {
       background: var(--surface-card);
       backdrop-filter: blur(20px);
@@ -556,7 +556,7 @@
       line-height: 1.65;
     }
 
-    /* Section 3: Obras & Galeria */
+    /* Section 3: Obras Selecionadas (Espaço Gourmet) */
     .gallery-container {
       width: 100%;
       max-width: 1200px;
@@ -672,7 +672,7 @@
       justify-content: space-between;
     }
 
-    /* Section 4: Simulador de Estimativa (Architect's Studio) */
+    /* Section 4: Simulador (Studio de Criação & Atelier) */
     .simulator-container {
       width: 100%;
       max-width: 1100px;
@@ -756,7 +756,7 @@
       border-color: var(--brass);
     }
 
-    /* Refined Output Box with Fixed Typography & Baseline Alignment */
+    /* Output Box with Fixed Baseline Alignment for "R$" */
     .calc-result-box {
       background: rgba(18, 22, 30, 0.9);
       border: 1px solid rgba(197, 160, 89, 0.5);
@@ -863,7 +863,7 @@
       transform: translateY(-2px);
     }
 
-    /* Section 5: Terraço & Contato */
+    /* Section 5: Contato (Terraço Sunset & SPA) */
     .contact-container {
       width: 100%;
       max-width: 1100px;
@@ -928,7 +928,7 @@
       border-color: var(--brass);
     }
 
-    /* Embedded Compact Footer Credentials inside Room 05 */
+    /* Embedded Compact Footer Credentials inside Section 5 */
     .room5-footer {
       grid-column: 1 / -1;
       border-top: 1px solid var(--border-subtle);
@@ -1022,18 +1022,18 @@
     </a>
   </div>
 
-  <!-- Main Navigation Header -->
+  <!-- Main Navigation Header (Guias por Seções de Conteúdo Reais) -->
   <header class="arch-header">
     <a onclick="goToRoom(0)" class="arch-brand">
       Studio <span>Arkhé</span>
     </a>
 
     <nav class="arch-nav">
-      <a onclick="goToRoom(0)" class="active">01 // Fachada</a>
-      <a onclick="goToRoom(1)">02 // Living</a>
-      <a onclick="goToRoom(2)">03 // Galeria</a>
-      <a onclick="goToRoom(3)">04 // Atelier</a>
-      <a onclick="goToRoom(4)">05 // Terraço</a>
+      <a onclick="goToRoom(0)" class="active">Início</a>
+      <a onclick="goToRoom(1)">Filosofia</a>
+      <a onclick="goToRoom(2)">Obras Selecionadas</a>
+      <a onclick="goToRoom(3)">Simulador</a>
+      <a onclick="goToRoom(4)">Contato</a>
     </nav>
 
     <a onclick="goToRoom(3)" class="btn-arch-cta">
@@ -1043,12 +1043,12 @@
 
   <!-- Interactive 3D Room HUD Navigator (Floating on Right) -->
   <div class="room-hud" id="roomHUD">
-    <div class="hud-title">Tour 3D</div>
-    <div class="hud-room-dot active" data-label="01 // Fachada Principal" onclick="goToRoom(0)"></div>
-    <div class="hud-room-dot" data-label="02 // Living Pé-Direito Duplo" onclick="goToRoom(1)"></div>
-    <div class="hud-room-dot" data-label="03 // Galeria & Gourmet" onclick="goToRoom(2)"></div>
-    <div class="hud-room-dot" data-label="04 // Studio de Criação" onclick="goToRoom(3)"></div>
-    <div class="hud-room-dot" data-label="05 // Terraço Sunset & SPA" onclick="goToRoom(4)"></div>
+    <div class="hud-title">Navegação</div>
+    <div class="hud-room-dot active" data-label="01 // Início (Fachada)" onclick="goToRoom(0)"></div>
+    <div class="hud-room-dot" data-label="02 // Filosofia (Living)" onclick="goToRoom(1)"></div>
+    <div class="hud-room-dot" data-label="03 // Obras Selecionadas (Gourmet)" onclick="goToRoom(2)"></div>
+    <div class="hud-room-dot" data-label="04 // Simulador de Projeto (Atelier)" onclick="goToRoom(3)"></div>
+    <div class="hud-room-dot" data-label="05 // Contato & Agendamento (Terraço)" onclick="goToRoom(4)"></div>
   </div>
 
   <!-- Current Room Active Indicator (Floating Bottom-Left) -->
@@ -1056,7 +1056,7 @@
     <span class="room-badge-pulse"></span>
     <div>
       <div class="room-badge-text-small">Ambiente 3D Ativo</div>
-      <div class="room-badge-text-main" id="roomBadgeTitle">01 // FACHADA PRINCIPAL</div>
+      <div class="room-badge-text-main" id="roomBadgeTitle">01 // INÍCIO • FACHADA PRINCIPAL</div>
     </div>
   </div>
 
@@ -1065,16 +1065,16 @@
     <div class="mouse-scroll-icon">
       <div class="mouse-scroll-wheel"></div>
     </div>
-    <span id="flickPillText">Role a rodinha suavemente para ir ao <strong>02 // Living</strong> ↓</span>
+    <span id="flickPillText">Role suavemente para ir a <strong>Filosofia (Living)</strong> ↓</span>
   </div>
 
   <!-- Page Content Layers with Single-Flick Full Snap -->
   <div class="page-content" id="pageContent">
 
-    <!-- Section 1: Hero / Room 01 (Fachada) -->
-    <section class="arch-section" id="hero" data-room-index="0" data-room-title="01 // FACHADA PRINCIPAL">
+    <!-- Section 1: Início (Fachada Principal) -->
+    <section class="arch-section" id="hero" data-room-index="0" data-room-title="01 // INÍCIO • FACHADA PRINCIPAL">
       <div class="hero-container">
-        <div class="hero-pretitle">Arquitetura Sensorial & Concreto Aparente</div>
+        <div class="hero-pretitle">Apresentação • Studio Arkhé</div>
         <h1 class="hero-title">
           Espaços que respiram <em>luz, calma</em> e autenticidade.
         </h1>
@@ -1083,7 +1083,7 @@
         </p>
         <div class="hero-cta-group">
           <button onclick="goToRoom(2)" class="btn-arch-cta" style="padding: 12px 26px; border:none; font-size: 0.82rem;">
-            Explorar Portfólio
+            Explorar Obras Selecionadas
           </button>
           <button onclick="goToRoom(3)" class="btn-hero-outline" style="border: 1px solid rgba(255, 255, 255, 0.2);">
             Simulador de Projeto 3D →
@@ -1096,10 +1096,10 @@
       </div>
     </section>
 
-    <!-- Section 2: Filosofia / Room 02 (Living Room) -->
-    <section class="arch-section" id="filosofia" data-room-index="1" data-room-title="02 // LIVING PÉ-DIREITO DUPLO">
+    <!-- Section 2: Filosofia (Living Pé-Direito Duplo) -->
+    <section class="arch-section" id="filosofia" data-room-index="1" data-room-title="02 // FILOSOFIA • LIVING PÉ-DIREITO DUPLO">
       <div class="philosophy-card">
-        <span class="section-tag">Cômodo 02 // Salão Living Integrado</span>
+        <span class="section-tag">Filosofia • Arquitetura Sensorial</span>
         <h2 class="section-title">A Essência do Habitar Sensorial</h2>
         <p style="color: #cbd5e1; max-width: 720px; font-size: 0.95rem; line-height: 1.75;">
           Nossa abordagem nasce da fusão entre a precisão milimétrica da engenharia e a poesia do espaço construído. Cada linha valoriza a iluminação natural cênica e o silêncio visual.
@@ -1127,13 +1127,13 @@
       </div>
     </section>
 
-    <!-- Section 3: Obras & Portfólio / Room 03 (Galeria & Espaço Gourmet) -->
-    <section class="arch-section" id="projetos" data-room-index="2" data-room-title="03 // GALERIA & GOURMET LOUNGE">
+    <!-- Section 3: Obras Selecionadas (Espaço Gourmet & Cozinha) -->
+    <section class="arch-section" id="projetos" data-room-index="2" data-room-title="03 // OBRAS SELECIONADAS • ESPAÇO GOURMET">
       <div class="gallery-container">
         <div class="gallery-header">
           <div>
-            <span class="section-tag">Cômodo 03 // Galeria de Projetos</span>
-            <h2 class="section-title" style="margin-bottom: 0;">Obras Selecionadas</h2>
+            <span class="section-tag">Portfólio • Obras Selecionadas</span>
+            <h2 class="section-title" style="margin-bottom: 0;">Projetos & Residências Autorais</h2>
           </div>
 
           <div class="gallery-tabs">
@@ -1196,11 +1196,11 @@
       </div>
     </section>
 
-    <!-- Section 4: Simulador / Room 04 (Studio do Arquiteto) -->
-    <section class="arch-section" id="calculadora" data-room-index="3" data-room-title="04 // STUDIO DE CRIAÇÃO & ATELIER">
+    <!-- Section 4: Simulador (Studio de Criação & Atelier) -->
+    <section class="arch-section" id="calculadora" data-room-index="3" data-room-title="04 // SIMULADOR • STUDIO DE CRIAÇÃO">
       <div class="simulator-container">
         <div class="sim-info">
-          <span class="section-tag">Cômodo 04 // Studio do Arquiteto</span>
+          <span class="section-tag">Planejamento • Simulador de Projeto</span>
           <h2>Simulador de Estimativa de Projeto</h2>
           <p>
             Obtenha uma estimativa transparente de honorários de projeto arquitetônico executivo e interiores com rigor técnico, previsibilidade financeira e controle de prazos.
@@ -1269,11 +1269,11 @@
       </div>
     </section>
 
-    <!-- Section 5: Terraço & Contato / Room 05 (Terraço Sunset) -->
-    <section class="arch-section" id="contato" data-room-index="4" data-room-title="05 // TERRAÇO SUNSET & SPA">
+    <!-- Section 5: Contato (Terraço Sunset & SPA) -->
+    <section class="arch-section" id="contato" data-room-index="4" data-room-title="05 // CONTATO • TERRAÇO SUNSET & SPA">
       <div class="contact-container">
         <div>
-          <span class="section-tag">Cômodo 05 // Terraço Sunset</span>
+          <span class="section-tag">Atendimento • Contato & Agendamento</span>
           <h2 class="section-title">Inicie o Diálogo do Seu Espaço</h2>
           <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.7; margin-bottom: 20px;">
             Recebemos clientes com hora marcada em nosso atelier nos Jardins ou realizamos apresentações por videoconferência imersiva.
@@ -1326,7 +1326,7 @@
 
   </div>
 
-  <!-- Three.js 3D Architectural Masterpiece & Single-Flick Engine -->
+  <!-- Three.js 3D Architectural Villa: Real Planta 3D com Paredes, Portas e Cômodos Separados -->
   <script>
     // --- 1. PROCEDURAL ARCHITECTURAL TEXTURES GENERATOR ---
     function createProceduralTextures() {
@@ -1338,32 +1338,26 @@
       cCtx.fillStyle = '#32373f';
       cCtx.fillRect(0, 0, 512, 512);
 
-      // Add concrete noise and board seams
+      // Add concrete board seams & tie-rod holes
       for (let y = 0; y < 512; y += 64) {
-        cCtx.fillStyle = (y % 128 === 0) ? '#383e47' : '#2e333a';
+        cCtx.fillStyle = (y % 128 === 0) ? '#383e47' : '#2d3239';
         cCtx.fillRect(0, y, 512, 62);
-
-        // Seam shadow line
-        cCtx.fillStyle = '#1c1f24';
+        cCtx.fillStyle = '#1a1d22';
         cCtx.fillRect(0, y + 62, 512, 2);
 
-        // Anchor tie-rod holes (furos de ancoragem de fôrma de concreto)
         for (let x = 60; x < 512; x += 130) {
           cCtx.beginPath();
           cCtx.arc(x, y + 31, 5, 0, Math.PI * 2);
-          cCtx.fillStyle = '#181a1e';
+          cCtx.fillStyle = '#16181c';
           cCtx.fill();
           cCtx.strokeStyle = '#4a515c';
           cCtx.lineWidth = 1;
           cCtx.stroke();
         }
       }
-      // Subtle concrete specks
       for (let i = 0; i < 6000; i++) {
-        const px = Math.random() * 512;
-        const py = Math.random() * 512;
         cCtx.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.08)';
-        cCtx.fillRect(px, py, 1.5, 1.5);
+        cCtx.fillRect(Math.random() * 512, Math.random() * 512, 1.5, 1.5);
       }
       const concreteTex = new THREE.CanvasTexture(concreteCanvas);
       concreteTex.wrapS = THREE.RepeatWrapping;
@@ -1376,19 +1370,15 @@
       const wCtx = woodCanvas.getContext('2d');
       wCtx.fillStyle = '#443224';
       wCtx.fillRect(0, 0, 512, 512);
-      // Slat vertical strips
       for (let x = 0; x < 512; x += 16) {
         wCtx.fillStyle = (Math.floor(x / 16) % 2 === 0) ? '#5a4230' : '#4f3929';
         wCtx.fillRect(x, 0, 14, 512);
         wCtx.fillStyle = '#1d150e';
-        wCtx.fillRect(x + 14, 0, 2, 512); // Shadow recess between slats
+        wCtx.fillRect(x + 14, 0, 2, 512);
       }
-      // Subtle wood grain horizontal fibers
       for (let i = 0; i < 3000; i++) {
-        const wx = Math.random() * 512;
-        const wy = Math.random() * 512;
         wCtx.fillStyle = 'rgba(255,200,140,0.03)';
-        wCtx.fillRect(wx, wy, Math.random() * 20 + 5, 1);
+        wCtx.fillRect(Math.random() * 512, Math.random() * 512, Math.random() * 20 + 5, 1);
       }
       const woodTex = new THREE.CanvasTexture(woodCanvas);
       woodTex.wrapS = THREE.RepeatWrapping;
@@ -1402,7 +1392,6 @@
       mCtx.fillStyle = '#f6f4ee';
       mCtx.fillRect(0, 0, 512, 512);
 
-      // Veins
       mCtx.strokeStyle = 'rgba(120, 125, 135, 0.4)';
       mCtx.lineWidth = 4;
       mCtx.beginPath();
@@ -1410,18 +1399,11 @@
       mCtx.bezierCurveTo(140, 110, 260, 40, 512, 220);
       mCtx.stroke();
 
-      mCtx.strokeStyle = 'rgba(197, 160, 89, 0.35)'; // Gold accent vein
+      mCtx.strokeStyle = 'rgba(197, 160, 89, 0.35)';
       mCtx.lineWidth = 2.5;
       mCtx.beginPath();
       mCtx.moveTo(20, 140);
       mCtx.bezierCurveTo(180, 260, 310, 290, 512, 380);
-      mCtx.stroke();
-
-      mCtx.strokeStyle = 'rgba(80, 85, 95, 0.25)';
-      mCtx.lineWidth = 2;
-      mCtx.beginPath();
-      mCtx.moveTo(200, 0);
-      mCtx.bezierCurveTo(240, 150, 400, 320, 480, 512);
       mCtx.stroke();
       const marbleTex = new THREE.CanvasTexture(marbleCanvas);
 
@@ -1430,10 +1412,9 @@
       bpCanvas.width = 512;
       bpCanvas.height = 512;
       const bCtx = bpCanvas.getContext('2d');
-      bCtx.fillStyle = '#14273e'; // CAD blueprint blue
+      bCtx.fillStyle = '#14273e';
       bCtx.fillRect(0, 0, 512, 512);
 
-      // Grid
       bCtx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
       bCtx.lineWidth = 1;
       for (let i = 0; i < 512; i += 32) {
@@ -1441,15 +1422,13 @@
         bCtx.beginPath(); bCtx.moveTo(0, i); bCtx.lineTo(512, i); bCtx.stroke();
       }
 
-      // Drawn Floor Plan walls
       bCtx.strokeStyle = '#00f0ff';
       bCtx.lineWidth = 3;
-      bCtx.strokeRect(60, 60, 390, 390); // Outer villa boundary
-      bCtx.strokeRect(60, 60, 200, 180); // Master suite
-      bCtx.strokeRect(260, 60, 190, 260); // Living room & double height
-      bCtx.strokeRect(60, 240, 200, 210); // Gourmet & Atelier
+      bCtx.strokeRect(60, 60, 390, 390);
+      bCtx.strokeRect(60, 60, 200, 180);
+      bCtx.strokeRect(260, 60, 190, 260);
+      bCtx.strokeRect(60, 240, 200, 210);
 
-      // CAD Room Dimension Text & Stamp
       bCtx.fillStyle = '#ffffff';
       bCtx.font = '14px sans-serif';
       bCtx.fillText('STUDIO ARKHÉ — PROJETO EXECUTIVO VILLA 01', 75, 40);
@@ -1457,20 +1436,19 @@
       bCtx.font = '11px monospace';
       bCtx.fillText('LIVING PÉ-DIREITO DUPLO [58.4m²]', 275, 120);
       bCtx.fillText('GOURMET & LOUNGE [42.0m²]', 80, 280);
-      bCtx.fillText('SUÍTE MASTER [36.5m²]', 80, 100);
+      bCtx.fillText('STUDIO / ATELIER [36.5m²]', 80, 100);
       bCtx.fillText('TERRAÇO & SPA INFINITO [85.0m²]', 140, 420);
       bCtx.strokeRect(400, 400, 80, 45);
-      bCtx.fillText('RRT/BIM', 415, 426);
+      bCtx.fillText('BIM 3D', 420, 426);
       const blueprintTex = new THREE.CanvasTexture(bpCanvas);
 
-      // 1.5 Gallery Contemporary Art Canvas
+      // 1.5 Contemporary Art
       const artCanvas = document.createElement('canvas');
       artCanvas.width = 512;
       artCanvas.height = 512;
       const aCtx = artCanvas.getContext('2d');
       aCtx.fillStyle = '#22252b';
       aCtx.fillRect(0, 0, 512, 512);
-      // Elegant minimal geometric art
       aCtx.fillStyle = '#c5a059';
       aCtx.beginPath();
       aCtx.arc(256, 210, 120, 0, Math.PI * 2);
@@ -1481,29 +1459,56 @@
       aCtx.fillRect(200, 160, 40, 280);
       const artTex = new THREE.CanvasTexture(artCanvas);
 
-      return { concreteTex, woodTex, marbleTex, blueprintTex, artTex };
+      // 1.6 Bookshelf Texture for the Studio Atelier Wall
+      const bookCanvas = document.createElement('canvas');
+      bookCanvas.width = 512;
+      bookCanvas.height = 512;
+      const bkCtx = bookCanvas.getContext('2d');
+      bkCtx.fillStyle = '#1e1a16';
+      bkCtx.fillRect(0, 0, 512, 512);
+      const bookColors = ['#8b261e', '#22425b', '#c5a059', '#3e5235', '#5a3d28', '#dfd7cc', '#2b2d34'];
+      for (let shelfY = 0; shelfY < 512; shelfY += 90) {
+        bkCtx.fillStyle = '#3a2e24';
+        bkCtx.fillRect(0, shelfY + 82, 512, 8); // shelf board
+        let curX = 15;
+        while (curX < 490) {
+          const bWidth = Math.random() * 18 + 12;
+          const bHeight = Math.random() * 25 + 55;
+          bkCtx.fillStyle = bookColors[Math.floor(Math.random() * bookColors.length)];
+          bkCtx.fillRect(curX, shelfY + 82 - bHeight, bWidth, bHeight);
+          // gold spine title line
+          bkCtx.fillStyle = 'rgba(197, 160, 89, 0.4)';
+          bkCtx.fillRect(curX + bWidth * 0.3, shelfY + 82 - bHeight + 10, bWidth * 0.4, 4);
+          curX += bWidth + 3;
+        }
+      }
+      const bookshelfTex = new THREE.CanvasTexture(bookCanvas);
+      bookshelfTex.wrapS = THREE.RepeatWrapping;
+      bookshelfTex.wrapT = THREE.RepeatWrapping;
+
+      return { concreteTex, woodTex, marbleTex, blueprintTex, artTex, bookshelfTex };
     }
 
-    // --- 2. THREE.JS SCENE, LIGHTS & PROCEDURAL VILLA ---
+    // --- 2. THREE.JS SCENE, REAL PLANTA 3D COM PAREDES & PORTAS ---
     let scene, camera, renderer, villaGroup, flameParticles = [], poolWaterMesh;
-    let targetCameraPos = new THREE.Vector3(0, 3.4, 16.5);
-    let targetCameraLook = new THREE.Vector3(0, 2.2, 0);
-    let currentCameraPos = new THREE.Vector3(0, 3.4, 16.5);
-    let currentCameraLook = new THREE.Vector3(0, 2.2, 0);
+    let targetCameraPos = new THREE.Vector3(0, 4.0, 22.0);
+    let targetCameraLook = new THREE.Vector3(0, 2.5, 0);
+    let currentCameraPos = new THREE.Vector3(0, 4.0, 22.0);
+    let currentCameraLook = new THREE.Vector3(0, 2.5, 0);
     let mouseX = 0, mouseY = 0;
 
-    // Waypoints for the 5 Rooms (Carefully framed views)
+    // Waypoints for the 5 Rooms (Fiel aos cômodos separados e específicos)
     const roomWaypoints = [
-      // 0: Fachada Principal (Grand exterior cantilever, reflection pool & infinity pool)
-      { pos: new THREE.Vector3(0, 3.4, 16.5), look: new THREE.Vector3(0, 2.0, 0) },
-      // 1: Living Pé-Direito Duplo (Inside viewing Italian sectional sofa & glowing linear fireplace)
-      { pos: new THREE.Vector3(-3.8, 2.3, 4.2), look: new THREE.Vector3(-0.8, 1.7, -1.0) },
-      // 2: Galeria & Gourmet Lounge (Calacatta marble island, brass pendants & illuminated wine cellar)
-      { pos: new THREE.Vector3(4.2, 2.4, 2.8), look: new THREE.Vector3(1.5, 1.8, -3.2) },
-      // 3: Studio de Criação & Atelier (Tilted CAD blueprint desk, Tolomeo lamp & physical maquette)
-      { pos: new THREE.Vector3(-2.2, 1.95, -4.6), look: new THREE.Vector3(-3.2, 1.45, -7.8) },
-      // 4: Terraço Sunset & SPA (Sunset horizon, cumaru deck loungers & infinity pool water)
-      { pos: new THREE.Vector3(1.8, 3.1, 9.8), look: new THREE.Vector3(0, 1.2, 18.0) }
+      // 0: INÍCIO (Fachada Principal: exterior completo com balanço, espelho d'água e porta pivotante)
+      { pos: new THREE.Vector3(0, 4.0, 22.0), look: new THREE.Vector3(0, 2.5, 0) },
+      // 1: FILOSOFIA (Living Pé-Direito Duplo: dentro da sala de estar com sofá Minotti, tapete, lareira e paredes fechadas)
+      { pos: new THREE.Vector3(-5.0, 2.3, 4.5), look: new THREE.Vector3(-5.0, 1.8, -1.0) },
+      // 2: OBRAS SELECIONADAS (Espaço Gourmet & Cozinha: dentro da cozinha gourmet com ilha Calacatta, torre de fornos e adega)
+      { pos: new THREE.Vector3(5.5, 2.4, 3.8), look: new THREE.Vector3(5.5, 1.9, -2.5) },
+      // 3: SIMULADOR (Studio de Criação & Atelier: dentro do atelier privativo com prancheta de desenho, planta CAD e maquete física)
+      { pos: new THREE.Vector3(-5.0, 2.1, -9.0), look: new THREE.Vector3(-5.0, 1.6, -13.5) },
+      // 4: CONTATO (Terraço Sunset & SPA: ampla varanda externa com deck em cumaru, chaises, lareira externa e horizonte)
+      { pos: new THREE.Vector3(2.5, 3.4, 12.0), look: new THREE.Vector3(0, 1.5, 22.0) }
     ];
 
     function init3DScene() {
@@ -1511,7 +1516,7 @@
       const canvas = document.getElementById('arch-3d-canvas');
 
       scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x090b0e, 0.02);
+      scene.fog = new THREE.FogExp2(0x090b0e, 0.018);
 
       camera = new THREE.PerspectiveCamera(46, window.innerWidth / window.innerHeight, 0.1, 100);
       camera.position.copy(roomWaypoints[0].pos);
@@ -1521,37 +1526,41 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.18;
+      renderer.toneMappingExposure = 1.2;
 
       // Twilight Sky Ambient
-      const ambientLight = new THREE.AmbientLight(0x2d3748, 1.0);
+      const ambientLight = new THREE.AmbientLight(0x2a3444, 1.1);
       scene.add(ambientLight);
 
       // Moonlight Directional
       const moonLight = new THREE.DirectionalLight(0x88bbff, 1.2);
-      moonLight.position.set(12, 25, 18);
+      moonLight.position.set(15, 26, 20);
       scene.add(moonLight);
 
-      // Warm Interior 2700K Lights
-      const livingLight = new THREE.PointLight(0xffa550, 2.4, 20);
-      livingLight.position.set(-2.5, 3.8, 1.5);
+      // Warm Interior 2700K Lights per Room
+      // Living Light
+      const livingLight = new THREE.PointLight(0xffa550, 2.5, 18);
+      livingLight.position.set(-5.0, 4.2, 0);
       scene.add(livingLight);
 
-      const gourmetLight = new THREE.PointLight(0xffbe6a, 2.2, 18);
-      gourmetLight.position.set(4.5, 3.6, -1.2);
+      // Gourmet Light
+      const gourmetLight = new THREE.PointLight(0xffbe6a, 2.4, 18);
+      gourmetLight.position.set(5.5, 3.8, 0);
       scene.add(gourmetLight);
 
-      const studioSpot = new THREE.SpotLight(0xffe2a0, 3.0, 12, Math.PI / 4, 0.3);
-      studioSpot.position.set(-3.2, 3.2, -7.5);
-      studioSpot.target.position.set(-3.2, 1.1, -7.5);
+      // Atelier Spot Task Light
+      const studioSpot = new THREE.SpotLight(0xffe2a0, 3.2, 14, Math.PI / 4, 0.25);
+      studioSpot.position.set(-5.0, 3.8, -11.5);
+      studioSpot.target.position.set(-5.0, 1.1, -11.5);
       scene.add(studioSpot);
       scene.add(studioSpot.target);
 
-      const poolLight = new THREE.PointLight(0x00f0ff, 2.2, 16);
-      poolLight.position.set(0, 0.2, 12);
+      // Pool Turquoise Light
+      const poolLight = new THREE.PointLight(0x00f0ff, 2.5, 18);
+      poolLight.position.set(0, 0.2, 13);
       scene.add(poolLight);
 
-      buildLuxuryArchitecturalVilla();
+      buildPlanta3DVillaComParedes();
 
       window.addEventListener('resize', onWindowResize);
       window.addEventListener('mousemove', onMouseMove);
@@ -1559,9 +1568,9 @@
       animate();
     }
 
-    function buildLuxuryArchitecturalVilla() {
+    function buildPlanta3DVillaComParedes() {
       villaGroup = new THREE.Group();
-      const { concreteTex, woodTex, marbleTex, blueprintTex, artTex } = createProceduralTextures();
+      const { concreteTex, woodTex, marbleTex, blueprintTex, artTex, bookshelfTex } = createProceduralTextures();
 
       // Materials
       const concreteMat = new THREE.MeshStandardMaterial({ map: concreteTex, roughness: 0.65, metalness: 0.08 });
@@ -1569,188 +1578,205 @@
       const marbleMat = new THREE.MeshStandardMaterial({ map: marbleTex, roughness: 0.18, metalness: 0.15 });
       const blueprintMat = new THREE.MeshBasicMaterial({ map: blueprintTex });
       const artMat = new THREE.MeshStandardMaterial({ map: artTex, roughness: 0.5 });
-      const darkMetalMat = new THREE.MeshStandardMaterial({ color: 0x181a1f, roughness: 0.35, metalness: 0.85 });
+      const bookshelfMat = new THREE.MeshStandardMaterial({ map: bookshelfTex, roughness: 0.7 });
+      const darkMetalMat = new THREE.MeshStandardMaterial({ color: 0x16181d, roughness: 0.35, metalness: 0.85 });
       const brassMat = new THREE.MeshStandardMaterial({ color: 0xc5a059, roughness: 0.28, metalness: 0.9 });
       const glassMat = new THREE.MeshPhysicalMaterial({ color: 0x88ccdd, transparent: true, opacity: 0.28, roughness: 0.05, transmission: 0.85, thickness: 0.3 });
       const waterMat = new THREE.MeshStandardMaterial({ color: 0x074457, roughness: 0.1, metalness: 0.7, transparent: true, opacity: 0.85 });
-      const boucleMat = new THREE.MeshStandardMaterial({ color: 0xe8e4dc, roughness: 0.95 }); // Off-white luxury boucle
+      const boucleMat = new THREE.MeshStandardMaterial({ color: 0xe8e4dc, roughness: 0.95 });
       const darkWoodMat = new THREE.MeshStandardMaterial({ color: 0x241a13, roughness: 0.5 });
       const foliageMat = new THREE.MeshStandardMaterial({ color: 0x22492f, roughness: 0.6 });
+      const carpetMat = new THREE.MeshStandardMaterial({ color: 0x484c56, roughness: 0.95 });
 
-      // --- GROUND & BASE PLATFORMS ---
+      // ==========================================
+      // 1. BASE ESTRUTURAL & PISOS POR CÔMODO
+      // ==========================================
       // Ground plane
-      const ground = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), concreteMat);
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(90, 90), concreteMat);
       ground.rotation.x = -Math.PI / 2;
       villaGroup.add(ground);
 
-      // Main Villa Floor Slab
-      const floorSlab = new THREE.Mesh(new THREE.BoxGeometry(22, 0.4, 26), woodSlatMat);
-      floorSlab.position.set(0, 0.2, 0);
-      villaGroup.add(floorSlab);
+      // Living Room Floor (Wood floor X: -11 to 0, Z: -6.5 to +6.5)
+      const livingFloor = new THREE.Mesh(new THREE.BoxGeometry(11, 0.4, 13), woodSlatMat);
+      livingFloor.position.set(-5.5, 0.2, 0);
+      villaGroup.add(livingFloor);
 
-      // Roof Slab
-      const roofSlab = new THREE.Mesh(new THREE.BoxGeometry(24, 0.5, 28), concreteMat);
-      roofSlab.position.set(0, 5.6, 0);
-      villaGroup.add(roofSlab);
+      // Gourmet Room Floor (Calacatta Marble Floor X: 0 to +11, Z: -6.5 to +6.5)
+      const gourmetFloor = new THREE.Mesh(new THREE.BoxGeometry(11, 0.4, 13), marbleMat);
+      gourmetFloor.position.set(5.5, 0.2, 0);
+      villaGroup.add(gourmetFloor);
 
-      // Cantilevered Eaves Soffit (Forro Ripado inferior com fitas de iluminação)
-      const soffit = new THREE.Mesh(new THREE.BoxGeometry(23.6, 0.05, 27.6), woodSlatMat);
-      soffit.position.set(0, 5.34, 0);
-      villaGroup.add(soffit);
+      // Atelier / Studio Room Floor (Dark Basalt Stone X: -11 to 0, Z: -16.5 to -6.5)
+      const studioFloor = new THREE.Mesh(new THREE.BoxGeometry(11, 0.4, 10), darkMetalMat);
+      studioFloor.position.set(-5.5, 0.2, -11.5);
+      villaGroup.add(studioFloor);
 
-      // Back Concrete Wall (Board-formed)
-      const backWall = new THREE.Mesh(new THREE.BoxGeometry(22, 5.5, 0.6), concreteMat);
-      backWall.position.set(0, 2.75, -13);
+      // Roof / Ceiling Slab
+      const roofLiving = new THREE.Mesh(new THREE.BoxGeometry(24, 0.5, 26), concreteMat);
+      roofLiving.position.set(0, 5.6, -3.5);
+      villaGroup.add(roofLiving);
+
+      // Forro de madeira no teto
+      const soffitWood = new THREE.Mesh(new THREE.BoxGeometry(23.6, 0.05, 25.6), woodSlatMat);
+      soffitWood.position.set(0, 5.34, -3.5);
+      villaGroup.add(soffitWood);
+
+      // ====================================================
+      // 2. PAREDES DIVISÓRIAS & PORTAS (DIVISÃO REAL DA PLANTA)
+      // ====================================================
+
+      // 2.1 PAREDE PERIMETRAL FUNDOS (Z = -16.5, X = -11.5 a +11.5)
+      const backWall = new THREE.Mesh(new THREE.BoxGeometry(23, 5.5, 0.6), concreteMat);
+      backWall.position.set(0, 2.75, -16.5);
       villaGroup.add(backWall);
 
-      // Left Concrete Wall
-      const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 5.5, 26), concreteMat);
-      leftWall.position.set(-11, 2.75, 0);
+      // 2.2 PAREDE LATERAL ESQUERDA (X = -11.0, Z = -16.5 a +6.5)
+      const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 5.5, 23), concreteMat);
+      leftWall.position.set(-11.0, 2.75, -5.0);
       villaGroup.add(leftWall);
 
-      // Right Concrete Wall
-      const rightWall = leftWall.clone();
-      rightWall.position.set(11, 2.75, 0);
+      // 2.3 PAREDE LATERAL DIREITA (X = +11.0, Z = -6.5 a +6.5)
+      const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 5.5, 13), concreteMat);
+      rightWall.position.set(11.0, 2.75, 0);
       villaGroup.add(rightWall);
 
-      // --- STRUCTURAL CANTILEVER (Pavimento Superior em Balanço Arrojado) ---
-      const cantileverVolume = new THREE.Mesh(new THREE.BoxGeometry(10, 2.4, 8), concreteMat);
-      cantileverVolume.position.set(-4.5, 4.2, 8); // Projecting over the pool terrace
-      villaGroup.add(cantileverVolume);
+      // 2.4 PAREDE DIVISÓRIA ENTRE LIVING E ATELIER (Z = -6.5, X = -11.0 a 0) COM PORTA DE PASSAGEM
+      // Segmento esquerdo da parede
+      const wallLivAtelLeft = new THREE.Mesh(new THREE.BoxGeometry(4.5, 5.5, 0.5), concreteMat);
+      wallLivAtelLeft.position.set(-8.75, 2.75, -6.5);
+      villaGroup.add(wallLivAtelLeft);
 
-      // Vertical Wood Brise-Soleil (Brises Ripados de Sombreamento)
-      for (let bx = -9.2; bx <= 0.2; bx += 0.4) {
-        const brise = new THREE.Mesh(new THREE.BoxGeometry(0.06, 2.3, 0.35), woodSlatMat);
-        brise.position.set(bx, 4.2, 12.05);
-        villaGroup.add(brise);
-      }
+      // Segmento direito da parede
+      const wallLivAtelRight = new THREE.Mesh(new THREE.BoxGeometry(3.5, 5.5, 0.5), concreteMat);
+      wallLivAtelRight.position.set(-1.75, 2.75, -6.5);
+      villaGroup.add(wallLivAtelRight);
 
-      // Front Floor-to-Ceiling Glass Curtain Wall & Slim Black Mullions (Esquadrias Minimalistas)
-      const glassFront = new THREE.Mesh(new THREE.BoxGeometry(21.4, 5.0, 0.08), glassMat);
-      glassFront.position.set(0, 2.7, 6.8);
-      villaGroup.add(glassFront);
+      // Viga superior sobre a porta (vão da porta das X = -6.5 a -3.5, altura livre 3.0m)
+      const doorHeaderAtelier = new THREE.Mesh(new THREE.BoxGeometry(3.0, 2.5, 0.5), concreteMat);
+      doorHeaderAtelier.position.set(-5.0, 4.25, -6.5);
+      villaGroup.add(doorHeaderAtelier);
 
-      // Black Aluminum Mullions
-      for (let mx of [-10.5, -6.5, -2.5, 1.5, 5.5, 10.5]) {
+      // Portal / Batente de porta em latão e folha de madeira pivotante aberta em 45º
+      const doorFrameAtelier = new THREE.Mesh(new THREE.BoxGeometry(0.08, 3.0, 0.5), brassMat);
+      doorFrameAtelier.position.set(-6.5, 1.5, -6.5);
+      villaGroup.add(doorFrameAtelier);
+
+      const doorLeafAtelier = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2.95, 0.08), woodSlatMat);
+      doorLeafAtelier.position.set(-5.8, 1.5, -6.2);
+      doorLeafAtelier.rotation.y = 0.8; // Porta aberta convidativa
+      villaGroup.add(doorLeafAtelier);
+
+      // 2.5 PAREDE DIVISÓRIA ENTRE LIVING E GOURMET (X = 0, Z = -6.5 a +6.5) COM GRANDE VÃO DE PORTAS DE VIDRO
+      // Trecho traseiro da parede divisória
+      const wallLivGourmetBack = new THREE.Mesh(new THREE.BoxGeometry(0.5, 5.5, 4.0), concreteMat);
+      wallLivGourmetBack.position.set(0, 2.75, -4.5);
+      villaGroup.add(wallLivGourmetBack);
+
+      // Trecho dianteiro da parede divisória
+      const wallLivGourmetFront = new THREE.Mesh(new THREE.BoxGeometry(0.5, 5.5, 3.0), concreteMat);
+      wallLivGourmetFront.position.set(0, 2.75, 5.0);
+      villaGroup.add(wallLivGourmetFront);
+
+      // Viga superior sobre a abertura (Z de -2.5 a +3.5)
+      const doorHeaderGourmet = new THREE.Mesh(new THREE.BoxGeometry(0.5, 2.3, 6.0), concreteMat);
+      doorHeaderGourmet.position.set(0, 4.35, 1.25);
+      villaGroup.add(doorHeaderGourmet);
+
+      // Painéis de porta de correr em vidro com esquadria preta
+      const slidingGlassDoor = new THREE.Mesh(new THREE.BoxGeometry(0.06, 3.2, 2.8), glassMat);
+      slidingGlassDoor.position.set(0, 1.6, 2.0);
+      villaGroup.add(slidingGlassDoor);
+
+      // 2.6 FACHADA FRONTAL ENVIDRAÇADA COM ESQUADRIAS & PORTA PIVOTANTE DE ENTRADA (Z = 6.5)
+      // Vidros frontais
+      const glassFrontLiving = new THREE.Mesh(new THREE.BoxGeometry(10.5, 5.0, 0.08), glassMat);
+      glassFrontLiving.position.set(-5.5, 2.7, 6.5);
+      villaGroup.add(glassFrontLiving);
+
+      const glassFrontGourmet = new THREE.Mesh(new THREE.BoxGeometry(10.5, 5.0, 0.08), glassMat);
+      glassFrontGourmet.position.set(5.5, 2.7, 6.5);
+      villaGroup.add(glassFrontGourmet);
+
+      // Esquadrias pretas da fachada
+      for (let mx of [-10.8, -7.5, -4.0, 0, 4.0, 7.5, 10.8]) {
         const mullion = new THREE.Mesh(new THREE.BoxGeometry(0.08, 5.0, 0.14), darkMetalMat);
-        mullion.position.set(mx, 2.7, 6.8);
+        mullion.position.set(mx, 2.7, 6.5);
         villaGroup.add(mullion);
       }
 
-      // Horizontal Transom Frame
-      const transom = new THREE.Mesh(new THREE.BoxGeometry(21.5, 0.08, 0.14), darkMetalMat);
-      transom.position.set(0, 4.2, 6.8);
-      villaGroup.add(transom);
+      // Porta Pivotante Monumental na Fachada (X = -2.0, Z = 6.5)
+      const frontPivotDoor = new THREE.Mesh(new THREE.BoxGeometry(1.6, 3.4, 0.12), darkWoodMat);
+      frontPivotDoor.position.set(-2.0, 1.7, 6.52);
+      villaGroup.add(frontPivotDoor);
 
-      // Slender Structural Brass Columns
-      for (let cx of [-6, 0, 6]) {
-        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 5.2, 16), brassMat);
-        col.position.set(cx, 2.7, 6.7);
-        villaGroup.add(col);
-      }
+      // Puxador Vertical Monumental em Latão (2.2m)
+      const brassPull = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 2.2, 12), brassMat);
+      brassPull.position.set(-1.4, 1.7, 6.6);
+      villaGroup.add(brassPull);
 
-      // --- ROOM 01 / 05: OUTDOOR INFINITY POOL & CUMARU DECK ---
-      // Infinity Pool
-      const poolGeo = new THREE.BoxGeometry(15, 0.8, 8);
-      poolWaterMesh = new THREE.Mesh(poolGeo, waterMat);
-      poolWaterMesh.position.set(0, -0.2, 12);
-      villaGroup.add(poolWaterMesh);
+      // ==========================================
+      // 3. MOBILIÁRIO EXCLUSIVO DO CÔMODO 02: LIVING
+      // ==========================================
+      // Grande tapete contemporâneo
+      const rug = new THREE.Mesh(new THREE.BoxGeometry(6.5, 0.02, 5.5), carpetMat);
+      rug.position.set(-5.5, 0.41, 0);
+      villaGroup.add(rug);
 
-      // Teak / Cumaru Pool Deck
-      const poolDeck = new THREE.Mesh(new THREE.BoxGeometry(19, 0.2, 9.6), woodSlatMat);
-      poolDeck.position.set(0, 0.1, 12);
-      villaGroup.add(poolDeck);
+      // Sofá Modular Italiano Minotti em L (Tecido Bouclé Off-White)
+      const sofaBaseMain = new THREE.Mesh(new THREE.BoxGeometry(4.8, 0.65, 2.2), boucleMat);
+      sofaBaseMain.position.set(-5.2, 0.52, 1.2);
+      villaGroup.add(sofaBaseMain);
 
-      // Glass Balustrade with Stainless Steel Spigots
-      const balustrade = new THREE.Mesh(new THREE.BoxGeometry(18.8, 1.1, 0.04), glassMat);
-      balustrade.position.set(0, 0.75, 16.7);
-      villaGroup.add(balustrade);
-
-      // Luxury Teak Sun Chaises (Espreguiçadeiras)
-      for (let sx of [4.5, 6.8]) {
-        const chaise = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.2, 2.2), woodSlatMat);
-        chaise.position.set(sx, 0.3, 11);
-        villaGroup.add(chaise);
-        const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.1, 2.1), boucleMat);
-        cushion.position.set(sx, 0.45, 11);
-        villaGroup.add(cushion);
-        const pillow = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.12, 0.4), new THREE.MeshStandardMaterial({ color: 0xc5a059 }));
-        pillow.position.set(sx, 0.55, 11.8);
-        villaGroup.add(pillow);
-      }
-
-      // Tropical Biofilia Planters (Strelitzias / Folhagens Esculturais)
-      const planter = new THREE.Mesh(new THREE.BoxGeometry(5.0, 0.7, 1.2), concreteMat);
-      planter.position.set(-7.5, 0.45, 7.5);
-      villaGroup.add(planter);
-
-      for (let f = -9.2; f <= -5.8; f += 0.8) {
-        const plantStem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.02, 1.4, 8), foliageMat);
-        plantStem.position.set(f, 1.4, 7.5);
-        plantStem.rotation.z = (Math.random() - 0.5) * 0.4;
-        villaGroup.add(plantStem);
-        const leaf = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.8, 0.02), foliageMat);
-        leaf.position.set(f, 1.9, 7.5);
-        leaf.rotation.y = Math.random() * Math.PI;
-        villaGroup.add(leaf);
-      }
-
-      // --- ROOM 02: DOUBLE-HEIGHT LIVING ROOM ---
-      // Italian Modular Sectional Sofa (Bouclé Off-White com almofadas de couro)
-      const sofaMain = new THREE.Mesh(new THREE.BoxGeometry(4.8, 0.65, 2.2), boucleMat);
-      sofaMain.position.set(-3.6, 0.52, 2.2);
-      villaGroup.add(sofaMain);
-
-      const sofaChaise = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.65, 3.6), boucleMat);
-      sofaChaise.position.set(-5.8, 0.52, 2.9);
+      const sofaChaise = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.65, 3.8), boucleMat);
+      sofaChaise.position.set(-7.5, 0.52, 1.9);
       villaGroup.add(sofaChaise);
 
-      // Sofa Backrest & Pillows
+      // Encosto do sofá
       const sofaBack = new THREE.Mesh(new THREE.BoxGeometry(4.8, 0.5, 0.45), boucleMat);
-      sofaBack.position.set(-3.6, 1.0, 1.15);
+      sofaBack.position.set(-5.2, 1.0, 0.2);
       villaGroup.add(sofaBack);
 
-      // Throw pillows in caramel leather & charcoal
+      // Almofadas em couro e linho
       const pillowLeatherMat = new THREE.MeshStandardMaterial({ color: 0x8a542b, roughness: 0.6 });
       const p1 = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.4, 0.18), pillowLeatherMat);
-      p1.position.set(-2.2, 1.0, 1.4);
+      p1.position.set(-3.8, 1.0, 0.5);
       villaGroup.add(p1);
+
       const p2 = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.4, 0.18), darkMetalMat);
-      p2.position.set(-4.2, 1.0, 1.4);
+      p2.position.set(-6.2, 1.0, 0.5);
       villaGroup.add(p2);
 
-      // Nesting Coffee Tables (Mármore Calacatta + Madeira Escura)
-      const marbleTable = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.32, 1.3), marbleMat);
-      marbleTable.position.set(-3.2, 0.36, 3.8);
-      villaGroup.add(marbleTable);
+      // Mesas de Centro Orgânicas Sobrepostas (Mármore Calacatta + Carvalho Escuro)
+      const marbleCoffeeTable = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.32, 1.3), marbleMat);
+      marbleCoffeeTable.position.set(-4.8, 0.38, 2.6);
+      villaGroup.add(marbleCoffeeTable);
 
-      const roundOakTable = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.24, 24), darkWoodMat);
-      roundOakTable.position.set(-1.6, 0.32, 4.4);
+      const roundOakTable = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 0.24, 24), darkWoodMat);
+      roundOakTable.position.set(-3.3, 0.34, 3.1);
       villaGroup.add(roundOakTable);
 
-      // Open Architectural Book on Coffee Table
-      const artBook = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.04, 0.35), new THREE.MeshBasicMaterial({ color: 0xffffff }));
-      artBook.position.set(-3.2, 0.54, 3.8);
+      // Livro de arquitetura aberto
+      const artBook = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.03, 0.35), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+      artBook.position.set(-4.8, 0.56, 2.6);
       villaGroup.add(artBook);
 
-      // Floating Linear Basalt Console with ACTIVE BIOETHANOL FIREPLACE (Lareira Ecológica Linear)
-      const fireplaceBench = new THREE.Mesh(new THREE.BoxGeometry(5.4, 0.4, 0.8), darkMetalMat);
-      fireplaceBench.position.set(-3.5, 0.4, -0.6);
+      // Bancada de Basalto com Lareira Ecológica Linear na parede divisória do living
+      const fireplaceBench = new THREE.Mesh(new THREE.BoxGeometry(5.0, 0.45, 0.8), darkMetalMat);
+      fireplaceBench.position.set(-5.2, 0.42, -5.9);
       villaGroup.add(fireplaceBench);
 
-      // Fireplace Flame Channel
-      const fireTrough = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.06, 0.25), new THREE.MeshBasicMaterial({ color: 0x111111 }));
-      fireTrough.position.set(-3.5, 0.62, -0.6);
+      const fireTrough = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.05, 0.25), new THREE.MeshBasicMaterial({ color: 0x111111 }));
+      fireTrough.position.set(-5.2, 0.66, -5.9);
       villaGroup.add(fireTrough);
 
-      // Flame Particles (Lareira viva animada com 45 partículas de fogo)
+      // Partículas de Chamas Vivas da Lareira (45 partículas animadas)
       const fireParticleGeo = new THREE.BufferGeometry();
       const fireCount = 45;
       const firePositions = new Float32Array(fireCount * 3);
       for (let i = 0; i < fireCount; i++) {
-        firePositions[i * 3] = -4.8 + Math.random() * 2.6;
-        firePositions[i * 3 + 1] = 0.65 + Math.random() * 0.4;
-        firePositions[i * 3 + 2] = -0.6 + (Math.random() - 0.5) * 0.12;
+        firePositions[i * 3] = -6.5 + Math.random() * 2.6;
+        firePositions[i * 3 + 1] = 0.7 + Math.random() * 0.4;
+        firePositions[i * 3 + 2] = -5.9 + (Math.random() - 0.5) * 0.12;
       }
       fireParticleGeo.setAttribute('position', new THREE.BufferAttribute(firePositions, 3));
       const fireMat = new THREE.PointsMaterial({
@@ -1764,154 +1790,267 @@
       villaGroup.add(firePoints);
       villaGroup.userData.firePoints = firePoints;
 
-      // Designer Arched Floor Lamp (Estilo Arco / Flos com haste curva)
+      // Luminária de Piso Curva estilo Arco / Flos
       const lampMarbleBase = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.3, 16), marbleMat);
-      lampMarbleBase.position.set(-6.5, 0.35, 0.5);
+      lampMarbleBase.position.set(-8.5, 0.35, -0.5);
       villaGroup.add(lampMarbleBase);
 
-      const lampStem = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 3.6, 8), darkMetalMat);
-      lampStem.position.set(-6.0, 2.0, 0.8);
+      const lampStem = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 3.8, 8), darkMetalMat);
+      lampStem.position.set(-8.0, 2.1, 0.2);
       lampStem.rotation.z = -0.25;
       villaGroup.add(lampStem);
 
       const lampDome = new THREE.Mesh(new THREE.SphereGeometry(0.32, 16, 16, 0, Math.PI * 2, 0, Math.PI / 2), brassMat);
-      lampDome.position.set(-5.3, 3.4, 1.2);
+      lampDome.position.set(-7.3, 3.5, 0.8);
       lampDome.rotation.x = Math.PI;
       villaGroup.add(lampDome);
 
-      // Contemporary Wall Art on Concrete Wall
+      // Painel Artístico de Galeria na Parede de Concreto
       const wallArt = new THREE.Mesh(new THREE.BoxGeometry(3.6, 2.2, 0.06), artMat);
-      wallArt.position.set(-3.5, 3.2, -12.6);
+      wallArt.position.set(-8.75, 3.2, -6.22);
       villaGroup.add(wallArt);
 
-      // --- ROOM 03: GOURMET ENTERTAINMENT LOUNGE & WINE CELLAR ---
-      // Monolithic Calacatta Marble Island (com bordas chanfradas em 45º)
-      const island = new THREE.Mesh(new THREE.BoxGeometry(5.6, 1.15, 2.0), marbleMat);
-      island.position.set(4.5, 0.78, -1.0);
+      // Biofilia: Árvore Escultural de Interior (Jabuticabeira) em Floreira com Pedras
+      const planterTree = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.4, 1.2), concreteMat);
+      planterTree.position.set(-9.8, 0.4, 4.8);
+      villaGroup.add(planterTree);
+
+      const treeTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 3.0, 8), darkWoodMat);
+      treeTrunk.position.set(-9.8, 1.9, 4.8);
+      villaGroup.add(treeTrunk);
+
+      const treeCanopy = new THREE.Mesh(new THREE.SphereGeometry(1.1, 12, 12), foliageMat);
+      treeCanopy.position.set(-9.8, 3.5, 4.8);
+      villaGroup.add(treeCanopy);
+
+      // ====================================================
+      // 4. MOBILIÁRIO EXCLUSIVO DO CÔMODO 03: ESPAÇO GOURMET
+      // ====================================================
+      // Armários planejados em marcenaria escura na parede dos fundos (X = 0.5 a 10.5, Z = -6.0)
+      const kitchenCabinet = new THREE.Mesh(new THREE.BoxGeometry(8.5, 4.5, 0.7), darkWoodMat);
+      kitchenCabinet.position.set(5.8, 2.45, -6.0);
+      villaGroup.add(kitchenCabinet);
+
+      // Torre de Fornos Embutidos com portas de vidro preto
+      const oven1 = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.7, 0.05), darkMetalMat);
+      oven1.position.set(2.5, 2.2, -5.62);
+      villaGroup.add(oven1);
+
+      const oven2 = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.7, 0.05), darkMetalMat);
+      oven2.position.set(2.5, 1.3, -5.62);
+      villaGroup.add(oven2);
+
+      // Nicho iluminado em LED na marcenaria
+      const nicheBack = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.9, 0.1), new THREE.MeshBasicMaterial({ color: 0xffe0a0 }));
+      nicheBack.position.set(6.2, 2.2, -5.64);
+      villaGroup.add(nicheBack);
+
+      // Monumental Ilha de Mármore Calacatta Gold (Chanfrada em 45º e base canelada)
+      const island = new THREE.Mesh(new THREE.BoxGeometry(5.8, 1.15, 2.0), marbleMat);
+      island.position.set(5.5, 0.78, -0.5);
       villaGroup.add(island);
 
-      // Fluted Dark Wood tambour detailing on front
-      const islandFrontWood = new THREE.Mesh(new THREE.BoxGeometry(5.4, 0.8, 0.05), woodSlatMat);
-      islandFrontWood.position.set(4.5, 0.6, -0.01);
+      const islandFrontWood = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.8, 0.05), woodSlatMat);
+      islandFrontWood.position.set(5.5, 0.6, 0.49);
       villaGroup.add(islandFrontWood);
 
-      // Black Induction Cooktop flush mount
+      // Cooktop de Indução Preto
       const cooktop = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.02, 0.7), darkMetalMat);
-      cooktop.position.set(3.2, 1.37, -1.0);
+      cooktop.position.set(4.0, 1.37, -0.5);
       villaGroup.add(cooktop);
 
-      // Brushed Brass Gooseneck Mixer Tap
+      // Misturador Monocomando em Latão Escovado
       const tapBase = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.45, 8), brassMat);
-      tapBase.position.set(5.5, 1.55, -1.0);
+      tapBase.position.set(6.5, 1.55, -0.5);
       villaGroup.add(tapBase);
 
-      // 3 Cognac Leather Bar Stools with Slim Black Metal Legs
-      for (let bx of [3.2, 4.5, 5.8]) {
+      // 4 Banquetas em Couro Conhaque com Pés em Metal Preto
+      for (let bx of [3.6, 4.8, 6.0, 7.2]) {
         const stoolSeat = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.1, 16), pillowLeatherMat);
-        stoolSeat.position.set(bx, 0.85, 0.6);
+        stoolSeat.position.set(bx, 0.85, 1.15);
         villaGroup.add(stoolSeat);
         const stoolLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.8, 8), darkMetalMat);
-        stoolLeg.position.set(bx, 0.4, 0.6);
+        stoolLeg.position.set(bx, 0.4, 1.15);
         villaGroup.add(stoolLeg);
       }
 
-      // Trio of Brushed Brass Pendant Cylinders hanging from ceiling
-      for (let px of [3.2, 4.5, 5.8]) {
+      // Trio de Pendentes Cilíndricos em Latão sobre a ilha
+      for (let px of [4.0, 5.5, 7.0]) {
         const cable = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 1.6, 8), darkMetalMat);
-        cable.position.set(px, 4.5, -1.0);
+        cable.position.set(px, 4.5, -0.5);
         villaGroup.add(cable);
         const pend = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.65, 16), brassMat);
-        pend.position.set(px, 3.4, -1.0);
+        pend.position.set(px, 3.4, -0.5);
         villaGroup.add(pend);
-        // Emissive light tip
         const tip = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffeaaf }));
-        tip.position.set(px, 3.05, -1.0);
+        tip.position.set(px, 3.05, -0.5);
         villaGroup.add(tip);
       }
 
-      // Glass-enclosed Wine Cellar (Adega Climatizada Walk-in com Garrafas Iluminadas)
-      const cellarGlass = new THREE.Mesh(new THREE.BoxGeometry(4.8, 4.4, 0.08), glassMat);
-      cellarGlass.position.set(7.8, 2.4, -4.5);
+      // Adega Climatizada Walk-in em Vidro Bronze na Lateral da Cozinha
+      const cellarGlass = new THREE.Mesh(new THREE.BoxGeometry(0.08, 4.2, 3.5), glassMat);
+      cellarGlass.position.set(10.5, 2.4, -2.5);
       villaGroup.add(cellarGlass);
 
-      const cellarBack = new THREE.Mesh(new THREE.BoxGeometry(4.8, 4.4, 0.3), woodSlatMat);
-      cellarBack.position.set(7.8, 2.4, -6.5);
-      villaGroup.add(cellarBack);
-
-      // Wine Racks & Bottles with Golden Foil Neck Glow
-      for (let ry = 1.0; ry <= 4.0; ry += 0.6) {
-        const rackShelf = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.04, 0.6), darkMetalMat);
-        rackShelf.position.set(7.8, ry, -5.5);
+      for (let ry = 1.0; ry <= 3.8; ry += 0.55) {
+        const rackShelf = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.04, 3.2), darkMetalMat);
+        rackShelf.position.set(10.7, ry, -2.5);
         villaGroup.add(rackShelf);
 
-        for (let rx = 6.2; rx <= 9.4; rx += 0.5) {
+        for (let rz = -3.8; rz <= -1.2; rz += 0.4) {
           const bottle = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.35, 8), darkMetalMat);
-          bottle.rotation.x = Math.PI / 2;
-          bottle.position.set(rx, ry + 0.08, -5.5);
+          bottle.rotation.z = Math.PI / 2;
+          bottle.position.set(10.7, ry + 0.08, rz);
           villaGroup.add(bottle);
         }
       }
 
-      // --- ROOM 04: ARCHITECT'S STUDIO & ATELIER ---
-      // Heavy Timber Drafting Table with Tilted Top & Brass Trestle Legs
-      const deskTop = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.08, 2.2), darkWoodMat);
-      deskTop.position.set(-3.5, 1.15, -7.5);
-      deskTop.rotation.x = 0.18; // Incline for drafting
+      // ====================================================
+      // 5. MOBILIÁRIO EXCLUSIVO DO CÔMODO 04: STUDIO / ATELIER
+      // ====================================================
+      // Estante de Livros & Monografias de Arquitetura na parede dos fundos do Atelier (Z = -16.0)
+      const studioBookshelf = new THREE.Mesh(new THREE.BoxGeometry(9.5, 4.8, 0.5), bookshelfMat);
+      studioBookshelf.position.set(-5.5, 2.6, -16.0);
+      villaGroup.add(studioBookshelf);
+
+      // Grande Prancheta de Desenho em Madeira Maciça inclinada em 15º
+      const deskTop = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.08, 2.2), darkWoodMat);
+      deskTop.position.set(-5.0, 1.25, -11.5);
+      deskTop.rotation.x = 0.22;
       villaGroup.add(deskTop);
 
-      // Actual CAD Blueprint Drawing Laid Out on Drafting Board
-      const blueprintSheet = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 1.6), blueprintMat);
-      blueprintSheet.position.set(-3.5, 1.21, -7.5);
-      blueprintSheet.rotation.x = -Math.PI / 2 + 0.18;
+      // Prancha com Planta Técnica CAD Blueprint Aberta
+      const blueprintSheet = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 1.7), blueprintMat);
+      blueprintSheet.position.set(-5.0, 1.31, -11.5);
+      blueprintSheet.rotation.x = -Math.PI / 2 + 0.22;
       villaGroup.add(blueprintSheet);
 
-      // Brass Trestle Legs
-      for (let tx of [-4.9, -2.1]) {
-        const trestle = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.1, 8), brassMat);
-        trestle.position.set(tx, 0.55, -7.5);
+      // Cavaletes em Latão Escovado
+      for (let tx of [-6.4, -3.6]) {
+        const trestle = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.15, 8), brassMat);
+        trestle.position.set(tx, 0.6, -11.5);
         villaGroup.add(trestle);
       }
 
-      // Articulated Architect's Task Lamp (Tolomeo style) casting focused glow
-      const lampBaseDesk = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.03, 12), brassMat);
-      lampBaseDesk.position.set(-1.9, 1.25, -6.6);
-      villaGroup.add(lampBaseDesk);
+      // Cadeira Executiva Ergonômica em Couro
+      const chairSeat = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.1, 0.6), pillowLeatherMat);
+      chairSeat.position.set(-5.0, 0.7, -9.8);
+      villaGroup.add(chairSeat);
 
-      const lampArm = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.8, 8), brassMat);
-      lampArm.position.set(-2.2, 1.6, -7.0);
-      lampArm.rotation.z = 0.45;
-      villaGroup.add(lampArm);
+      const chairBack = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.7, 0.08), pillowLeatherMat);
+      chairBack.position.set(-5.0, 1.1, -9.5);
+      villaGroup.add(chairBack);
 
-      const lampShade = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.2, 12), brassMat);
-      lampShade.position.set(-2.5, 1.9, -7.3);
-      lampShade.rotation.z = -Math.PI / 4;
-      villaGroup.add(lampShade);
+      const chairBase = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.3, 0.6, 8), darkMetalMat);
+      chairBase.position.set(-5.0, 0.35, -9.8);
+      villaGroup.add(chairBase);
 
-      // Travertine Pedestal with PHYSICAL ARCHITECTURAL SCALE MODEL (Maquete Física)
-      const plinth = new THREE.Mesh(new THREE.BoxGeometry(1.3, 1.0, 1.3), concreteMat);
-      plinth.position.set(-0.8, 0.5, -7.8);
+      // Luminária de Trabalho Articulada (Estilo Tolomeo)
+      const lampArmStudio = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.9, 8), brassMat);
+      lampArmStudio.position.set(-3.6, 1.7, -11.0);
+      lampArmStudio.rotation.z = 0.45;
+      villaGroup.add(lampArmStudio);
+
+      const lampShadeStudio = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.22, 12), brassMat);
+      lampShadeStudio.position.set(-4.0, 2.0, -11.3);
+      lampShadeStudio.rotation.z = -Math.PI / 4;
+      villaGroup.add(lampShadeStudio);
+
+      // Pedestal em Travertino com Maquete Física Volumétrica da Residência
+      const plinth = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.0, 1.4), concreteMat);
+      plinth.position.set(-9.2, 0.5, -11.5);
       villaGroup.add(plinth);
 
-      // Mini Villa Maquette (Madeira Balsa e Acrílico)
-      const miniBase = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.04, 0.85), darkWoodMat);
-      miniBase.position.set(-0.8, 1.04, -7.8);
+      // Maquete em Madeira Balsa e Acrílico
+      const miniBase = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.04, 1.0), darkWoodMat);
+      miniBase.position.set(-9.2, 1.04, -11.5);
       villaGroup.add(miniBase);
 
-      const miniVol1 = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.25, 0.4), new THREE.MeshBasicMaterial({ color: 0xffffff }));
-      miniVol1.position.set(-0.85, 1.18, -7.8);
-      villaGroup.add(miniVol1);
+      const miniHouseVol1 = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.28, 0.45), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+      miniHouseVol1.position.set(-9.3, 1.2, -11.5);
+      villaGroup.add(miniHouseVol1);
 
-      const miniCantilever = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.15, 0.45), brassMat);
-      miniCantilever.position.set(-0.72, 1.35, -7.7);
+      const miniCantilever = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.16, 0.5), brassMat);
+      miniCantilever.position.set(-9.15, 1.38, -11.4);
       villaGroup.add(miniCantilever);
 
-      // Mini Pool on Maquette
-      const miniPool = new THREE.Mesh(new THREE.PlaneGeometry(0.25, 0.4), new THREE.MeshBasicMaterial({ color: 0x00f0ff }));
-      miniPool.rotation.x = -Math.PI / 2;
-      miniPool.position.set(-0.65, 1.07, -7.8);
-      villaGroup.add(miniPool);
+      // Moodboard de Projetos na Parede Lateral
+      const moodboard = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.8, 2.8), darkWoodMat);
+      moodboard.position.set(-10.7, 2.5, -11.5);
+      villaGroup.add(moodboard);
 
-      // --- ATMOSPHERIC PARTICLES (Vaga-lumes & Poeira Dourada Flutuante) ---
+      // ====================================================
+      // 6. CÔMODO 05: TERRAÇO SUNSET, LOUNGE & SPA
+      // ====================================================
+      // Deck Suspenso em Madeira Cumaru (Z = +6.5 a +17.5)
+      const sunsetDeck = new THREE.Mesh(new THREE.BoxGeometry(22, 0.3, 11), woodSlatMat);
+      sunsetDeck.position.set(0, 0.15, 12.0);
+      villaGroup.add(sunsetDeck);
+
+      // Piscina de Borda Infinita com Iluminação Submersa
+      const poolGeo = new THREE.BoxGeometry(15, 0.9, 7.5);
+      poolWaterMesh = new THREE.Mesh(poolGeo, waterMat);
+      poolWaterMesh.position.set(0, -0.2, 12.5);
+      villaGroup.add(poolWaterMesh);
+
+      // Espelho d'água frontal na entrada (Z = 7 a 13, X = -8 a -4)
+      const reflexPool = new THREE.Mesh(new THREE.BoxGeometry(4.0, 0.15, 6.0), waterMat);
+      reflexPool.position.set(-6.0, 0.08, 10.0);
+      villaGroup.add(reflexPool);
+
+      // Passarela de pedras flutuantes sobre o espelho d'água
+      for (let pz = 7.5; pz <= 12.5; pz += 1.4) {
+        const stepStone = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.18, 0.9), concreteMat);
+        stepStone.position.set(-6.0, 0.18, pz);
+        villaGroup.add(stepStone);
+      }
+
+      // Guarda-corpo panorâmico de vidro sem emendas com vista para o horizonte
+      const glassBalustrade = new THREE.Mesh(new THREE.BoxGeometry(21.8, 1.1, 0.04), glassMat);
+      glassBalustrade.position.set(0, 0.8, 17.5);
+      villaGroup.add(glassBalustrade);
+
+      // Chaises de Descanso em Teca com Almofadas no Terraço
+      for (let cx of [5.0, 7.5]) {
+        const chaise = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.2, 2.2), woodSlatMat);
+        chaise.position.set(cx, 0.35, 11.5);
+        villaGroup.add(chaise);
+
+        const chaiseCushion = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.1, 2.1), boucleMat);
+        chaiseCushion.position.set(cx, 0.5, 11.5);
+        villaGroup.add(chaiseCushion);
+
+        const headrest = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.12, 0.35), new THREE.MeshStandardMaterial({ color: 0xc5a059 }));
+        headrest.position.set(cx, 0.6, 12.3);
+        villaGroup.add(headrest);
+      }
+
+      // Sunken Lounge com Sofá Embutido e Lareira Externa de Terraço
+      const loungeSofa = new THREE.Mesh(new THREE.BoxGeometry(3.5, 0.4, 1.2), boucleMat);
+      loungeSofa.position.set(-3.0, 0.4, 15.0);
+      villaGroup.add(loungeSofa);
+
+      const outdoorFireTable = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.35, 0.8), darkMetalMat);
+      outdoorFireTable.position.set(-3.0, 0.35, 13.5);
+      villaGroup.add(outdoorFireTable);
+
+      const outdoorFireGlow = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.04, 0.4), new THREE.MeshBasicMaterial({ color: 0xff6600 }));
+      outdoorFireGlow.position.set(-3.0, 0.54, 13.5);
+      villaGroup.add(outdoorFireGlow);
+
+      // Balanço Estrutural da Suíte Master no Pavimento Superior
+      const upperCantilever = new THREE.Mesh(new THREE.BoxGeometry(10.5, 2.5, 8.5), concreteMat);
+      upperCantilever.position.set(-4.5, 4.3, 8.5);
+      villaGroup.add(upperCantilever);
+
+      // Brises de Madeira Ripada no Balanço Superior
+      for (let bx = -9.4; bx <= 0.4; bx += 0.4) {
+        const brise = new THREE.Mesh(new THREE.BoxGeometry(0.06, 2.4, 0.35), woodSlatMat);
+        brise.position.set(bx, 4.3, 12.8);
+        villaGroup.add(brise);
+      }
+
+      // Partículas de Poeira Dourada Flutuante
       const dustGeo = new THREE.BufferGeometry();
       const dustCount = 250;
       const dustPositions = new Float32Array(dustCount * 3);
@@ -1934,25 +2073,26 @@
       scene.add(villaGroup);
     }
 
-    // --- 3. SINGLE-FLICK SCROLL NAVIGATION ENGINE ---
+    // --- 3. MOTOR SINGLE-FLICK SCROLL & NAVEGAÇÃO POR GUIAS ---
     let currentRoomIdx = 0;
     let isTransitioning = false;
     const totalRooms = 5;
 
-    const roomTitles = [
-      '01 // FACHADA PRINCIPAL',
-      '02 // LIVING PÉ-DIREITO DUPLO',
-      '03 // GALERIA & GOURMET LOUNGE',
-      '04 // STUDIO DE CRIAÇÃO & ATELIER',
-      '05 // TERRAÇO SUNSET & SPA'
+    // Nomes de Guias Reais + Ambientes 3D associados
+    const sectionDisplayTitles = [
+      '01 // INÍCIO • FACHADA PRINCIPAL',
+      '02 // FILOSOFIA • LIVING PÉ-DIREITO DUPLO',
+      '03 // OBRAS SELECIONADAS • ESPAÇO GOURMET',
+      '04 // SIMULADOR • STUDIO DE CRIAÇÃO',
+      '05 // CONTATO • TERRAÇO SUNSET & SPA'
     ];
 
-    const nextRoomLabels = [
-      '02 // Living',
-      '03 // Galeria',
-      '04 // Atelier',
-      '05 // Terraço',
-      '01 // Fachada'
+    const nextSectionPillLabels = [
+      'Filosofia (Living)',
+      'Obras Selecionadas (Gourmet)',
+      'Simulador (Atelier)',
+      'Contato (Terraço)',
+      'Início (Fachada)'
     ];
 
     const roomSectionIds = ['hero', 'filosofia', 'projetos', 'calculadora', 'contato'];
@@ -1962,52 +2102,52 @@
       currentRoomIdx = idx;
       isTransitioning = true;
 
-      // Update HUD Dots
+      // Atualiza os pontos do HUD lateral
       const dots = document.querySelectorAll('.hud-room-dot');
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentRoomIdx);
       });
 
-      // Update Header Nav
+      // Atualiza as guias da barra de navegação superior
       const navLinks = document.querySelectorAll('.arch-nav a');
       navLinks.forEach((link, i) => {
         link.classList.toggle('active', i === currentRoomIdx);
       });
 
-      // Update Bottom-Left Room Badge
+      // Atualiza o selo do canto inferior esquerdo
       const badgeTitle = document.getElementById('roomBadgeTitle');
       if (badgeTitle) {
-        badgeTitle.textContent = roomTitles[currentRoomIdx];
+        badgeTitle.textContent = sectionDisplayTitles[currentRoomIdx];
         badgeTitle.style.animation = 'none';
-        badgeTitle.offsetHeight; // Trigger DOM reflow
+        badgeTitle.offsetHeight;
         badgeTitle.style.animation = 'pulseText 0.5s ease';
       }
 
-      // Update Floating Bottom Pill
+      // Atualiza a pílula flutuante inferior central
       const pillText = document.getElementById('flickPillText');
       if (pillText) {
-        const nextName = nextRoomLabels[currentRoomIdx];
+        const nextName = nextSectionPillLabels[currentRoomIdx];
         if (currentRoomIdx === totalRooms - 1) {
           pillText.innerHTML = `Retornar ao início: <strong>${nextName}</strong> ↑`;
         } else {
-          pillText.innerHTML = `Role suavemente para ir ao <strong>${nextName}</strong> ↓`;
+          pillText.innerHTML = `Role suavemente para ir a <strong>${nextName}</strong> ↓`;
         }
       }
 
-      // Update 3D Camera Waypoint Target
+      // Move a câmera 3D para o cômodo correspondente
       const wp = roomWaypoints[currentRoomIdx];
       if (wp) {
         targetCameraPos.copy(wp.pos);
         targetCameraLook.copy(wp.look);
       }
 
-      // Smoothly scroll the container so this section fills viewport
+      // Desloca suavemente a página até a seção
       const targetSec = document.getElementById(roomSectionIds[currentRoomIdx]);
       if (targetSec) {
         targetSec.scrollIntoView({ behavior: instant ? 'auto' : 'smooth' });
       }
 
-      // Cooldown timer: guarantees that a single wheel flick advances cleanly without skipping multiple rooms
+      // Trava de rolagem suave (evita saltos indesejados de cômodo)
       setTimeout(() => {
         isTransitioning = false;
       }, 820);
@@ -2022,15 +2162,12 @@
       }
     }
 
-    // High-Precision Wheel Listener: 1 Gentle flick = 1 Room advance
+    // Listener de rodinha com alta precisão: 1 rolada leve = 1 cômodo/guia
     window.addEventListener('wheel', (e) => {
-      // Don't hijack if user is inside a modal or scrollable inner box
       if (e.target.closest('.modal-content, .scrollable-box')) return;
-
-      e.preventDefault(); // Prevent standard choppy pixel scrolling
+      e.preventDefault();
       if (isTransitioning) return;
 
-      // Detect even a gentle single flick
       if (e.deltaY > 12) {
         if (currentRoomIdx < totalRooms - 1) {
           goToRoom(currentRoomIdx + 1);
@@ -2042,7 +2179,7 @@
       }
     }, { passive: false });
 
-    // Keyboard Navigation (Arrow Keys / Page Down / Space)
+    // Navegação por teclado (Setas / PageDown / Espaço)
     window.addEventListener('keydown', (e) => {
       if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
         e.preventDefault();
@@ -2057,7 +2194,7 @@
       }
     });
 
-    // Touch Swipe Navigation for Tablets & Mobile
+    // Navegação por Touch Swipe no Mobile/Tablet
     let touchStartY = 0;
     window.addEventListener('touchstart', (e) => {
       touchStartY = e.touches[0].clientY;
@@ -2078,14 +2215,12 @@
       }
     }, { passive: true });
 
-    // Window Resize
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    // Mouse Move Parallax
     function onMouseMove(e) {
       mouseX = (e.clientX - window.innerWidth / 2) * 0.00025;
       mouseY = (e.clientY - window.innerHeight / 2) * 0.00025;
@@ -2095,7 +2230,7 @@
     function animate() {
       requestAnimationFrame(animate);
 
-      // Smooth camera gliding damping
+      // Interpolação suave de câmera
       currentCameraPos.lerp(targetCameraPos, 0.045);
       currentCameraLook.lerp(targetCameraLook, 0.045);
 
@@ -2104,22 +2239,22 @@
       camera.position.z = currentCameraPos.z;
       camera.lookAt(currentCameraLook);
 
-      // Animate Bioethanol Fireplace Flames
+      // Animação das Chamas da Lareira do Living
       if (villaGroup && villaGroup.userData.firePoints) {
         const positions = villaGroup.userData.firePoints.geometry.attributes.position.array;
         const count = positions.length / 3;
         for (let i = 0; i < count; i++) {
-          positions[i * 3 + 1] += 0.007; // Rise upwards
-          positions[i * 3] += (Math.random() - 0.5) * 0.004; // slight horizontal flicker
-          if (positions[i * 3 + 1] > 1.05) {
-            positions[i * 3 + 1] = 0.65; // Reset to burner trough
-            positions[i * 3] = -4.8 + Math.random() * 2.6;
+          positions[i * 3 + 1] += 0.007;
+          positions[i * 3] += (Math.random() - 0.5) * 0.004;
+          if (positions[i * 3 + 1] > 1.1) {
+            positions[i * 3 + 1] = 0.7;
+            positions[i * 3] = -6.5 + Math.random() * 2.6;
           }
         }
         villaGroup.userData.firePoints.geometry.attributes.position.needsUpdate = true;
       }
 
-      // Gentle Water breathing
+      // Ondulação suave da água da piscina
       if (poolWaterMesh) {
         poolWaterMesh.position.y = -0.2 + Math.sin(Date.now() * 0.002) * 0.015;
       }
@@ -2127,7 +2262,7 @@
       renderer.render(scene, camera);
     }
 
-    // --- 4. INTERACTIVE SIMULATOR & GALLERY CODE ---
+    // --- 4. SIMULADOR DE ESTIMATIVA & FILTROS DE GALERIA ---
     function calculateBudget() {
       const typeRate = parseFloat(document.getElementById('calcType').value);
       const area = parseFloat(document.getElementById('calcArea').value);
@@ -2138,10 +2273,8 @@
       const projectTotal = area * typeRate * standardMult;
       const formattedTotal = projectTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       
-      // Update only the numbers, preserving the baseline-aligned R$ span
       document.getElementById('calcTotalNumber').textContent = formattedTotal;
 
-      // Estimate construction cost & timeframe
       const obraEst = area * 4000 * standardMult;
       document.getElementById('calcObraEst').textContent = obraEst.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
 
@@ -2176,7 +2309,7 @@
       alert(`🏛️ PROJETO STUDIO ARKHÉ\n\nNome: ${title}\nCategoria: ${cat}\nÁrea Construída: ${area}\nEspecificações: ${mat}\n\nEm um site executivo real da GS Digital, abre-se uma galeria modal imersiva com visualizador 3D BIM, plantas baixas humanizadas e memorial descritivo.`);
     }
 
-    // Initialize on load
+    // Iniciação no carregamento
     window.addEventListener('DOMContentLoaded', () => {
       init3DScene();
       calculateBudget();
