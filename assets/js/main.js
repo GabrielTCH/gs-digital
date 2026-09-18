@@ -9,20 +9,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* -------------------------------------------------------------
- * 1. Lightweight Cyber Particle Canvas
+ * 1. Lightweight Cyber Particle Canvas (Pixel-Perfect Precision)
  * ----------------------------------------------------------- */
 function initParticleCanvas() {
   const canvas = document.getElementById('particle-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
+  let width = 0;
+  let height = 0;
+  let dpr = window.devicePixelRatio || 1;
 
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2); // Suporte para telas Retina / High-DPI
+    width = rect.width;
+    height = rect.height;
+
+    // Buffer interno exatamente proporcional à área renderizada em CSS
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+  }
+
+  resizeCanvas();
 
   const particles = [];
   const particleCount = Math.min(Math.floor(window.innerWidth / 20), 65);
@@ -39,12 +48,46 @@ function initParticleCanvas() {
   }
 
   let mouse = { x: -1000, y: -1000 };
+
+  function updateMouse(clientX, clientY) {
+    const rect = canvas.getBoundingClientRect();
+    // Mapeamento exato de coordenadas relativas ao elemento Canvas
+    mouse.x = clientX - rect.left;
+    mouse.y = clientY - rect.top;
+  }
+
   window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    updateMouse(e.clientX, e.clientY);
+  });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+      updateMouse(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    // Mantém as partículas dentro dos novos limites de largura/altura
+    for (let i = 0; i < particles.length; i++) {
+      if (particles[i].x > width) particles[i].x = Math.random() * width;
+      if (particles[i].y > height) particles[i].y = Math.random() * height;
+    }
   });
 
   function render() {
+    ctx.save();
+    ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, width, height);
 
     // Render particles & connections
@@ -84,20 +127,23 @@ function initParticleCanvas() {
         }
       }
 
-      // Link to mouse
-      const mdx = p.x - mouse.x;
-      const mdy = p.y - mouse.y;
-      const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-      if (mdist < 140) {
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.strokeStyle = `rgba(0, 240, 255, ${(1 - mdist / 140) * 0.4})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
+      // Link to mouse com alinhamento milimétrico na ponta do cursor
+      if (mouse.x >= 0 && mouse.y >= 0) {
+        const mdx = p.x - mouse.x;
+        const mdy = p.y - mouse.y;
+        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+        if (mdist < 140) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(0, 240, 255, ${(1 - mdist / 140) * 0.4})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
       }
     }
 
+    ctx.restore();
     requestAnimationFrame(render);
   }
 
